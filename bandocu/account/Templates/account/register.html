@@ -1,0 +1,44 @@
+{% extends 'account/base.html' %}
+{% load static %}
+
+{% block title %} Đăng ký {% endblock title %}
+
+{% block register %}
+    <div class="ctn">
+        <form action="" method="post" class="form" id="form-1">
+            <h3 class="title">Đăng ký</h3>
+            <div class="form-group">
+                <label for="full-name" class="form-label">Họ và Tên</label>
+                <input type="text" id="full-name" name="full-name"  placeholder="Nguyễn Văn A" >
+                <span class="form-mess"></span>
+            </div>
+            <div class="form-group">
+                <label for="form-email" class="form-label">Email</label>
+                <input type="email" id="form-email" name="email" placeholder="nguyenvanna@gmail.com">
+                <span class="form-mess"></span>
+            </div>
+            <div class="form-group">
+                <label for="form-password" class="form-label">Mật khẩu</label>
+                <input type="password" id="form-password" name="Password" placeholder="Nhập mật khẩu">
+                <span class="form-mess"></span>
+            </div>
+            <div class="form-group">
+                <label for="password-comfirmation" class="form-label">Nhập lại mật khẩu</label>
+                <input type="password" id="password-comfirmation" name="password-comfirmation" placeholder="Nhập lại mật khẩu">
+                <span class="form-mess"></span>
+            </div>
+            <div class="form-btn">
+                <button type="submit" class="form-btn__it">Đăng  ký</button>
+            </div>
+        </form>
+        <div class="other">
+            <span>Bạn đã có tài khoản?</span>
+            <a href="{% url 'login' %}" class="other__link">
+                <span>Đăng nhập</span>
+            </a>
+        </div>
+    </div>
+    {% endblock register %}
+    {% block extra_js %}
+        <script src="{% static 'account/js/register.js' %}"></script>
+    {% endblock %}
