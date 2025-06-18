@@ -1,8 +1,51 @@
-{% extends 'home/base.html' %}
+{% extends 'seller/base.html' %}
 {% load static %}
-{% block title %} Trang chủ seller {%endblock%} 
+{% block title %}Trang chủ Seller{% endblock %}
 {% block content %}
-    <main>
-        HELLO seller
-    </main>
-{%endblock%}
+<div class="seller-home-container">
+    <div class="seller-home__header">
+        <h1 class="seller-home__title">Danh sách sản phẩm của bạn</h1>
+        <div class="seller-home__stats">
+            <div class="stat-card">
+                <div class="stat-number">28</div>
+                <div class="stat-label">Sản phẩm</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">128</div>
+                <div class="stat-label">Đã bán</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4.8</div>
+                <div class="stat-label">Đánh giá</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="seller-home__filter-bar">
+        <button class="filter-btn active">Lượt bán cao</button>
+        <button class="filter-btn">Lượt bán thấp</button>
+        <button class="filter-btn">Bộ lọc</button>
+    </div>
+
+    <div class="seller-product-list">
+        {% for i in "123456" %}
+        <div class="seller-product-card">
+            <div class="seller-product-img">
+                <img src="{% static 'seller/ip11.jpg' %}" alt="IP 11">
+            </div>
+            <div class="seller-product-info">
+                <div class="seller-product-name">IP 11</div>
+                <div class="seller-product-price">8.000.000đ <span style="color: #6c757d; font-size: 0.9rem; font-weight: normal;">Đã bán: 0</span></div>
+                <div class="seller-product-meta">
+                    <div class="sold-count">Đang bán</div>
+                    <div class="product-actions">
+                        <button class="action-btn edit-btn">Sửa</button>
+                        <button class="action-btn delete-btn">Xóa</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

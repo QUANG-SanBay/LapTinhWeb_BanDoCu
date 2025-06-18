@@ -8,15 +8,20 @@
     {% block title %}
        
     {% endblock title%}
-        </title>
-    
+    </title>
+    <link rel="stylesheet" href="{% static 'seller/seller.css' %}">
+    {% block custom_css %}{% endblock %}
 </head>
 <body>
-    {% include 'partials/header.html' %}
+    {% include 'partials/seller/header.html' %}
     <main>
+        {% comment %} {% block header %}
+        {% endblock header %} {% endcomment %}
        {% block content %}
         {% endblock content %}
-        seller
+        {% comment %} {% block footer %}
+        {% endblock footer %} {% endcomment %}
     </main>
-    {% include 'partials/footer.html' %}
+    {% include 'partials/seller/footer.html' %}
+    <script src="{% static 'seller/seller.js' %}"></script>
 </body>
