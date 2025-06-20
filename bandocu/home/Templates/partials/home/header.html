@@ -1,0 +1,52 @@
+{% load static %}
+<header class="header">
+    <div class="grib wide">
+        <div class="header__content">
+            <!-- Logo -->
+            <a href="#" class="header__logo">
+                <img src="{% static 'home/imgs/logo.png' %}" alt="Logo" class="header__logo-img">  
+            </a>
+    
+            <!-- Search -->
+            <div class="header__search">
+                <div class="header__search-wrapper">
+                    <i class="header__search-icon fas fa-search" id="searchBtn"></i>
+                    <input 
+                        type="text" 
+                        class="header__search-input" 
+                        placeholder="Tìm kiếm sản phẩm..."
+                        id="searchInput"
+                    >
+                    <i class="header__clear-btn fa-solid fa-x" id="clearBtn"></i>
+                </div>
+            </div>
+    
+            <!-- User Avatar & Dropdown -->
+            <div class="header__user">
+                <button class="header__avatar-btn" id="avatarBtn">
+                    <div class="header__avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span class= "header__avatar-btn-down">
+                        <i class="fa-solid fa-v"></i>
+                    </span>
+                </button>
+                
+                <div class="header__dropdown" id="userDropdown">
+                    <a href="#" class="header__dropdown-item">
+                        <i class="header__dropdown-icon fas fa-user-circle"></i>
+                        Hồ sơ của tôi
+                    </a>
+                    <a href="#" class="header__dropdown-item">
+                        <i class="header__dropdown-icon fas fa-shopping-bag"></i>
+                        Lịch sử đơn hàng
+                    </a>
+                    <a href="#" class="header__dropdown-item">
+                        <i class="header__dropdown-icon fas fa-sign-out-alt"></i>
+                        Đăng xuất
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,27 @@
+:root{
+    --color-soft-peach-50: #faf6f6;
+    --primery-c: #f4e8e8;
+    --color-soft-peach-200: #eedada;
+    --color-soft-peach-300: #e1c0c0;
+    --color-soft-peach-400: #ce9b9b;
+    --color-soft-peach-500: #ba7979;
+    --color-soft-peach-600: #a35f5f;
+    --color-soft-peach-700: #884d4d;
+    --color-soft-peach-800: #724242;
+    --color-soft-peach-900: #613b3b;
+    --color-soft-peach-950: #331c1c;
+
+    --border-c:#cbcbca;
+    --bgr-products:#f4f6fc;
+}
+html{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+*,
+*::after,*::before{
+    padding: 0;
+    margin: 0;
+    box-sizing: inherit;
+}
