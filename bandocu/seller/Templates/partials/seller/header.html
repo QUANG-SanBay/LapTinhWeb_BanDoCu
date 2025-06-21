@@ -17,16 +17,22 @@
         </div>
         
         <nav class="seller-header__nav">
-            <a href="/seller/" class="nav-item active">
+            <a href="{% url 'seller:home_seller' %}" class="nav-item">
                 Trang chủ
             </a>
-            <a href="/seller/dang-ban" class="nav-item">
-                Đăng bán sản phẩm
-            </a>
-            <a href="/seller/quan-ly-don-hang" class="nav-item">
+            <div class="nav-dropdown">
+                <a href="{% url 'seller:dang_ban' %}" class="nav-item">
+                    Đăng bán sản phẩm <i class="fas fa-chevron-down"></i>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="{% url 'seller:dang_ban' %}" class="dropdown-item">Đăng bán</a>
+                    <a href="{% url 'seller:danh_sach_san_pham' %}" class="dropdown-item">Danh sách sản phẩm</a>
+                </div>
+            </div>
+            <a href="{% url 'seller:quan_ly_don_hang' %}" class="nav-item">
                 Quản lý đơn hàng
             </a>
-            <a href="/seller/thong-ke" class="nav-item">
+            <a href="{% url 'seller:thong_ke' %}" class="nav-item">
                 Thống kê
             </a>
         </nav>

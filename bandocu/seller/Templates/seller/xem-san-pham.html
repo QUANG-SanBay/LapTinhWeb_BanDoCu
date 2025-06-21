@@ -1,0 +1,147 @@
+{% extends 'seller/base.html' %}
+{% load static %}
+
+{% block title %}Chi tiết sản phẩm{% endblock %}
+
+{% block content %}
+<div class="product-detail-container">
+    <div class="page-header">
+        <h1 class="page-title">Chi tiết sản phẩm</h1>
+        <div class="breadcrumb">
+            <a href="{% url 'seller:home_seller' %}">Trang chủ</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="{% url 'seller:danh_sach_san_pham' %}">Danh sách sản phẩm</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Chi tiết sản phẩm</span>
+        </div>
+    </div>
+
+    <div class="product-detail-content">
+        <!-- Product Images Section -->
+        <div class="product-images-section">
+            <div class="main-image">
+                {% if san_pham.hinhAnh.first %}
+                    <img src="{{ san_pham.hinhAnh.first.hinhAnh.url }}" alt="{{ san_pham.tenSanPham }}" id="main-product-image">
+                {% else %}
+                    <img src="{% static 'imgs/ip11.jpg' %}" alt="{{ san_pham.tenSanPham }}" id="main-product-image">
+                {% endif %}
+            </div>
+            <div class="thumbnail-images">
+                {% if san_pham.hinhAnh.first %}
+                    <img src="{{ san_pham.hinhAnh.first.hinhAnh.url }}" alt="Thumbnail" class="thumbnail active" onclick="changeMainImage(this)">
+                {% else %}
+                    <img src="{% static 'imgs/ip11.jpg' %}" alt="Thumbnail" class="thumbnail active" onclick="changeMainImage(this)">
+                {% endif %}
+                <!-- Thêm các thumbnail khác nếu có nhiều hình -->
+            </div>
+        </div>
+
+        <!-- Product Info Section -->
+        <div class="product-info-section">
+            <div class="product-header">
+                <h2 class="product-title">{{ san_pham.tenSanPham|default:"Tên sản phẩm" }}</h2>
+                <div class="product-status">
+                    <span class="status-badge status-active">Đang bán</span>
+                </div>
+            </div>
+
+            <div class="product-price-section">
+                <div class="price-main">
+                    <span class="price-amount">{{ san_pham.gia|default:"0"|floatformat:0 }}</span>
+                    <span class="price-currency">VNĐ</span>
+                </div>
+                <div class="price-info">
+                    <span class="original-price">Giá gốc: {{ san_pham.gia|default:"0"|floatformat:0 }} VNĐ</span>
+                </div>
+            </div>
+
+            <div class="product-stats">
+                <div class="stat-item">
+                    <i class="fas fa-eye"></i>
+                    <span>Lượt xem: 0</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-heart"></i>
+                    <span>Lượt thích: 0</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-box"></i>
+                    <span>Kho hàng: {{ san_pham.soLuong|default:"0" }}</span>
+                </div>
+            </div>
+
+            <div class="product-details">
+                <h3>Thông tin chi tiết</h3>
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <span class="detail-label">Danh mục:</span>
+                        <span class="detail-value">{{ san_pham.theLoai.tenTheLoai|default:"Chưa phân loại" }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Tình trạng:</span>
+                        <span class="detail-value">Mới</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Ngày đăng:</span>
+                        <span class="detail-value">{{ san_pham.ngayTao|date:"d/m/Y"|default:"Chưa có" }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Cập nhật:</span>
+                        <span class="detail-value">{{ san_pham.ngayTao|date:"d/m/Y"|default:"Chưa có" }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-description">
+                <h3>Mô tả sản phẩm</h3>
+                <div class="description-content">
+                    {{ san_pham.moTa|default:"Chưa có mô tả cho sản phẩm này."|linebreaks }}
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="product-actions">
+                <a href="{% url 'seller:sua_san_pham' san_pham.id %}" class="btn btn-primary">
+                    <i class="fas fa-edit"></i>
+                    Sửa sản phẩm
+                </a>
+                <a href="{% url 'seller:danh_sach_san_pham' %}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i>
+                    Quay lại danh sách
+                </a>
+                <button class="btn btn-danger" onclick="confirmDelete()">
+                    <i class="fas fa-trash"></i>
+                    Xóa sản phẩm
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function changeMainImage(thumbnail) {
+    // Remove active class from all thumbnails
+    document.querySelectorAll('.thumbnail').forEach(thumb => {
+        thumb.classList.remove('active');
+    });
+    
+    // Add active class to clicked thumbnail
+    thumbnail.classList.add('active');
+    
+    // Change main image
+    const mainImage = document.getElementById('main-product-image');
+    mainImage.src = thumbnail.src;
+}
+
+function confirmDelete() {
+    if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')) {
+        // Redirect to delete page or handle delete
+        window.location.href = "{% url 'seller:xoa_san_pham' san_pham.id %}";
+    }
+}
+</script>
+{% endblock %}
+
+{% block custom_css %}
+<link rel="stylesheet" href="{% static 'seller/xem-san-pham.css' %}">
+{% endblock %} 

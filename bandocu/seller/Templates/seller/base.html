@@ -10,7 +10,11 @@
     {% endblock title%}
     </title>
     <link rel="stylesheet" href="{% static 'seller/seller.css' %}">
+    {% block danh-sach-san-pham %}{% endblock %}
     {% block custom_css %}{% endblock %}
+    {% block sua-san-pham %}{% endblock %}
+    {% block xem-san-pham %}{% endblock %}
+    {% block xem-san-pham-js %}{% endblock %}
 </head>
 <body>
     {% include 'partials/seller/header.html' %}
@@ -23,5 +27,6 @@
         {% endblock footer %} {% endcomment %}
     </main>
     {% include 'partials/seller/footer.html' %}
-    <script src="{% static 'seller/seller.js' %}"></script>
+    <script src="{% static 'seller/js/seller.js' %}"></script>
+    <script src="{% static 'seller/js/them.js' %}"></script>
 </body>

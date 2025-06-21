@@ -27,11 +27,137 @@
         <button class="filter-btn">Bộ lọc</button>
     </div>
 
-    <div class="seller-product-list">
+    <div class="seller-home__category-tabs">
+        <button class="category-tab active" data-category="tat-ca">Tất cả</button>
+        <button class="category-tab" data-category="dien-thoai">Điện thoại</button>
+        <button class="category-tab" data-category="may-tinh">Máy tính</button>
+        <button class="category-tab" data-category="phu-kien">Phụ kiện</button>
+        <button class="category-tab" data-category="thoi-trang">Thời trang</button>
+        <button class="category-tab" data-category="do-gia-dung">Đồ gia dụng</button>
+    </div>
+
+    <div class="seller-product-list" id="category-tat-ca">
+        <div class="category-section">
+            <h2 class="category-title">Điện thoại</h2>
+            <div class="category-group">
+            {% for i in "123456" %}
+            <div class="seller-product-card">
+                <div class="seller-product-img">
+                    <img src="{% static 'imgs/ip11.jpg' %}" alt="IP 11">
+                </div>
+                <div class="seller-product-info">
+                    <div class="seller-product-name">IP 11</div>
+                    <div class="seller-product-price">8.000.000đ <span style="color: #6c757d; font-size: 0.9rem; font-weight: normal;">Đã bán: 0</span></div>
+                    <div class="seller-product-meta">
+                        <div class="sold-count">Đang bán</div>
+                        <div class="product-actions">
+                            <button class="action-btn edit-btn">Sửa</button>
+                            <button class="action-btn delete-btn">Xóa</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="category-section">
+            <h2 class="category-title">Máy tính</h2>
+            <div class="category-group">
+            {% for i in "123456" %}
+            <div class="seller-product-card">
+                <div class="seller-product-img">
+                    <img src="{% static 'imgs/ip11.jpg' %}" alt="IP 11">
+                </div>
+                <div class="seller-product-info">
+                    <div class="seller-product-name">IP 11</div>
+                    <div class="seller-product-price">8.000.000đ <span style="color: #6c757d; font-size: 0.9rem; font-weight: normal;">Đã bán: 0</span></div>
+                    <div class="seller-product-meta">
+                        <div class="sold-count">Đang bán</div>
+                        <div class="product-actions">
+                            <button class="action-btn edit-btn">Sửa</button>
+                            <button class="action-btn delete-btn">Xóa</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="category-section">
+            <h2 class="category-title">Phụ kiện</h2>
+            <div class="category-group">
+            {% for i in "123456" %}
+            <div class="seller-product-card">
+                <div class="seller-product-img">
+                    <img src="{% static 'imgs/ip11.jpg' %}" alt="IP 11">
+                </div>
+                <div class="seller-product-info">
+                    <div class="seller-product-name">IP 11</div>
+                    <div class="seller-product-price">8.000.000đ <span style="color: #6c757d; font-size: 0.9rem; font-weight: normal;">Đã bán: 0</span></div>
+                    <div class="seller-product-meta">
+                        <div class="sold-count">Đang bán</div>
+                        <div class="product-actions">
+                            <button class="action-btn edit-btn">Sửa</button>
+                            <button class="action-btn delete-btn">Xóa</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="category-section">
+            <h2 class="category-title">Thời trang</h2>
+            <div class="category-group">
+            {% for i in "123456" %}
+            <div class="seller-product-card">
+                <div class="seller-product-img">
+                    <img src="{% static 'imgs/ip11.jpg' %}" alt="IP 11">
+                </div>  
+                <div class="seller-product-info">
+                    <div class="seller-product-name">IP 11</div>
+                    <div class="seller-product-price">8.000.000đ <span style="color: #6c757d; font-size: 0.9rem; font-weight: normal;">Đã bán: 0</span></div>
+                    <div class="seller-product-meta">
+                        <div class="sold-count">Đang bán</div>
+                        <div class="product-actions">
+                            <button class="action-btn edit-btn">Sửa</button>
+                            <button class="action-btn delete-btn">Xóa</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="category-section">
+            <h2 class="category-title">Đồ gia dụng</h2>
+            <div class="category-group">
+            {% for i in "123456" %}
+            <div class="seller-product-card">
+                <div class="seller-product-img">
+                    <img src="{% static 'imgs/ip11.jpg' %}" alt="IP 11">
+                </div>
+                <div class="seller-product-info">
+                    <div class="seller-product-name">IP 11</div>
+                    <div class="seller-product-price">8.000.000đ <span style="color: #6c757d; font-size: 0.9rem; font-weight: normal;">Đã bán: 0</span></div>
+                    <div class="seller-product-meta">
+                        <div class="sold-count">Đang bán</div>
+                        <div class="product-actions">
+                            <button class="action-btn edit-btn">Sửa</button>
+                            <button class="action-btn delete-btn">Xóa</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="seller-product-list" id="category-dien-thoai" style="display:none;">
         {% for i in "123456" %}
         <div class="seller-product-card">
             <div class="seller-product-img">
-                <img src="{% static 'seller/ip11.jpg' %}" alt="IP 11">
+                <img src="{% static 'imgs/ip11.jpg' %}" alt="IP 11">
             </div>
             <div class="seller-product-info">
                 <div class="seller-product-name">IP 11</div>
@@ -47,5 +173,97 @@
         </div>
         {% endfor %}
     </div>
+    <div class="seller-product-list" id="category-may-tinh" style="display:none;">
+        {% for i in "123456" %}
+        <div class="seller-product-card">
+            <div class="seller-product-img">
+                <img src="{% static 'imgs/ip11.jpg' %}" alt="IP 11">
+            </div>
+            <div class="seller-product-info">
+                <div class="seller-product-name">IP 11</div>
+                <div class="seller-product-price">8.000.000đ <span style="color: #6c757d; font-size: 0.9rem; font-weight: normal;">Đã bán: 0</span></div>
+                <div class="seller-product-meta">
+                    <div class="sold-count">Đang bán</div>
+                    <div class="product-actions">
+                        <button class="action-btn edit-btn">Sửa</button>
+                        <button class="action-btn delete-btn">Xóa</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="seller-product-list" id="category-phu-kien" style="display:none;">
+        {% for i in "123456" %}
+        <div class="seller-product-card">
+            <div class="seller-product-img">
+                <img src="{% static 'imgs/ip11.jpg' %}" alt="IP 11">
+            </div>
+            <div class="seller-product-info">
+                <div class="seller-product-name">IP 11</div>
+                <div class="seller-product-price">8.000.000đ <span style="color: #6c757d; font-size: 0.9rem; font-weight: normal;">Đã bán: 0</span></div>
+                <div class="seller-product-meta">
+                    <div class="sold-count">Đang bán</div>
+                    <div class="product-actions">
+                        <button class="action-btn edit-btn">Sửa</button>
+                        <button class="action-btn delete-btn">Xóa</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="seller-product-list" id="category-thoi-trang" style="display:none;">
+        {% for i in "123456" %}
+        <div class="seller-product-card">
+            <div class="seller-product-img">
+                <img src="{% static 'imgs/ip11.jpg' %}" alt="IP 11">
+            </div>
+            <div class="seller-product-info">
+                <div class="seller-product-name">IP 11</div>
+                <div class="seller-product-price">8.000.000đ <span style="color: #6c757d; font-size: 0.9rem; font-weight: normal;">Đã bán: 0</span></div>
+                <div class="seller-product-meta">
+                    <div class="sold-count">Đang bán</div>
+                    <div class="product-actions">
+                        <button class="action-btn edit-btn">Sửa</button>
+                        <button class="action-btn delete-btn">Xóa</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="seller-product-list" id="category-do-gia-dung" style="display:none;">
+        {% for i in "123456" %}
+        <div class="seller-product-card">
+            <div class="seller-product-img">
+                <img src="{% static 'imgs/ip11.jpg' %}" alt="IP 11">
+            </div>
+            <div class="seller-product-info">
+                <div class="seller-product-name">IP 11</div>
+                <div class="seller-product-price">8.000.000đ <span style="color: #6c757d; font-size: 0.9rem; font-weight: normal;">Đã bán: 0</span></div>
+                <div class="seller-product-meta">
+                    <div class="sold-count">Đang bán</div>
+                    <div class="product-actions">
+                        <button class="action-btn edit-btn">Sửa</button>
+                        <button class="action-btn delete-btn">Xóa</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <script>
+    const tabs = document.querySelectorAll('.category-tab');
+    const lists = document.querySelectorAll('.seller-product-list');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            tabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            lists.forEach(list => list.style.display = 'none');
+            document.getElementById('category-' + this.dataset.category).style.display = '';
+        });
+    });
+    </script>
 </div>
 {% endblock %}
