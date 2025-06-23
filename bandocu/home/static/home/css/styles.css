@@ -172,7 +172,24 @@
   width: 16px;
   color: var(--color-soft-peach-600);
 }
+.header__anonymous{
+    display: flex;
+    align-items: center;
 
+}
+.header__login-btn,.header__register-btn{
+    font-size: 1.4rem;
+    background-color: var(--color-soft-peach-300);
+    color: var(--text-c);
+    text-decoration: none;
+    width: 90px;
+    border-radius: 8px;
+    display: block;
+    line-height: 2;
+    padding: 0 10px;
+    margin: 0 5px;
+    text-align: center;
+}
 /* Responsive */
 /* @media (max-width: 768px) {
   .header__content {

@@ -22,12 +22,13 @@
             </div>
     
             <!-- User Avatar & Dropdown -->
+            {% if user.is_authenticated %}
             <div class="header__user">
                 <button class="header__avatar-btn" id="avatarBtn">
                     <div class="header__avatar">
                         <i class="fas fa-user"></i>
                     </div>
-                    <span class= "header__avatar-btn-down">
+                    <span class="header__avatar-btn-down">
                         <i class="fa-solid fa-v"></i>
                     </span>
                 </button>
@@ -47,6 +48,12 @@
                     </a>
                 </div>
             </div>
+            {% else %}
+            <div class="header__anonymous">
+                <a href="{% url 'login' %}" class="header__login-btn">Đăng nhập</a>
+                <a href="{% url 'register' %}" class="header__register-btn">Đăng ký</a>
+            </div>
+            {% endif %}
         </div>
     </div>
 </header>
