@@ -3,7 +3,7 @@
     <div class="grib wide">
         <div class="header__content">
             <!-- Logo -->
-            <a href="#" class="header__logo">
+            <a href="{% url 'home' %}" class="header__logo">
                 <img src="{% static 'home/imgs/logo.png' %}" alt="Logo" class="header__logo-img">  
             </a>
     
@@ -33,7 +33,7 @@
                 </button>
                 
                 <div class="header__dropdown" id="userDropdown">
-                    <a href="#" class="header__dropdown-item">
+                    <a href="{% url 'profile' %}" class="header__dropdown-item">
                         <i class="header__dropdown-icon fas fa-user-circle"></i>
                         Hồ sơ của tôi
                     </a>

@@ -1,0 +1,39 @@
+.myProfile{
+
+}
+.section{
+}
+.section__title{
+
+}
+.section__title-text{
+
+}
+.form-group{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.form-label{
+    margin-left: 10px;
+    font-size: 1.4rem;
+    color: var(--text-c);
+    margin-bottom: 5px;
+    max-width: 120px;
+    width: 100%;
+}
+.form-input, .form-select{
+    flex: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid var(--border-c);
+    border-radius: 4px;
+    font-size: 1.4rem;
+    color: var(--text-c);
+    background-color: #fff;
+    transition: border-color 0.3s ease-in-out;
+    outline: none;
+}
+.form-select{
+    max-width: 120px;
+}

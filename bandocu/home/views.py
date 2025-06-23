@@ -15,3 +15,7 @@ def get_search(request):
 
 def get_lichSuDonHang(request):
     return render(request, 'home/lichsudonhang.html')
+def get_profile(request):
+    return render(request, 'home/profile.html')
+def get_category(request):
+    return render(request, 'home/category.html')

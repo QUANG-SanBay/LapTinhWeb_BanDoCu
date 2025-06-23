@@ -1,8 +1,128 @@
 {% extends 'home/base.html' %}
 {% load static %}
 {% block title %}Thông tin sản phẩm -{%endblock%} 
+
+{% block product__css %}
+    <link rel="stylesheet" href="{% static 'home/css/product-infor.css' %}">
+{% endblock product__css %}
+    
 {% block search %}
-    <main>
-        HELLOThông tin sản phẩm -
+    <main class="main-content">
+        <div class="grib wide">
+            <div class="row">
+                <div class="left-content col c-12 m-5 l-5 ll-5">
+                    <section class="product__img">
+                        <div class="product__img-main">
+                            <img src="{% static 'home/imgs/phone-yelow.webp' %}" alt="">
+                        </div>
+                        <div class="product__img-list">
+                            <ul class="product__img-list-items">
+                                <li class="product__img-item">
+                                    <img src="{% static 'home/imgs/phone-black.webp' %}" alt="">
+                                </li>
+                                <li class="product__img-item">
+                                    <img src="{% static 'home/imgs/phone-blue.webp' %}" alt="">
+                                </li>
+                                <li class="product__img-item">
+                                    <img src="{% static 'home/imgs/phone-green.webp' %}" alt="">
+                                </li>
+                                <li class="product__img-item active">
+                                    <img src="{% static 'home/imgs/phone-yelow.webp' %}" alt="">
+                                </li>
+                            </ul>
+                    </section>
+                    <section class="product__deitals">
+                        <div class="product__deitals-title">
+                            <h2>Chi tiết sản phẩm</h2>
+                        </div>
+                        <div class="product__deitals-content">
+                            <p class="product__deitals-content-item">Tên sản phẩm: <span>Điện thoại thông minh</span></p>
+                            <p class="product__deitals-content-item">loại sản phẩm: <span>Điện thoại</span></p>
+                            <p class="product__deitals-content-item">Tồn kho: <span>21</span></p>
+                            
+                        </div>
+                    </section>
+                </div>
+                <div class="right-content col c-12 m-7 l-7 ll-7">
+                    <section class="product__infor">
+                        <div class="product__infor-title">
+                            <h2>iPhone 15 128GB - Cũ Đẹp</h2>
+                        </div>
+                        <div class="product__infor-rate">
+                            <div class="product__infor-rate-star">
+                                <span class="product__infor-rate-star-number">5</span>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="product__infor-reviews">
+                                <span class="product__infor-reviews-text">Lượt đángh giá:</span>
+                                <span class="product__infor-reviews-number">100</span>
+                            </div>
+                        </div>
+                        <div class="product__infor-price">
+                            <span class="product__infor-price-number">10.000.000đ</span>
+                        </div>
+                        <div class="product__infor-quantity">
+                            <span class="product__infor-quantity-text">Số lượng:</span>
+                            <button class="product__infor-quantity-btn product__infor-quantity-btn-minus">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                            <span class="product__infor-quantity-number">1</span>
+                            <button class="product__infor-quantity-btn product__infor-quantity-btn-plus">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="product__infor-buy">
+                            <button class="product__infor-buy-btn">Mua ngay</button>
+                        </div>
+                    </section>
+                    <section class="product__infor-description">
+                        <div class="product__infor-description-title">
+                            <h2>Mô tả sản phẩm</h2>
+                        </div>
+                        <div class="product__infor-description-content">
+                            <p>Điện thoại thông minh</p>
+                        </div>
+                    </section>
+                </div>
+                <section class="product-comment col c-12 m-12 l-12 ll-12">
+                    <div class="product-comment__title">
+                        <h2>Đá giá sản phẩm</h2>
+                    </div>
+                    <div class="product-comment__rate">
+                        <div class="product-comment__rate-star">
+                            <span class="product-comment__rate-star-number">5</span>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <ul class="product-comment__list">
+                        <li class="product-comment__item">
+                            <div class="product-comment__item-user">
+                                <div class="product-comment__item-user-avt">
+                                    <img src="asset/imgs/img.jpg" alt="User Avatar">
+                                </div>
+                                <div class="product-comment__item-user-detail">
+                                    <span class="product-comment__item-user-name">Nguyễn Văn A</span>
+                                    <div class="product-comment__item-user-rate">
+                                        <span class="product-comment__item-user-rate-number">5</span>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="product-comment__item-content">
+                                <p>Sản phẩm rất tốt, tôi rất hài lòng.</p>
+                            </div>
+                            <div class="product-comment__item-sellerRep">
+                                <span class="product-comment__item-sellerRep-text">Phản hồi từ người bán:</span>
+                                <p>Cảm ơn bạn đã đánh giá sản phẩm của chúng tôi. Chúng tôi rất vui khi biết bạn hài lòng với sản phẩm.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+        </div>
     </main>
+    {% block js %}
+    <script src="{% static 'home/js/product-infor.js' %}"></script>
+    {% endblock js %}
 {%endblock%}

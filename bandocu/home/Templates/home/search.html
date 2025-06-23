@@ -2,7 +2,123 @@
 {% load static %}
 {% block title %}Tìm kiếm -{%endblock%} 
 {% block thongTinSP %}
-    <main>
-        HELLO Tìm kiếm -
+    <main class="main-content">
+        <div class="grib wide">
+            
+            <section class="products">
+                <!-- bộ lọc : liên quan, mới nhất, bán chạy, giá(select)-->
+                <div class="products__filter">
+                    <span class="products__filter-title">Sắp xếp theo:</span>
+                    <div class="products__filter-item">
+                        <button class="products__filter-btn">Liên quan</button>
+                    </div>
+                    <div class="products__filter-item">
+                        <button class="products__filter-btn">Mới nhất</button>
+                    </div>
+                    <div class="products__filter-item">
+                        <button class="products__filter-btn">Bán chạy</button>
+                    </div>
+                    <div class="products__filter-item">
+                        <label for="price-sort" class="products__filter-label">Giá:</label>
+                        <select name="" id="price-sort" class="products__filter-select">
+                            <option value="">Giá thấp đến cao</option>
+                            <option value="">Giá cao đến thấp</option>
+                        </select>
+                    </div>
+                </div>
+                <ul class="row prodcuts__lists">
+                    <li class="products__item col c-6 m-3 l-2 ll-2">
+                        <a href="" class="products__item-link">
+                            <div class="products__item-image">
+                                <img src="asset/imgs/phone-green.webp" alt="Product Image">
+                            </div>
+                            <h3 class="products__item-name">Sản phẩm 1</h3>
+                            <p class="products__item-price">1.000.000 VNĐ</p>
+                            <span class="products__item-sold">Đã bán: 99</span>
+                        </a>
+                    </li>
+                    <li class="products__item col c-6 m-3 l-2 ll-2">
+                        <a href="" class="products__item-link">
+                            <div class="products__item-image">
+                                <img src="asset/imgs/phone-green.webp" alt="Product Image">
+                            </div>
+                            <h3 class="products__item-name">Sản phẩm 1</h3>
+                            <p class="products__item-price">1.000.000 VNĐ</p>
+                            <span class="products__item-sold">Đã bán: 99</span>
+                        </a>
+                    </li>
+                    <li class="products__item col c-6 m-3 l-2 ll-2">
+                        <a href="" class="products__item-link">
+                            <div class="products__item-image">
+                                <img src="asset/imgs/phone-green.webp" alt="Product Image">
+                            </div>
+                            <h3 class="products__item-name">Sản phẩm 1</h3>
+                            <p class="products__item-price">1.000.000 VNĐ</p>
+                            <span class="products__item-sold">Đã bán: 99</span>
+                        </a>
+                    </li>
+                    <li class="products__item col c-6 m-3 l-2 ll-2">
+                        <a href="" class="products__item-link">
+                            <div class="products__item-image">
+                                <img src="asset/imgs/phone-green.webp" alt="Product Image">
+                            </div>
+                            <h3 class="products__item-name">Sản phẩm 1</h3>
+                            <p class="products__item-price">1.000.000 VNĐ</p>
+                            <span class="products__item-sold">Đã bán: 99</span>
+                        </a>
+                    </li>
+                    <li class="products__item col c-6 m-3 l-2 ll-2">
+                        <a href="" class="products__item-link">
+                            <div class="products__item-image">
+                                <img src="asset/imgs/phone-green.webp" alt="Product Image">
+                            </div>
+                            <h3 class="products__item-name">Sản phẩm 1</h3>
+                            <p class="products__item-price">1.000.000 VNĐ</p>
+                            <span class="products__item-sold">Đã bán: 99</span>
+                        </a>
+                    </li>
+                    <li class="products__item col c-6 m-3 l-2 ll-2">
+                        <a href="" class="products__item-link">
+                            <div class="products__item-image">
+                                <img src="asset/imgs/phone-green.webp" alt="Product Image">
+                            </div>
+                            <h3 class="products__item-name">Sản phẩm 1</h3>
+                            <p class="products__item-price">1.000.000 VNĐ</p>
+                            <span class="products__item-sold">Đã bán: 99</span>
+                        </a>
+                    </li>
+                    <li class="products__item col c-6 m-3 l-2 ll-2">
+                        <a href="" class="products__item-link">
+                            <div class="products__item-image">
+                                <img src="asset/imgs/phone-green.webp" alt="Product Image">
+                            </div>
+                            <h3 class="products__item-name">Sản phẩm 1</h3>
+                            <p class="products__item-price">1.000.000 VNĐ</p>
+                            <span class="products__item-sold">Đã bán: 99</span>
+                        </a>
+                    </li>
+                    <li class="products__item col c-6 m-3 l-2 ll-2">
+                        <a href="" class="products__item-link">
+                            <div class="products__item-image">
+                                <img src="asset/imgs/phone-green.webp" alt="Product Image">
+                            </div>
+                            <h3 class="products__item-name">Sản phẩm 1</h3>
+                            <p class="products__item-price">1.000.000 VNĐ</p>
+                            <span class="products__item-sold">Đã bán: 99</span>
+                        </a>
+                    </li>
+                    <li class="products__item col c-6 m-3 l-2 ll-2">
+                        <a href="" class="products__item-link">
+                            <div class="products__item-image">
+                                <img src="asset/imgs/phone-green.webp" alt="Product Image">
+                            </div>
+                            <h3 class="products__item-name">Sản phẩm 1</h3>
+                            <p class="products__item-price">1.000.000 VNĐ</p>
+                            <span class="products__item-sold">Đã bán: 99</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </div>
     </main>
 {%endblock%}

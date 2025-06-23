@@ -1,0 +1,74 @@
+.order {
+    margin-bottom: 20px;
+    background-color: var(--bgr-section);
+}
+
+
+.order__infor table {
+    width: 100%;
+    font-size: 1.4rem;
+}
+.order__infor table td{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: var(--primery-c);
+}
+.order__infor table th,
+.order__infor table td {
+    padding: 5px;
+    text-align: center;
+}
+.order__infor table td .btn{
+    background-color: none;
+    border: none;
+    color: var(--text-c);
+}
+.order__infor table td .btn:hover{
+    color: var(--color-soft-peach-800);
+    cursor: pointer;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+}
+.form__group{
+    width: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+.form__label{
+    display: block;
+    font-size: 1.4rem;
+    color: var(--text-c);
+    max-width: 120px;
+    width: 100%; 
+}
+.form__input{
+    font-size: 1.4rem;
+    color: var(--text-c);
+    width: 30%;
+    padding:0 5px;
+    line-height: 2;
+    outline: none;
+    border: 1px solid var(--border-c);
+    border-radius: 4px;
+}
+form .btn{
+    font-size: 1.4rem;
+    color: var(--text-c);
+    padding: 0 20px;
+    line-height: 2;
+    height: 40px;
+    background-color: var(--color-soft-peach-50);
+    border: 1px solid var(--border-c);
+    border-radius: 4px;
+    transition: all 0.3s ease-in-out;
+}
+form .btn:hover{
+    background-color: var(--color-soft-peach-200);
+    color: var(--color-soft-peach-800);
+    cursor: pointer;
+}
