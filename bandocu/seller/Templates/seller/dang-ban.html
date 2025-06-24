@@ -1,0 +1,145 @@
+
+{% extends 'seller/base.html' %}
+
+{% load static %}
+
+{% block title %}Đăng bán sản phẩm{% endblock %}
+{% block content %}
+<!-- Main Content -->
+<div class="main-container">
+    <div class="page-header">
+        <h1 class="page-title">Đăng bán sản phẩm</h1>
+        <div class="breadcrumb">
+            <a href="{% url 'seller:home_seller' %}">Trang chủ</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Đăng bán sản phẩm</span>
+        </div>
+    </div>
+
+    <div class="form-container">
+        <form class="form-content">
+            <!-- Left Side - Product Info -->
+            <div class="form-left">
+                <h3 class="section-title">Thông tin sản phẩm</h3>
+                
+                <div class="image-upload-section">
+                    <label class="form-label">Hình ảnh sản phẩm:</label>
+                    <div class="aspect-ratio-options">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="ratio1" checked>
+                            <label for="ratio1">Tỷ lệ hình ảnh 1:1</label>
+                        </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="ratio2">
+                            <label for="ratio2">Tỷ lệ hình ảnh 3:4</label>
+                        </div>
+                    </div>
+                    <div class="upload-area" onclick="document.getElementById('image-upload').click()">
+                        <div class="upload-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <p class="upload-text">Thêm hình ảnh</p>
+                    </div>
+                    <input type="file" id="image-upload" multiple accept="image/*" style="display: none;">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Video sản phẩm:</label>
+                    <div class="video-upload-area" onclick="document.getElementById('video-upload').click()">
+                        <div class="upload-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <p class="upload-text">Thêm video</p>
+                        <div class="video-specs">
+                            Kích thước tối đa 30Mb, độ phân giải không vượt quá 1280x1280px<br>
+                            Độ dài: 10s-60s<br>
+                            Định dạng: MP4
+                        </div>
+                    </div>
+                    <input type="file" id="video-upload" accept="video/mp4" style="display: none;">
+                </div>
+            </div>
+
+            <!-- Right Side - Other Info -->
+            <div class="form-right">
+                <h3 class="section-title">Thông tin khác</h3>
+                
+                <div class="form-group">
+                    <label for="product-name" class="form-label">Tên sản phẩm</label>
+                    <input type="text" id="product-name" class="form-input" placeholder="Nhập tên sản phẩm...">
+                </div>
+
+                <div class="form-group">
+                    <label for="product-description" class="form-label">Mô tả sản phẩm</label>
+                    <textarea id="product-description" class="form-input form-textarea" placeholder="Nhập mô tả chi tiết về sản phẩm..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="product-price" class="form-label">Giá bán (VNĐ)</label>
+                    <input type="number" id="product-price" class="form-input" placeholder="0">
+                </div>
+
+                <div class="form-group">
+                    <label for="product-category" class="form-label">Danh mục</label>
+                    <select id="product-category" class="form-input">
+                        <option value="">Chọn danh mục</option>
+                        <option value="dien-thoai">Điện thoại</option>
+                        <option value="may-tinh">Máy tính</option>
+                        <option value="thoi-trang">Thời trang</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="product-condition" class="form-label">Tình trạng</label>
+                    <select id="product-condition" class="form-input">
+                        <option value="">Chọn tình trạng</option>
+                        <option value="moi">Mới</option>
+                        <option value="nhu-moi">Như mới</option>
+                        <option value="tot">Tốt</option>
+                        <option value="kha-tot">Khá tốt</option>
+                        <option value="binh-thuong">Bình thường</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary">
+                    <i class="fas fa-times"></i>
+                    Hủy
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i>
+                    Lưu và Hiển thị
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+        tabcontent[i].classList.remove("active");
+    }
+    tablinks = document.getElementsByClassName("tab-link");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    document.getElementById(tabName).classList.add("active");
+    evt.currentTarget.className += " active";
+}
+
+// Mở tab đầu tiên mặc định
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementsByClassName("tab-link")[0].click();
+});
+</script>
+{% endblock %}
+
+{% block custom_css %}
+<link rel="stylesheet" href="{% static 'seller/themsanpham.css' %}">
+{% endblock %} 

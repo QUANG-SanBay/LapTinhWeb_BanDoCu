@@ -1,0 +1,211 @@
+{% extends 'seller/base.html' %}
+{% load static %}
+
+{% block title %}Sửa sản phẩm{% endblock %}
+{% block content %}
+<!-- Main Content -->
+<div class="main-container">
+    <div class="page-header">
+        <h1 class="page-title">Sửa sản phẩm</h1>
+        <div class="breadcrumb">
+            <a href="{% url 'seller:home_seller' %}">Trang chủ</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="{% url 'seller:danh_sach_san_pham' %}">Danh sách sản phẩm</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Sửa sản phẩm</span>
+        </div>
+    </div>
+
+    <div class="form-container">
+        <form class="form-content" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- Left Side - Product Info -->
+            <div class="form-left">
+                <h3 class="section-title">Thông tin sản phẩm</h3>
+                
+                <div class="image-upload-section">
+                    <label class="form-label">Hình ảnh sản phẩm:</label>
+                    <div class="aspect-ratio-options">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="ratio1" checked>
+                            <label for="ratio1">Tỷ lệ hình ảnh 1:1</label>
+                        </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="ratio2">
+                            <label for="ratio2">Tỷ lệ hình ảnh 3:4</label>
+                        </div>
+                    </div>
+                    
+                    <!-- Hiển thị hình ảnh hiện tại -->
+                    <div class="current-images">
+                        <h4>Hình ảnh hiện tại:</h4>
+                        <div class="image-preview-grid">
+                            {% if san_pham.hinhAnh.first %}
+                            <div class="image-preview-item">
+                                <img src="{{ san_pham.hinhAnh.first.hinhAnh.url }}" alt="Hình ảnh sản phẩm" class="preview-image">
+                                <button type="button" class="remove-image-btn" onclick="removeImage(this)">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="upload-area" onclick="document.getElementById('image-upload').click()">
+                        <div class="upload-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <p class="upload-text">Thêm hình ảnh mới</p>
+                    </div>
+                    <input type="file" id="image-upload" name="images" multiple accept="image/*" style="display: none;">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Video sản phẩm:</label>
+                    {% if san_pham.video %}
+                    <div class="current-video">
+                        <h4>Video hiện tại:</h4>
+                        <video controls width="100%" style="max-width: 300px;">
+                            <source src="{{ san_pham.video.url }}" type="video/mp4">
+                            Trình duyệt không hỗ trợ video.
+                        </video>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="removeVideo()">
+                            <i class="fas fa-trash"></i> Xóa video
+                        </button>
+                    </div>
+                    {% endif %}
+                    <div class="video-upload-area" onclick="document.getElementById('video-upload').click()">
+                        <div class="upload-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <p class="upload-text">Thêm video mới</p>
+                        <div class="video-specs">
+                            Kích thước tối đa 30Mb, độ phân giải không vượt quá 1280x1280px<br>
+                            Độ dài: 10s-60s<br>
+                            Định dạng: MP4
+                        </div>
+                    </div>
+                    <input type="file" id="video-upload" name="video" accept="video/mp4" style="display: none;">
+                </div>
+            </div>
+
+            <!-- Right Side - Other Info -->
+            <div class="form-right">
+                <h3 class="section-title">Thông tin khác</h3>
+                
+                <div class="form-group">
+                    <label for="product-name" class="form-label">Tên sản phẩm</label>
+                    <input type="text" id="product-name" name="tenSanPham" class="form-input" 
+                           value="{{ san_pham.tenSanPham|default:'' }}" placeholder="Nhập tên sản phẩm...">
+                </div>
+
+                <div class="form-group">
+                    <label for="product-description" class="form-label">Mô tả sản phẩm</label>
+                    <textarea id="product-description" name="moTa" class="form-input form-textarea" 
+                              placeholder="Nhập mô tả chi tiết về sản phẩm...">{{ san_pham.moTa|default:'' }}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="product-price" class="form-label">Giá bán (VNĐ)</label>
+                    <input type="number" id="product-price" name="gia" class="form-input" 
+                           value="{{ san_pham.gia|default:'' }}" placeholder="0">
+                </div>
+
+                <div class="form-group">
+                    <label for="product-quantity" class="form-label">Số lượng</label>
+                    <input type="number" id="product-quantity" name="soLuong" class="form-input" 
+                           value="{{ san_pham.soLuong|default:'' }}" placeholder="0">
+                </div>
+
+                <div class="form-group">
+                    <label for="product-category" class="form-label">Danh mục</label>
+                    <select id="product-category" name="theLoai" class="form-input">
+                        <option value="">Chọn danh mục</option>
+                        <option value="1" {% if san_pham.theLoai.id == 1 %}selected{% endif %}>Điện thoại</option>
+                        <option value="2" {% if san_pham.theLoai.id == 2 %}selected{% endif %}>Máy tính</option>
+                        <option value="3" {% if san_pham.theLoai.id == 3 %}selected{% endif %}>Thời trang</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" onclick="history.back()">
+                    <i class="fas fa-times"></i>
+                    Hủy
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i>
+                    Cập nhật sản phẩm
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+// Xử lý upload hình ảnh
+document.getElementById('image-upload').addEventListener('change', function(e) {
+    const files = e.target.files;
+    const previewGrid = document.querySelector('.image-preview-grid');
+    
+    for (let file of files) {
+        if (file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const previewItem = document.createElement('div');
+                previewItem.className = 'image-preview-item';
+                previewItem.innerHTML = `
+                    <img src="${e.target.result}" alt="Preview" class="preview-image">
+                    <button type="button" class="remove-image-btn" onclick="removeImage(this)">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                previewGrid.appendChild(previewItem);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+});
+
+// Xóa hình ảnh
+function removeImage(button) {
+    button.parentElement.remove();
+}
+
+// Xóa video
+function removeVideo() {
+    const currentVideo = document.querySelector('.current-video');
+    if (currentVideo) {
+        currentVideo.remove();
+    }
+}
+
+// Xử lý upload video
+document.getElementById('video-upload').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file && file.type === 'video/mp4') {
+        const currentVideo = document.querySelector('.current-video');
+        if (currentVideo) {
+            currentVideo.remove();
+        }
+        
+        const videoSection = document.querySelector('.form-group');
+        const videoPreview = document.createElement('div');
+        videoPreview.className = 'current-video';
+        videoPreview.innerHTML = `
+            <h4>Video mới:</h4>
+            <video controls width="100%" style="max-width: 300px;">
+                <source src="${URL.createObjectURL(file)}" type="video/mp4">
+                Trình duyệt không hỗ trợ video.
+            </video>
+        `;
+        videoSection.appendChild(videoPreview);
+    }
+});
+</script>
+{% endblock %}
+
+{% block custom_css %}
+<link rel="stylesheet" href="{% static 'seller/sua-san-pham.css' %}">
+{% endblock %} 

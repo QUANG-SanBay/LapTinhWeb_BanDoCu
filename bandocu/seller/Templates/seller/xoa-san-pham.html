@@ -1,0 +1,13 @@
+{% extends 'seller/base.html' %}
+
+{% block content %}
+<div class="main-content">
+    <h2>Xóa sản phẩm</h2>
+    <p>Bạn có chắc chắn muốn xóa sản phẩm "{{ san_pham.tenSanPham }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Xóa</button>
+        <a href="{% url 'seller:danh_sach_san_pham' %}" class="btn btn-secondary">Hủy</a>
+    </form>
+</div>
+{% endblock %} 
