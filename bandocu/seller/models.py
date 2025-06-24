@@ -28,6 +28,7 @@ class Product(models.Model):
     NgayDang = models.DateField(auto_now_add=True)
     NguoiBan = models.ForeignKey(AccountSeller, on_delete=models.CASCADE, related_name='products')
     DanhMuc = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, related_name='products')
+    HinhAnh = models.ImageField(upload_to='products/', blank=True, null=True)
 
     def XemChiTiet(self):
         return self

@@ -72,3 +72,157 @@ form .btn:hover{
     color: var(--color-soft-peach-800);
     cursor: pointer;
 }
+
+/* Messages */
+.messages {
+    margin: 20px 0;
+}
+
+.message {
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 4px;
+    font-size: 1.4rem;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.message.warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+}
+
+/* Order History */
+.order-history {
+    background-color: var(--bgr-section);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.order-history h2 {
+    color: var(--text-c);
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.order-item {
+    border: 1px solid var(--border-c);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: var(--primery-c);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-c);
+}
+
+.order-header h3 {
+    color: var(--text-c);
+    font-size: 1.6rem;
+    margin: 0;
+}
+
+.order-date {
+    color: var(--text-c);
+    font-size: 1.2rem;
+}
+
+.order-status {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.order-status.đã đặt hàng {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.order-status.đã giao hàng {
+    background-color: #cce5ff;
+    color: #004085;
+}
+
+.order-status.đã hủy {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.order-details {
+    margin-bottom: 15px;
+}
+
+.order-details p {
+    color: var(--text-c);
+    font-size: 1.4rem;
+    margin: 5px 0;
+}
+
+.order-products h4 {
+    color: var(--text-c);
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
+
+.order-products table {
+    width: 100%;
+    font-size: 1.3rem;
+    border-collapse: collapse;
+}
+
+.order-products th,
+.order-products td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-c);
+}
+
+.order-products th {
+    background-color: var(--color-soft-peach-50);
+    color: var(--text-c);
+    font-weight: bold;
+}
+
+.no-orders {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.no-orders p {
+    color: var(--text-c);
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+.no-orders .btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: var(--color-soft-peach-50);
+    color: var(--text-c);
+    border-radius: 4px;
+    transition: all 0.3s ease-in-out;
+}
+
+.no-orders .btn:hover {
+    background-color: var(--color-soft-peach-200);
+    color: var(--color-soft-peach-800);
+}

@@ -1,6 +1,6 @@
 {% extends 'home/base.html' %}
 {% load static %}
-{% block title %}Đặt hàng -{%endblock%} 
+{% block title %}Đặt hàng - {{ product.TenSanPham }}{%endblock%} 
 
 {% block order__css %}
     <link rel="stylesheet" href="{% static 'home/css/order.css' %}">
@@ -11,41 +11,67 @@
         <div class="grib wide">
             <div class="order">
                 <div class="order__infor">
+                    <h2>Thông tin đặt hàng</h2>
+                    {% if product %}
                     <table>
                         <thead>
                             <tr>
                                 <th>Hình ảnh</th>
                                 <th>Tên sản phẩm</th>
-                                <th>Số lượng</th>
                                 <th>Giá tiền</th>
-                                <th>Thao tác</th>
+                                <th>Số lượng còn lại</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><img src="asset/imgs/phone-green.webp" alt="Product Image" style="width: 50px;"></td>
-                                <td>Sản phẩm 1</td>
-                                <td>2</td>
-                                <td>1.000.000 VNĐ</td>
-                                <td><button class="btn">Xóa</button></td>
+                                <td>
+                                    {% if product.hinh_anh %}
+                                        <img src="{{ product.hinh_anh.url }}" alt="{{ product.TenSanPham }}" style="width: 50px;">
+                                    {% else %}
+                                        <img src="{% static 'home/imgs/phone-green.webp' %}" alt="{{ product.TenSanPham }}" style="width: 50px;">
+                                    {% endif %}
+                                </td>
+                                <td>{{ product.TenSanPham }}</td>
+                                <td>{{ product.Gia|floatformat:0 }} VNĐ</td>
+                                <td>{{ product.SoLuong }}</td>
                             </tr>
-                            <!-- Thêm các sản phẩm khác nếu cần -->
                         </tbody>
                     </table>
+                    {% endif %}
                 </div>
-                <form action="" method="POST" class="form">
+                
+                <form action="{% url 'datHang' product.id %}" method="POST" class="form">
+                    {% csrf_token %}
+                    <div class="form__group">
+                        <label for="so_luong" class="form__label">Số lượng:</label>
+                        <input type="number" id="so_luong" name="so_luong" class="form__input" 
+                               value="{{ so_luong|default:1 }}" min="1" max="{{ product.SoLuong }}" required>
+                    </div>
                     <div class="form__group">
                         <label for="name" class="form__label">Họ và tên:</label>
-                        <input type="text" id="name" name="name" class="form__input" required>
+                        <input type="text" id="name" name="name" class="form__input" 
+                               value="{{ ho_ten|default:'' }}" required>
                     </div>
                     <div class="form__group">
                         <label for="phone" class="form__label">Số điện thoại:</label>
-                        <input type="tel" id="phone" name="phone" class="form__input" required>
+                        <input type="tel" id="phone" name="phone" class="form__input" 
+                               value="{{ so_dien_thoai|default:'' }}" required>
                     </div>
                     <div class="form__group">
                         <label for="address" class="form__label">Địa chỉ giao hàng:</label>
-                        <input type="text" id="address" name="address" class="form__input" required>
+                        <textarea id="address" name="address" class="form__input" required>{{ dia_chi_giao_hang|default:'' }}</textarea>
                     </div>
+                    
+                    {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                        <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
                     <button type="submit" class="btn">Xác nhận đặt hàng</button>
                 </form>
             </div>

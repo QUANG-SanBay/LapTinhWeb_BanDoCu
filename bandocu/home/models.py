@@ -21,7 +21,7 @@ class Order(models.Model):
         pass
 
     def __str__(self):
-        return f"Order {self.id} by {self.NguoiMua.TenDangNhap}"
+        return f"Order {self.id} by {self.NguoiMua.user.username}"
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='order_items')
@@ -58,4 +58,4 @@ class Review(models.Model):
         self.delete()
 
     def __str__(self):
-        return f"Review {self.id} by {self.NguoiMua.TenDangNhap}"
+        return f"Review {self.id} by {self.NguoiMua.user.username}"

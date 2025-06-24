@@ -5,32 +5,60 @@
 
 {% block register %}
     <div class="ctn">
-        <form action="" method="post" class="form" id="form-1">
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <form action="{% url 'register' %}" method="post" class="form" id="form-1">
+            {% csrf_token %}
             <h3 class="title">Đăng ký</h3>
             <div class="form-group">
+                <label for="username" class="form-label">Tên đăng nhập</label>
+                <input type="text" id="username" name="username" placeholder="Nhập tên đăng nhập" 
+                       value="{{ username|default:'' }}" required>
+                <span class="form-mess"></span>
+            </div>
+            <div class="form-group">
                 <label for="full-name" class="form-label">Họ và Tên</label>
-                <input type="text" id="full-name" name="full-name"  placeholder="Nguyễn Văn A" >
+                <input type="text" id="full-name" name="full_name" placeholder="Nguyễn Văn A" 
+                       value="{{ full_name|default:'' }}" required>
                 <span class="form-mess"></span>
             </div>
             <div class="form-group">
                 <label for="form-email" class="form-label">Email</label>
-                <input type="email" id="form-email" name="email" placeholder="nguyenvanna@gmail.com">
+                <input type="email" id="form-email" name="email" placeholder="nguyenvanna@gmail.com" 
+                       value="{{ email|default:'' }}" required>
+                <span class="form-mess"></span>
+            </div>
+            <div class="form-group">
+                <label for="user-type" class="form-label">Loại tài khoản</label>
+                <select id="user-type" name="user_type" required>
+                    <option value="buyer" {% if user_type == 'buyer' %}selected{% endif %}>Người mua</option>
+                    <option value="seller" {% if user_type == 'seller' %}selected{% endif %}>Người bán</option>
+                </select>
                 <span class="form-mess"></span>
             </div>
             <div class="form-group">
                 <label for="form-password" class="form-label">Mật khẩu</label>
-                <input type="password" id="form-password" name="Password" placeholder="Nhập mật khẩu">
+                <input type="password" id="form-password" name="password" placeholder="Nhập mật khẩu (ít nhất 6 ký tự)" required>
                 <span class="form-mess"></span>
             </div>
             <div class="form-group">
-                <label for="password-comfirmation" class="form-label">Nhập lại mật khẩu</label>
-                <input type="password" id="password-comfirmation" name="password-comfirmation" placeholder="Nhập lại mật khẩu">
+                <label for="password-confirmation" class="form-label">Nhập lại mật khẩu</label>
+                <input type="password" id="password-confirmation" name="password_confirm" placeholder="Nhập lại mật khẩu" required>
                 <span class="form-mess"></span>
             </div>
             <div class="form-btn">
-                <button type="submit" class="form-btn__it">Đăng  ký</button>
+                <button type="submit" class="form-btn__it">Đăng ký</button>
             </div>
         </form>
+        
         <div class="other">
             <span>Bạn đã có tài khoản?</span>
             <a href="{% url 'login' %}" class="other__link">
@@ -38,7 +66,8 @@
             </a>
         </div>
     </div>
-    {% endblock register %}
-    {% block extra_js %}
-        <script src="{% static 'account/js/register.js' %}"></script>
-    {% endblock %}
+{% endblock register %}
+
+{% block extra_js %}
+    <script src="{% static 'account/js/register.js' %}"></script>
+{% endblock %}
