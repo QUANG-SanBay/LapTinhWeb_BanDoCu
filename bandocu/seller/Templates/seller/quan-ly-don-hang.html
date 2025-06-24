@@ -1,8 +1,648 @@
 {% extends 'seller/base.html' %}
+{% load static %}
+
 {% block title %}Quản lý đơn hàng{% endblock %}
+
+{% block custom_css %}
+    <link rel="stylesheet" href="{% static 'seller/quan-ly-don-hang.css' %}">
+{% endblock %}
+
 {% block content %}
-<div class="seller-page-container">
-    <h2>Quản lý đơn hàng</h2>
-    <!-- Nội dung trang quản lý đơn hàng sẽ đặt ở đây -->
+<div class="order-management-container">
+    <div class="order-status-filter">
+        <button class="filter-tab active" onclick="showTab('all')">Tất cả</button>
+        <button class="filter-tab" onclick="showTab('pending')">Chờ xác nhận</button>
+        <button class="filter-tab" onclick="showTab('preparing')">Chờ lấy hàng</button>
+        <button class="filter-tab" onclick="showTab('cancelled')">Đơn hủy</button>
+        <button class="filter-tab" onclick="showTab('return')">Trả hàng / hoàn tiền</button>
+    </div>
+
+    <!-- Tab Tất cả -->
+    <div id="all-tab" class="tab-content active">
+        <div class="page-header">
+            <h2>Tất cả đơn hàng</h2>
+            <p>Quản lý tất cả đơn hàng với các trạng thái khác nhau</p>
+        </div>
+
+        <!-- Chờ xác nhận -->
+        <div class="order-section">
+            <h3 class="section-title">Chờ xác nhận</h3>
+            <div class="order-list-header">
+                <div class="col-product">Sản phẩm</div>
+                <div class="col-total">Tổng cộng</div>
+                <div class="col-status">Trạng thái</div>
+                <div class="col-shipping">Đơn vị vận chuyển</div>
+                <div class="col-actions">Thao tác</div>
+            </div>
+
+            <div class="order-list">
+                <div class="order-card">
+                    <div class="order-card-header">
+                        <div class="buyer-info">
+                            <i class="fas fa-user"></i>
+                            <span>nguyenvana123</span>
+                        </div>
+                        <div class="order-id">
+                            Mã đơn hàng: 12345abc67890
+                        </div>
+                        <div class="order-time">
+                            <i class="fas fa-clock"></i>
+                            <span>2 giờ trước</span>
+                        </div>
+                    </div>
+                    <div class="order-card-body">
+                        <div class="col-product">
+                            <div class="product-item">
+                                <a href="{% url 'chiTietSP' %}" class="product-image-link">
+                                    <img src="{% static 'imgs/ip11.jpg' %}" alt="iPhone 11">
+                                </a>
+                                <span class="product-name">iPhone 11 - 128GB</span>
+                            </div>
+                        </div>
+                        <div class="col-total">
+                            <span class="price">8.500.000đ</span>
+                            <span class="payment-method">Thanh toán khi nhận hàng</span>
+                        </div>
+                        <div class="col-status">
+                            <span class="status-badge pending">Chờ xác nhận</span>
+                        </div>
+                        <div class="col-shipping">
+                            <div class="shipping-info">
+                                <span>Nhanh</span>
+                                <span>Giao hàng tiết kiệm</span>
+                            </div>
+                        </div>
+                        <div class="col-actions" style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                            <button class="action-btn confirm-btn" style="white-space: nowrap;">Xác nhận</button>
+                            <button class="action-btn reject-btn" style="white-space: nowrap;">Từ chối</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chờ lấy hàng -->
+        <div class="order-section">
+            <h3 class="section-title">Chờ lấy hàng</h3>
+            <div class="order-list-header">
+                <div class="col-product">Sản phẩm</div>
+                <div class="col-total">Tổng cộng</div>
+                <div class="col-status">Trạng thái</div>
+                <div class="col-shipping">Đơn vị vận chuyển</div>
+                <div class="col-actions">Thao tác</div>
+            </div>
+
+            <div class="order-list">
+                <div class="order-card">
+                    <div class="order-card-header">
+                        <div class="buyer-info">
+                            <i class="fas fa-user"></i>
+                            <span>livsr256</span>
+                        </div>
+                        <div class="order-id">
+                            Mã đơn hàng: 23564gtnidngfd
+                        </div>
+                        <div class="order-time">
+                            <i class="fas fa-clock"></i>
+                            <span>1 ngày trước</span>
+                        </div>
+                    </div>
+                    <div class="order-card-body">
+                        <div class="col-product">
+                            <div class="product-item">
+                                <a href="{% url 'chiTietSP' %}" class="product-image-link">
+                                    <img src="{% static 'imgs/ip11.jpg' %}" alt="IP 11">
+                                </a>
+                                <span class="product-name">IP 11</span>
+                            </div>
+                        </div>
+                        <div class="col-total">
+                            <span class="price">8.000.000đ</span>
+                            <span class="payment-method">Thanh toán khi nhận hàng</span>
+                        </div>
+                        <div class="col-status">
+                            <span class="status-badge preparing">Chờ lấy hàng</span>
+                        </div>
+                        <div class="col-shipping">
+                            <div class="shipping-info">
+                                <span>Nhanh</span>
+                                <span>SPX Express</span>
+                            </div>
+                        </div>
+                        <div class="col-actions" style="display: flex; justify-content: center; align-items: center;">
+                            <button class="action-btn prepare-btn" style="white-space: nowrap;">Chuẩn bị hàng</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-card">
+                    <div class="order-card-header">
+                        <div class="buyer-info">
+                            <i class="fas fa-user"></i>
+                            <span>phamquoc789</span>
+                        </div>
+                        <div class="order-id">
+                            Mã đơn hàng: 54321def67890
+                        </div>
+                        <div class="order-time">
+                            <i class="fas fa-clock"></i>
+                            <span>2 ngày trước</span>
+                        </div>
+                    </div>
+                    <div class="order-card-body">
+                        <div class="col-product">
+                            <div class="product-item">
+                                <a href="{% url 'chiTietSP' %}" class="product-image-link">
+                                    <img src="{% static 'imgs/ip11.jpg' %}" alt="iPhone 11">
+                                </a>
+                                <span class="product-name">iPhone 11 - 256GB</span>
+                            </div>
+                        </div>
+                        <div class="col-total">
+                            <span class="price">9.200.000đ</span>
+                            <span class="payment-method">Thanh toán khi nhận hàng</span>
+                        </div>
+                        <div class="col-status">
+                            <span class="status-badge preparing">Chờ lấy hàng</span>
+                        </div>
+                        <div class="col-shipping">
+                            <div class="shipping-info">
+                                <span>Nhanh</span>
+                                <span>J&T Express</span>
+                            </div>
+                        </div>
+                        <div class="col-actions" style="display: flex; justify-content: center; align-items: center;">
+                            <button class="action-btn prepare-btn" style="white-space: nowrap;">Chuẩn bị hàng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Đơn hủy -->
+        <div class="order-section">
+            <h3 class="section-title">Đơn hủy</h3>
+            <div class="order-list-header">
+                <div class="col-product">Sản phẩm</div>
+                <div class="col-total">Tổng cộng</div>
+                <div class="col-status">Trạng thái</div>
+                <div class="col-shipping">Đơn vị vận chuyển</div>
+                <div class="col-actions">Thao tác</div>
+            </div>
+
+            <div class="order-list">
+                <div class="order-card">
+                    <div class="order-card-header">
+                        <div class="buyer-info">
+                            <i class="fas fa-user"></i>
+                            <span>tranvan202</span>
+                        </div>
+                        <div class="order-id">
+                            Mã đơn hàng: 11111jkl22222
+                        </div>
+                        <div class="order-time">
+                            <i class="fas fa-clock"></i>
+                            <span>3 ngày trước</span>
+                        </div>
+                    </div>
+                    <div class="order-card-body">
+                        <div class="col-product">
+                            <div class="product-item">
+                                <a href="{% url 'chiTietSP' %}" class="product-image-link">
+                                    <img src="{% static 'imgs/ip11.jpg' %}" alt="iPhone 11">
+                                </a>
+                                <span class="product-name">iPhone 11 - 64GB</span>
+                            </div>
+                        </div>
+                        <div class="col-total">
+                            <span class="price">7.800.000đ</span>
+                            <span class="payment-method">Thanh toán khi nhận hàng</span>
+                        </div>
+                        <div class="col-status">
+                            <span class="status-badge cancelled">Đã hủy</span>
+                        </div>
+                        <div class="col-shipping">
+                            <div class="shipping-info">
+                                <span>Nhanh</span>
+                                <span>Giao hàng tiết kiệm</span>
+                            </div>
+                        </div>
+                        <div class="col-actions" style="display: flex; justify-content: center; align-items: center;">
+                            <button class="action-btn view-btn" style="white-space: nowrap;">Xem chi tiết</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trả hàng / hoàn tiền -->
+        <div class="order-section">
+            <h3 class="section-title">Trả hàng / hoàn tiền</h3>
+            <div class="order-list-header">
+                <div class="col-product">Sản phẩm</div>
+                <div class="col-total">Tổng cộng</div>
+                <div class="col-status">Trạng thái</div>
+                <div class="col-shipping">Đơn vị vận chuyển</div>
+                <div class="col-actions">Thao tác</div>
+            </div>
+
+            <div class="order-list">
+                <div class="order-card">
+                    <div class="order-card-header">
+                        <div class="buyer-info">
+                            <i class="fas fa-user"></i>
+                            <span>levan303</span>
+                        </div>
+                        <div class="order-id">
+                            Mã đơn hàng: 33333mno44444
+                        </div>
+                        <div class="order-time">
+                            <i class="fas fa-clock"></i>
+                            <span>1 tuần trước</span>
+                        </div>
+                    </div>
+                    <div class="order-card-body">
+                        <div class="col-product">
+                            <div class="product-item">
+                                <a href="{% url 'chiTietSP' %}" class="product-image-link">
+                                    <img src="{% static 'imgs/ip11.jpg' %}" alt="iPhone 11">
+                                </a>
+                                <span class="product-name">iPhone 11 - 128GB</span>
+                            </div>
+                        </div>
+                        <div class="col-total">
+                            <span class="price">8.500.000đ</span>
+                            <span class="payment-method">Chuyển khoản ngân hàng</span>
+                        </div>
+                        <div class="col-status">
+                            <span class="status-badge return">Yêu cầu trả hàng</span>
+                        </div>
+                        <div class="col-shipping">
+                            <div class="shipping-info">
+                                <span>Nhanh</span>
+                                <span>J&T Express</span>
+                            </div>
+                        </div>
+                        <div class="col-actions" style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                            <button class="action-btn approve-btn" style="white-space: nowrap;">Chấp nhận</button>
+                            <button class="action-btn reject-btn" style="white-space: nowrap;">Từ chối</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab Chờ xác nhận -->
+    <div id="pending-tab" class="tab-content">
+        <div class="page-header">
+            <h2>Đơn hàng chờ xác nhận</h2>
+            <p>Quản lý các đơn hàng đang chờ xác nhận từ người mua</p>
+        </div>
+
+        <div class="order-list-header">
+            <div class="col-product">Sản phẩm</div>
+            <div class="col-total">Tổng cộng</div>
+            <div class="col-status">Trạng thái</div>
+            <div class="col-shipping">Đơn vị vận chuyển</div>
+            <div class="col-actions">Thao tác</div>
+        </div>
+
+        <div class="order-list">
+            <div class="order-card">
+                <div class="order-card-header">
+                    <div class="buyer-info">
+                        <i class="fas fa-user"></i>
+                        <span>nguyenvana123</span>
+                    </div>
+                    <div class="order-id">
+                        Mã đơn hàng: 12345abc67890
+                    </div>
+                    <div class="order-time">
+                        <i class="fas fa-clock"></i>
+                        <span>2 giờ trước</span>
+                    </div>
+                </div>
+                <div class="order-card-body">
+                    <div class="col-product">
+                        <div class="product-item">
+                            <a href="{% url 'chiTietSP' %}" class="product-image-link">
+                                <img src="{% static 'imgs/ip11.jpg' %}" alt="iPhone 11">
+                            </a>
+                            <span class="product-name">iPhone 11 - 128GB</span>
+                        </div>
+                    </div>
+                    <div class="col-total">
+                        <span class="price">8.500.000đ</span>
+                        <span class="payment-method">Thanh toán khi nhận hàng</span>
+                    </div>
+                    <div class="col-status">
+                        <span class="status-badge pending">Chờ xác nhận</span>
+                    </div>
+                    <div class="col-shipping">
+                        <div class="shipping-info">
+                            <span>Nhanh</span>
+                            <span>Giao hàng tiết kiệm</span>
+                        </div>
+                    </div>
+                    <div class="col-actions" style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                        <button class="action-btn confirm-btn" style="white-space: nowrap;">Xác nhận</button>
+                        <button class="action-btn reject-btn" style="white-space: nowrap;">Từ chối</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-card">
+                <div class="order-card-header">
+                    <div class="buyer-info">
+                        <i class="fas fa-user"></i>
+                        <span>tranthib456</span>
+                    </div>
+                    <div class="order-id">
+                        Mã đơn hàng: 98765xyz12345
+                    </div>
+                    <div class="order-time">
+                        <i class="fas fa-clock"></i>
+                        <span>5 giờ trước</span>
+                    </div>
+                </div>
+                <div class="order-card-body">
+                    <div class="col-product">
+                        <div class="product-item">
+                            <a href="{% url 'chiTietSP' %}" class="product-image-link">
+                                <img src="{% static 'imgs/ip11.jpg' %}" alt="iPhone 11">
+                            </a>
+                            <span class="product-name">iPhone 11 - 64GB</span>
+                        </div>
+                    </div>
+                    <div class="col-total">
+                        <span class="price">7.800.000đ</span>
+                        <span class="payment-method">Chuyển khoản ngân hàng</span>
+                    </div>
+                    <div class="col-status">
+                        <span class="status-badge pending">Chờ xác nhận</span>
+                    </div>
+                    <div class="col-shipping">
+                        <div class="shipping-info">
+                            <span>Tiêu chuẩn</span>
+                            <span>Viettel Post</span>
+                        </div>
+                    </div>
+                    <div class="col-actions" style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                        <button class="action-btn confirm-btn" style="white-space: nowrap;">Xác nhận</button>
+                        <button class="action-btn reject-btn" style="white-space: nowrap;">Từ chối</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab Chờ lấy hàng -->
+    <div id="preparing-tab" class="tab-content">
+        <div class="page-header">
+            <h2>Đơn hàng chờ lấy hàng</h2>
+            <p>Quản lý các đơn hàng đã xác nhận và đang chuẩn bị giao hàng</p>
+        </div>
+
+        <div class="order-list-header">
+            <div class="col-product">Sản phẩm</div>
+            <div class="col-total">Tổng cộng</div>
+            <div class="col-status">Trạng thái</div>
+            <div class="col-shipping">Đơn vị vận chuyển</div>
+            <div class="col-actions">Thao tác</div>
+        </div>
+
+        <div class="order-list">
+            <div class="order-card">
+                <div class="order-card-header">
+                    <div class="buyer-info">
+                        <i class="fas fa-user"></i>
+                        <span>phamquoc789</span>
+                    </div>
+                    <div class="order-id">
+                        Mã đơn hàng: 54321def67890
+                    </div>
+                    <div class="order-time">
+                        <i class="fas fa-clock"></i>
+                        <span>1 ngày trước</span>
+                    </div>
+                </div>
+                <div class="order-card-body">
+                    <div class="col-product">
+                        <div class="product-item">
+                            <a href="{% url 'chiTietSP' %}" class="product-image-link">
+                                <img src="{% static 'imgs/ip11.jpg' %}" alt="iPhone 11">
+                            </a>
+                            <span class="product-name">iPhone 11 - 256GB</span>
+                        </div>
+                    </div>
+                    <div class="col-total">
+                        <span class="price">9.200.000đ</span>
+                        <span class="payment-method">Thanh toán khi nhận hàng</span>
+                    </div>
+                    <div class="col-status">
+                        <span class="status-badge preparing">Chờ lấy hàng</span>
+                    </div>
+                    <div class="col-shipping">
+                        <div class="shipping-info">
+                            <span>Nhanh</span>
+                            <span>J&T Express</span>
+                        </div>
+                    </div>
+                    <div class="col-actions" style="display: flex; justify-content: center; align-items: center;">
+                        <button class="action-btn prepare-btn" style="white-space: nowrap;">Chuẩn bị hàng</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-card">
+                <div class="order-card-header">
+                    <div class="buyer-info">
+                        <i class="fas fa-user"></i>
+                        <span>nguyenthi101</span>
+                    </div>
+                    <div class="order-id">
+                        Mã đơn hàng: 67890ghi12345
+                    </div>
+                    <div class="order-time">
+                        <i class="fas fa-clock"></i>
+                        <span>2 ngày trước</span>
+                    </div>
+                </div>
+                <div class="order-card-body">
+                    <div class="col-product">
+                        <div class="product-item">
+                            <a href="{% url 'chiTietSP' %}" class="product-image-link">
+                                <img src="{% static 'imgs/ip11.jpg' %}" alt="iPhone 11">
+                            </a>
+                            <span class="product-name">iPhone 11 - 128GB</span>
+                        </div>
+                    </div>
+                    <div class="col-total">
+                        <span class="price">8.500.000đ</span>
+                        <span class="payment-method">Chuyển khoản ngân hàng</span>
+                    </div>
+                    <div class="col-status">
+                        <span class="status-badge preparing">Chờ lấy hàng</span>
+                    </div>
+                    <div class="col-shipping">
+                        <div class="shipping-info">
+                            <span>Tiêu chuẩn</span>
+                            <span>Viettel Post</span>
+                        </div>
+                    </div>
+                    <div class="col-actions" style="display: flex; justify-content: center; align-items: center;">
+                        <button class="action-btn prepare-btn" style="white-space: nowrap;">Chuẩn bị hàng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab Đơn hủy -->
+    <div id="cancelled-tab" class="tab-content">
+        <div class="page-header">
+            <h2>Đơn hàng đã hủy</h2>
+            <p>Quản lý các đơn hàng đã bị hủy</p>
+        </div>
+
+        <div class="order-list-header">
+            <div class="col-product">Sản phẩm</div>
+            <div class="col-total">Tổng cộng</div>
+            <div class="col-status">Trạng thái</div>
+            <div class="col-shipping">Đơn vị vận chuyển</div>
+            <div class="col-actions">Thao tác</div>
+        </div>
+
+        <div class="order-list">
+            <div class="order-card">
+                <div class="order-card-header">
+                    <div class="buyer-info">
+                        <i class="fas fa-user"></i>
+                        <span>tranvan202</span>
+                    </div>
+                    <div class="order-id">
+                        Mã đơn hàng: 11111jkl22222
+                    </div>
+                    <div class="order-time">
+                        <i class="fas fa-clock"></i>
+                        <span>3 ngày trước</span>
+                    </div>
+                </div>
+                <div class="order-card-body">
+                    <div class="col-product">
+                        <div class="product-item">
+                            <a href="{% url 'chiTietSP' %}" class="product-image-link">
+                                <img src="{% static 'imgs/ip11.jpg' %}" alt="iPhone 11">
+                            </a>
+                            <span class="product-name">iPhone 11 - 64GB</span>
+                        </div>
+                    </div>
+                    <div class="col-total">
+                        <span class="price">7.800.000đ</span>
+                        <span class="payment-method">Thanh toán khi nhận hàng</span>
+                    </div>
+                    <div class="col-status">
+                        <span class="status-badge cancelled">Đã hủy</span>
+                    </div>
+                    <div class="col-shipping">
+                        <div class="shipping-info">
+                            <span>Nhanh</span>
+                            <span>Giao hàng tiết kiệm</span>
+                        </div>
+                    </div>
+                    <div class="col-actions" style="display: flex; justify-content: center; align-items: center;">
+                        <button class="action-btn view-btn" style="white-space: nowrap;">Xem chi tiết</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab Trả hàng / hoàn tiền -->
+    <div id="return-tab" class="tab-content">
+        <div class="page-header">
+            <h2>Trả hàng / hoàn tiền</h2>
+            <p>Quản lý các yêu cầu trả hàng và hoàn tiền</p>
+        </div>
+
+        <div class="order-list-header">
+            <div class="col-product">Sản phẩm</div>
+            <div class="col-total">Tổng cộng</div>
+            <div class="col-status">Trạng thái</div>
+            <div class="col-shipping">Đơn vị vận chuyển</div>
+            <div class="col-actions">Thao tác</div>
+        </div>
+
+        <div class="order-list">
+            <div class="order-card">
+                <div class="order-card-header">
+                    <div class="buyer-info">
+                        <i class="fas fa-user"></i>
+                        <span>levan303</span>
+                    </div>
+                    <div class="order-id">
+                        Mã đơn hàng: 33333mno44444
+                    </div>
+                    <div class="order-time">
+                        <i class="fas fa-clock"></i>
+                        <span>1 tuần trước</span>
+                    </div>
+                </div>
+                <div class="order-card-body">
+                    <div class="col-product">
+                        <div class="product-item">
+                            <a href="{% url 'chiTietSP' %}" class="product-image-link">
+                                <img src="{% static 'imgs/ip11.jpg' %}" alt="iPhone 11">
+                            </a>
+                            <span class="product-name">iPhone 11 - 128GB</span>
+                        </div>
+                    </div>
+                    <div class="col-total">
+                        <span class="price">8.500.000đ</span>
+                        <span class="payment-method">Chuyển khoản ngân hàng</span>
+                    </div>
+                    <div class="col-status">
+                        <span class="status-badge return">Yêu cầu trả hàng</span>
+                    </div>
+                    <div class="col-shipping">
+                        <div class="shipping-info">
+                            <span>Nhanh</span>
+                            <span>J&T Express</span>
+                        </div>
+                    </div>
+                    <div class="col-actions" style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                        <button class="action-btn approve-btn" style="white-space: nowrap;">Chấp nhận</button>
+                        <button class="action-btn reject-btn" style="white-space: nowrap;">Từ chối</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-{% endblock %} 
+
+<script>
+function showTab(tabName) {
+    // Ẩn tất cả các tab content
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabContents.forEach(content => {
+        content.classList.remove('active');
+    });
+
+    // Bỏ active tất cả các tab button
+    const tabButtons = document.querySelectorAll('.filter-tab');
+    tabButtons.forEach(button => {
+        button.classList.remove('active');
+    });
+
+    // Hiển thị tab được chọn
+    const selectedTab = document.getElementById(tabName + '-tab');
+    if (selectedTab) {
+        selectedTab.classList.add('active');
+    }
+
+    // Thêm active cho button được click
+    event.target.classList.add('active');
+}
+</script>
+{% endblock %}

@@ -15,4 +15,5 @@ urlpatterns = [
     path('danh-sach-san-pham/', views.danh_sach_san_pham, name='danh_sach_san_pham'),
     path('xoa-nhieu-san-pham/', views.xoa_nhieu_san_pham, name='xoa_nhieu_san_pham'),
     path('xem-san-pham/<int:id>/', views.xem_san_pham, name='xem_san_pham'),
+    path('cho-xac-nhan/', views.cho_xac_nhan, name='cho_xac_nhan'),
 ]

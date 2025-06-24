@@ -44,3 +44,5 @@ def xem_san_pham(request, id):
         'hinhAnh': [{'hinhAnh': {'url': '/static/seller/ip11.jpg'}}]
     }
     return render(request, 'seller/xem-san-pham.html', {'san_pham': san_pham})
+def cho_xac_nhan(request):
+    return render(request, 'seller/cho-xac-nhan.html')

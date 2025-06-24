@@ -350,22 +350,32 @@ body {
 }
 
 .seller-product-info {
-    text-align: left;
+    padding: 16px;
 }
 
 .seller-product-name {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
-    color: #212529;
     margin-bottom: 8px;
-    line-height: 1.4;
+    color: #212529;
+}
+
+.seller-product-price-sold {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .seller-product-price {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    color: #000000;
-    margin-bottom: 8px;
+    color: #dc3545; /* Red color for price */
+    margin-bottom: 4px;
+}
+
+.seller-product-sold {
+    font-size: 0.875rem;
+    color: #6c757d;
 }
 
 .seller-product-meta {
@@ -539,6 +549,146 @@ body {
 .fas {
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+
+.fa {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+
+/* Specific icon definitions */
+.fa-eye::before {
+    content: "\f06e";
+}
+
+.fa-edit::before {
+    content: "\f044";
+}
+
+.fa-trash::before {
+    content: "\f1f8";
+}
+
+.fa-heart::before {
+    content: "\f004";
+}
+
+.fa-chevron-right::before {
+    content: "\f054";
+}
+
+.fa-chevron-left::before {
+    content: "\f053";
+}
+
+.fa-plus::before {
+    content: "\f067";
+}
+
+.fa-home::before {
+    content: "\f015";
+}
+
+.fa-chart-bar::before {
+    content: "\f080";
+}
+
+.fa-box::before {
+    content: "\f49e";
+}
+
+.fa-shopping-cart::before {
+    content: "\f07a";
+}
+
+.fa-user::before {
+    content: "\f007";
+}
+
+.fa-cog::before {
+    content: "\f013";
+}
+
+.fa-sign-out-alt::before {
+    content: "\f2f5";
+}
+
+.fa-search::before {
+    content: "\f002";
+}
+
+.fa-bars::before {
+    content: "\f0c9";
+}
+
+.fa-times::before {
+    content: "\f00d";
+}
+
+.fa-recycle::before {
+    content: "\f1b8";
+}
+
+.fa-chevron-down::before {
+    content: "\f078";
+}
+
+.fa-chevron-up::before {
+    content: "\f077";
+}
+
+.fa-bell::before {
+    content: "\f0f3";
+}
+
+.fa-envelope::before {
+    content: "\f0e0";
+}
+
+.fa-calendar::before {
+    content: "\f133";
+}
+
+.fa-clock::before {
+    content: "\f017";
+}
+
+.fa-map-marker-alt::before {
+    content: "\f3c5";
+}
+
+.fa-phone::before {
+    content: "\f095";
+}
+
+.fa-globe::before {
+    content: "\f0ac";
+}
+
+.fa-facebook::before {
+    content: "\f39e";
+}
+
+.fa-twitter::before {
+    content: "\f099";
+}
+
+.fa-instagram::before {
+    content: "\f16d";
+}
+
+.fa-youtube::before {
+    content: "\f167";
 }
 
 /* Animations */
@@ -947,4 +1097,120 @@ body {
 }
 .category-section:not(:first-child) .category-title {
     margin-top: 48px;
+}
+
+/* Font Awesome Brands */
+.fab {
+    font-family: "Font Awesome 6 Brands";
+    font-weight: 400;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+
+.fab.fa-facebook-f::before {
+    content: "\f39e";
+}
+
+.fab.fa-instagram::before {
+    content: "\f16d";
+}
+
+.fab.fa-tiktok::before {
+    content: "\e07b";
+}
+
+.fab.fa-twitter::before {
+    content: "\f099";
+}
+
+.fab.fa-youtube::before {
+    content: "\f167";
+}
+
+.fab.fa-linkedin::before {
+    content: "\f08c";
+}
+
+.fab.fa-github::before {
+    content: "\f09b";
+}
+
+/* Additional icons */
+.fa-question-circle::before {
+    content: "\f059";
+}
+
+.fa-info-circle::before {
+    content: "\f05a";
+}
+
+.fa-exclamation-triangle::before {
+    content: "\f071";
+}
+
+.fa-check-circle::before {
+    content: "\f058";
+}
+
+.fa-times-circle::before {
+    content: "\f057";
+}
+
+.fa-star::before {
+    content: "\f005";
+}
+
+.fa-star-half-alt::before {
+    content: "\f5c0";
+}
+
+.fa-thumbs-up::before {
+    content: "\f164";
+}
+
+.fa-thumbs-down::before {
+    content: "\f165";
+}
+
+.fa-share::before {
+    content: "\f064";
+}
+
+.fa-download::before {
+    content: "\f019";
+}
+
+.fa-upload::before {
+    content: "\f093";
+}
+
+.fa-save::before {
+    content: "\f0c7";
+}
+
+.fa-print::before {
+    content: "\f02f";
+}
+
+.fa-copy::before {
+    content: "\f0c5";
+}
+
+.fa-paste::before {
+    content: "\f0ea";
+}
+
+.fa-cut::before {
+    content: "\f0c4";
+}
+
+.fa-undo::before {
+    content: "\f0e2";
+}
+
+.fa-redo::before {
+    content: "\f01e";
 }
