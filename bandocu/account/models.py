@@ -6,6 +6,7 @@ class User(models.Model):
     TenDangNhap = models.CharField(max_length=150)
     MatKhau = models.CharField(max_length=128)
     Email = models.EmailField(unique=True)
+    GioiTinh = models.CharField(max_length=10, blank=True, null=True)
     DiaChi = models.TextField(blank=True, null=True)
     SoDienThoai = models.CharField(max_length=20, blank=True, null=True)
     NgayDangKy = models.DateField(auto_now_add=True)
