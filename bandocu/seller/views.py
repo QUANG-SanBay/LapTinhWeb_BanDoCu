@@ -1,7 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import SanPham, AnhSanPham
-from .forms import SanPhamForm, AnhSanPhamForm
 from django.forms import modelformset_factory
 
 # Create your views here.
@@ -33,16 +31,17 @@ def xoa_nhieu_san_pham(request):
 
 def xem_san_pham(request, id):
     # Dữ liệu mẫu cho sản phẩm
-    san_pham = {
-        'id': id,
-        'tenSanPham': 'iPhone 11 Pro Max',
-        'gia': 15500000,
-        'soLuong': 10,
-        'moTa': 'iPhone 11 Pro Max là chiếc iPhone cao cấp nhất của Apple với màn hình 6.5 inch, chip A13 Bionic mạnh mẽ, camera 3 ống kính và pin trâu. Sản phẩm được bảo hành chính hãng 12 tháng.',
-        'ngayTao': '2024-01-15',
-        'theLoai': {'tenTheLoai': 'Điện thoại'},
-        'hinhAnh': [{'hinhAnh': {'url': '/static/seller/ip11.jpg'}}]
-    }
-    return render(request, 'seller/xem-san-pham.html', {'san_pham': san_pham})
+    # san_pham = {
+    #     'id': id,
+    #     'tenSanPham': 'iPhone 11 Pro Max',
+    #     'gia': 15500000,
+    #     'soLuong': 10,
+    #     'moTa': 'iPhone 11 Pro Max là chiếc iPhone cao cấp nhất của Apple với màn hình 6.5 inch, chip A13 Bionic mạnh mẽ, camera 3 ống kính và pin trâu. Sản phẩm được bảo hành chính hãng 12 tháng.',
+    #     'ngayTao': '2024-01-15',
+    #     'theLoai': {'tenTheLoai': 'Điện thoại'},
+    #     'hinhAnh': [{'hinhAnh': {'url': '/static/seller/ip11.jpg'}}]
+    # }
+    return render(request, 'seller/xem-san-pham.html')
+    # return render(request, 'seller/xem-san-pham.html', {'san_pham': san_pham})
 def cho_xac_nhan(request):
     return render(request, 'seller/cho-xac-nhan.html')

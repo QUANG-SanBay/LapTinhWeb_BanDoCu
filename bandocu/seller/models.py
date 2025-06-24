@@ -1,6 +1,7 @@
 from django.db import models
 from account.models import Seller as AccountSeller
 
+
 # Create your models here.
 class ProductCategory(models.Model):
     TenDanhMuc = models.CharField(max_length=150)
