@@ -17,7 +17,7 @@
   width: 100%;
   max-width: 1216px;
   margin: 0 auto;
-  padding: 0 15px;
+  /* padding: 0 15px; */
 }
 
 .header__logo {
@@ -178,6 +178,7 @@
 
 }
 .header__login-btn,.header__register-btn{
+    flex-shrink: 0;
     font-size: 1.4rem;
     background-color: var(--color-soft-peach-300);
     color: var(--text-c);
@@ -191,40 +192,6 @@
     text-align: center;
 }
 /* Responsive */
-/* @media (max-width: 768px) {
-  .header__content {
-      padding: 0 10px;
-  }
-  
-  .header__logo-img {
-      width: 100px;
-  }
-  
-  .header__search {
-      margin: 0 15px;
-  }
-  
-  .header__search-input {
-      font-size: 1.3rem;
-      padding: 10px 40px 10px 12px;
-  }
-}
-
-@media (max-width: 480px) {
-  .header__search {
-      margin: 0 10px;
-  }
-  
-  .header__logo-img {
-      width: 80px;
-  }
-  
-  .header__avatar {
-      width: 35px;
-      height: 35px;
-      font-size: 1.6rem;
-  }
-} */
 .main-content{
     margin-top: 120px;
 }
