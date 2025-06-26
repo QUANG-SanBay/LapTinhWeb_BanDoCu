@@ -71,16 +71,24 @@
                 <h2 class="products__title-text">Gợi ý sản phẩm</h2>
             </div>
             <ul class="row prodcuts__lists">
+                {% for product in products %}
                 <li class="products__item col c-6 m-3 l-2 ll-2">
-                    <a href="{% url 'chiTietSP' %}" class="products__item-link">
+                    <a href="{% url 'chiTietSP' product.id %}" class="products__item-link">
                         <div class="products__item-image">
-                            <img src="{% static 'home/imgs/phone-green.webp' %}" alt="Product Image">
+                            {% if product.HinhAnh %}
+                                <img src="{{ product.HinhAnh.url }}" alt="Product Image">
+                            {% else %}
+                                <img src="{% static 'home/imgs/default.png' %}" alt="No Image">
+                            {% endif %}
                         </div>
-                        <h3 class="products__item-name">Sản phẩm 1</h3>
-                        <p class="products__item-price">1.000.000 VNĐ</p>
-                        <span class="products__item-sold">Đã bán: 99</span>
+                        <h3 class="products__item-name">{{ product.TenSanPham }}</h3>
+                        <p class="products__item-price">{{ product.Gia|floatformat:0 }} VNĐ</p>
+                        <span class="products__item-sold">Đã bán: {{ product.SoLuong }}</span>
                     </a>
                 </li>
+                {% empty %}
+                <li>Không có sản phẩm nào.</li>
+                {% endfor %}
             </ul>
             <div class="products__view-more">
                 <a href="#" class="products__view-more-link">Xem thêm</a>
@@ -91,17 +99,24 @@
                 <h2 class="products__title-text">Sản phẩm hot</h2>
             </div>
             <ul class="row prodcuts__lists">
+                {% for product in products %}
                 <li class="products__item col c-6 m-3 l-2 ll-2">
-                    <a href="{% url 'chiTietSP' %}" class="products__item-link">
+                    <a href="{% url 'chiTietSP' product.id %}" class="products__item-link">
                         <div class="products__item-image">
-                            <img src="{% static 'home/imgs/phone-green.webp' %}" alt="Product Image">
+                            {% if product.HinhAnh %}
+                                <img src="{{ product.HinhAnh.url }}" alt="Product Image">
+                            {% else %}
+                                <img src="{% static 'home/imgs/default.png' %}" alt="No Image">
+                            {% endif %}
                         </div>
-                        <h3 class="products__item-name">Sản phẩm 1</h3>
-                        <p class="products__item-price">1.000.000 VNĐ</p>
-                        <span class="products__item-sold">Đã bán: 99</span>
+                        <h3 class="products__item-name">{{ product.TenSanPham }}</h3>
+                        <p class="products__item-price">{{ product.Gia|floatformat:0 }} VNĐ</p>
+                        <span class="products__item-sold">Đã bán: {{ product.SoLuong }}</span>
                     </a>
                 </li>
-               
+                {% empty %}
+                <li>Không có sản phẩm nào.</li>
+                {% endfor %}
             </ul>
             <div class="products__view-more">
                 <a href="#" class="products__view-more-link">Xem thêm</a>
