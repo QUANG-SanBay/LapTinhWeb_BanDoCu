@@ -8,7 +8,7 @@
             </a>
     
             <!-- Search -->
-            <div class="header__search">
+            <form action="{% url 'search' %}" method="get" class="header__search">
                 <div class="header__search-wrapper">
                     <i class="header__search-icon fas fa-search" id="searchBtn"></i>
                     <input 
@@ -16,10 +16,12 @@
                         class="header__search-input" 
                         placeholder="Tìm kiếm sản phẩm..."
                         id="searchInput"
+                        name="q"
+                        value="{{ query|default:'' }}"
                     >
                     <i class="header__clear-btn fa-solid fa-x" id="clearBtn"></i>
                 </div>
-            </div>
+            </form>
     
             <!-- User Avatar & Dropdown -->
             {% if user.is_authenticated %}

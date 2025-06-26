@@ -15,7 +15,11 @@ def get_DatHang(request):
     return render(request, 'home/datHang.html')
 
 def get_search(request):
-    return render(request, 'home/search.html')
+    query = request.GET.get('q', '')
+    products = Product.objects.all()
+    if query:
+        products = products.filter(TenSanPham__icontains=query)
+    return render(request, 'home/search.html', {'products': products, 'query': query})
 
 def get_lichSuDonHang(request):
     return render(request, 'home/lichsudonhang.html')

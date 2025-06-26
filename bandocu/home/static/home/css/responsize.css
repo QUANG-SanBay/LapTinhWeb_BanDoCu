@@ -1,0 +1,43 @@
+/* mobile */
+@media (max-width:47.9375em){
+    html::-webkit-scrollbar {
+        display: none;
+    }
+    /* rsz cho trang home */
+    /* header rsz */
+    .header .header__logo-img{
+        width: 90px;
+    }
+    .header .header__anonymous{
+        flex-direction: column;
+        gap: 5px 0;
+    }
+    /* banner rsz */
+    .banner{
+        padding: 0 10px;
+    }
+    /* category rsz */
+    .category__item {
+        padding-bottom: 10px;
+    }
+    /* rpz cho trang chi tiết sản phẩm */
+    .left-content, .right-content{
+        padding: 0;
+    }
+}
+/* tablet */
+@media (min-width:48em) and (max-width:63.9375em){
+
+    /* category rsz */
+    .category__item {
+        padding-bottom: 10px;
+    }
+}
+/* laptop */
+@media (min-width:64em) and (max-width:77.4375em){
+
+}
+/* desktop */
+@media (min-width:77.5em){
+
+}

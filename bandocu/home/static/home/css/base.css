@@ -24,3 +24,14 @@ html{
     margin: 0;
     box-sizing: inherit;
 }
+html::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+html::-webkit-scrollbar-thumb {
+    background: var(--color-soft-peach-500);
+    border-radius: 4px;
+}
+html::-webkit-scrollbar-track {
+    background: var(--color-soft-peach-50);
+}

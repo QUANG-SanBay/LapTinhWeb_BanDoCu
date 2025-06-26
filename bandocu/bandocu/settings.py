@@ -29,6 +29,10 @@ DEBUG = False
 ALLOWED_HOSTS = [
     'quangsanbay.pythonanywhere.com',
 ]
+# DEBUG = True
+
+# ALLOWED_HOSTS = [
+# ]
 
 
 # Application definition
