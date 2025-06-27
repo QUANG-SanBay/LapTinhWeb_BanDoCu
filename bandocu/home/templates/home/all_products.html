@@ -1,0 +1,34 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block title %}Gợi ý sản phẩm{%endblock%} 
+{% block GoiYSanPham %}
+    <main class="main-content">
+        <div class="grib wide">
+            <section class="products">
+                <div class="products__title">
+                    <h2 class="products__title-text">Gợi ý sản phẩm</h2>
+                </div>
+                <ul class="row prodcuts__lists">
+                    {% for product in products %}
+                    <li class="products__item col c-4 m-3 l-2 ll-2">
+                        <a href="{% url 'chiTietSP' product.id %}" class="products__item-link">
+                            <div class="products__item-image">
+                                {% if product.HinhAnh %}
+                                    <img src="{{ product.HinhAnh.url }}" alt="Product Image">
+                                {% else %}
+                                    <img src="{% static 'home/imgs/default.png' %}" alt="No Image">
+                                {% endif %}
+                            </div>
+                            <h3 class="products__item-name">{{ product.TenSanPham }}</h3>
+                            <p class="products__item-price">{{ product.Gia|floatformat:0 }} VNĐ</p>
+                            <span class="products__item-sold">Đã bán: {{ product.SoLuong }}</span>
+                        </a>
+                    </li>
+                    {% empty %}
+                    <li>Không có sản phẩm nào.</li>
+                    {% endfor %}
+                </ul>
+            </section>
+        </div>
+    </main>
+{%endblock%}

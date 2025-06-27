@@ -91,15 +91,15 @@
                 {% endfor %}
             </ul>
             <div class="products__view-more">
-                <a href="#" class="products__view-more-link">Xem thêm</a>
+                <a href="{% url 'all_products' %}" class="products__view-more-link">Xem thêm</a>
             </div>
         </section>
         <section class="products">
             <div class="products__title">
-                <h2 class="products__title-text">Sản phẩm hot</h2>
+                <h2 class="products__title-text">Sản phẩm mới</h2>
             </div>
             <ul class="row prodcuts__lists">
-                {% for product in products %}
+                {% for product in new_products %}
                 <li class="products__item col c-4 m-3 l-2 ll-2">
                     <a href="{% url 'chiTietSP' product.id %}" class="products__item-link">
                         <div class="products__item-image">
@@ -119,7 +119,7 @@
                 {% endfor %}
             </ul>
             <div class="products__view-more">
-                <a href="#" class="products__view-more-link">Xem thêm</a>
+                <a href="{% url 'new_products' %}" class="products__view-more-link">Xem thêm</a>
             </div>
         </section>
     </div>
