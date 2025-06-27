@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from seller.models import Product
 # Create your views here.
 from seller.models import Product, ProductCategory
@@ -25,8 +26,40 @@ def get_thongTinDonHang(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     return render(request, 'home/xemThongTinSP.html', {'product': product})
 
-def get_DatHang(request):
-    return render(request, 'home/datHang.html')
+@login_required
+def get_DatHang(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    if request.method == "POST":
+        # Lấy thông tin từ form
+        name = request.POST.get('name')
+        phone = request.POST.get('phone')
+        address = request.POST.get('address')
+        so_luong = int(request.POST.get('so_luong', 1))
+
+        # Lấy buyer từ user hiện tại
+        buyer = request.user.buyer
+
+        # Tạo đơn hàng mới
+        from .models import Order, OrderItem
+        order = Order.objects.create(
+            NguoiMua=buyer,
+            DiaChiGiaoHang=address,
+            TongTien=product.Gia * so_luong,
+            TrangThaiDonHang="Chờ xác nhận"
+        )
+        # Thêm sản phẩm vào OrderItem
+        OrderItem.objects.create(
+            order=order,
+            product=product,
+            SoLuong=so_luong,
+            DonGia=product.Gia
+        )
+        # Trừ số lượng tồn kho
+        product.SoLuong -= so_luong
+        product.save()
+        return render(request, 'home/datHang.html', {'success': True, 'product': product})
+
+    return render(request, 'home/datHang.html', {'product': product})
 
 def get_search(request):
     query = request.GET.get('q', '')

@@ -15,4 +15,5 @@ urlpatterns = [
      path('category/<int:category_id>/', views.get_category, name='category_detail'),
      path('all-products/', views.all_products, name='all_products'),
      path('new-products/', views.new_products, name='new_products'),
+     path('dathang/<int:product_id>/', views.get_DatHang, name='datHang'),
 ]
