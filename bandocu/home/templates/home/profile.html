@@ -17,27 +17,37 @@
                     <div class="row">
                         <div class="form-group col c-12 m-6 l-6 ll-6">
                             <label for="name" class="form-label">Họ và tên:</label>
-                            <input type="text" id="name" class="form-input" placeholder="" required>
+                            <input type="text" id="name" class="form-input" value="{{ user.get_full_name }}" required>
                         </div>
                         <div class="form-group col c-12 m-6 l-6 ll-6">
                             <label for="name" class="form-label">Giới tính:</label>
-                            <select name="" id="" class="form-select">
-                                <option value="">Nam</option>
-                                <option value="">Nữ</option>
-                                <option value="">Khác</option>
+                            <select name="gioi_tinh" id="gender" class="form-select">
+                                <option value="M" {% if user.gioi_tinh == "M" %}selected{% endif %}>Nam</option>
+                                <option value="F" {% if user.gioi_tinh == "F" %}selected{% endif %}>Nữ</option>
+                                <option value="O" {% if user.gioi_tinh == "O" %}selected{% endif %}>Khác</option>
                             </select>
                         </div>
                         <div class="form-group col c-12 m-6 l-6 ll-6">
                             <label for="name" class="form-label">Email:</label>
-                            <input type="Email" id="name" class="form-input" placeholder="">
+                            <input type="Email" id="email" class="form-input" value="{{ user.email }}">
                         </div>
                         <div class="form-group col c-12 m-6 l-6 ll-6">
                             <label for="name" class="form-label">Số điện thoại:</label>
-                            <input type="text" id="name" class="form-input" placeholder="" required>
+                            
+                            {% if user.so_dien_thoai %}
+                                <input type="text" id="phone" class="form-input" value="{{ user.so_dien_thoai }}">
+                            {% endif %}
+                                <input type="text" id="phone" class="form-input" value="Chưa cập nhật">
                         </div>
                         <div class="form-group col c-12 m-6 l-6 ll-6">
                             <label for="name" class="form-label">Địa chỉ:</label>
-                            <input type="text" id="name" class="form-input" placeholder="">
+                            
+                            {% if user.dia_chi %}
+                                <input type="text" id="address" class="form-input" value="{{ user.dia_chi }}">
+                    
+                            {% endif %}
+                                <input type="text" id="address" class="form-input" value="Chưa cập nhật">
+                                
                         </div>
                     </div>
                 </form>
