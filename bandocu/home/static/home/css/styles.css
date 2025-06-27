@@ -60,17 +60,22 @@
   border-color: var(--color-soft-peach-500);
 }
 
-.header__search-icon {
+.header__search-btn{
   position: absolute;
-  left: 15px;
-  color: var(--color-soft-peach-600);
+  left: 5px;
+  color: var(--color-soft-peach-800);
+  border: none;
+  background-color: var(--color-soft-peach-200);
+    padding: 8px;
+    border-radius: 50%;
   font-size: 1.6rem;
   cursor: pointer;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-.header__search-icon:hover {
+.header__search-btn:hover {
   color: var(--color-soft-peach-700);
+    background-color: var(--color-soft-peach-300);
 }
 
 .header__clear-btn {
