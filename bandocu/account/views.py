@@ -4,6 +4,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from .models import User, Buyer, Seller, Admin
+from django.urls import reverse
+
 
 # Create your views here.
 def get_login(request):
@@ -26,9 +28,9 @@ def get_login(request):
             
             # Redirect based on user type
             if user.user_type == 'seller':
-                return redirect('seller_home')  # You'll need to create this URL
+                return redirect(reverse('seller:home_seller'))  # You'll need to create this URL
             elif user.user_type == 'admin':
-                return redirect('admin_home')   # You'll need to create this URL
+                return redirect('/admin/')   # You'll need to create this URL
             else:
                 return redirect('home')
         else:
