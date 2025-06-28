@@ -13,11 +13,11 @@
                 <div class="left-content col c-12 m-5 l-5 ll-5">
                     <section class="product__img">
                         <div class="product__img-main">
-                            <img src="{% static 'home/imgs/phone-yelow.webp' %}" alt="">
+                            <img src="{{ product.HinhAnh.url }}" alt="">
                         </div>
                         <div class="product__img-list">
                             <ul class="product__img-list-items">
-                                <li class="product__img-item">
+                                <li class="product__img-item active">
                                     <img src="{{ product.HinhAnh.url }}" alt="{{ product.TenSanPham }}">
                                 </li>
                                 
@@ -32,7 +32,7 @@
                                     </li>
                                 {% endif %}
                                 {% if product.HinhAnh4 %}
-                                    <li class="product__img-item active">
+                                    <li class="product__img-item">
                                         <img src="{{ product.HinhAnh4.url }}" alt="">
                                     </li>
                                 {% endif %}
