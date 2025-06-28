@@ -121,7 +121,7 @@ form .btn:hover{
     border-radius: 8px;
     margin-bottom: 20px;
     padding: 15px;
-    background-color: var(--primery-c);
+    /* background-color: var(--primery-c); */
 }
 
 .order-header {
@@ -134,8 +134,12 @@ form .btn:hover{
 }
 
 .order-header h3 {
-    color: var(--text-c);
-    font-size: 1.6rem;
+    color: var(--color-soft-peach-700);
+    background-color: var(--color-soft-peach-200);
+    border-radius: 10px;
+    font-size: 1.8rem;
+    line-height: 2;
+    padding: 0 10px;
     margin: 0;
 }
 
@@ -193,10 +197,11 @@ form .btn:hover{
     padding: 8px;
     text-align: left;
     border-bottom: 1px solid var(--border-c);
+    background-color: var(--color-soft-peach-50);
 }
 
 .order-products th {
-    background-color: var(--color-soft-peach-50);
+    background-color: var(--color-soft-peach-200);
     color: var(--text-c);
     font-weight: bold;
 }
