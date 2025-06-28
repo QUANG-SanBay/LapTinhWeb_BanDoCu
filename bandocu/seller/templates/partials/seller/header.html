@@ -5,7 +5,11 @@
                 <i class="fas fa-recycle"></i>
                 SECOND HAND
             </a>
-            
+            <div class="header-menu">
+                <div class="header-menu-icon">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
             <div class="seller-header__search">
                 <input type="text" placeholder="Tìm kiếm..."/>
                 <button type="submit">
@@ -36,5 +40,31 @@
                 Thống kê
             </a>
         </nav>
+        <!-- Sidebar for mobile -->
+        <div class="seller-sidebar" id="sellerSidebar">
+            <button class="seller-sidebar__close" id="sidebarCloseBtn"><i class="fa fa-times"></i></button>
+            <div class="seller-sidebar__avatar">NN</div>
+            <nav class="seller-sidebar__nav">
+                <a href="{% url 'seller:home_seller' %}" class="nav-item">
+                    Trang chủ
+                </a>
+                <div class="nav-dropdown">
+                    <a href="{% url 'seller:dang_ban' %}" class="nav-item">
+                        Đăng bán sản phẩm <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="{% url 'seller:dang_ban' %}" class="dropdown-item">Đăng bán</a>
+                        <a href="{% url 'seller:danh_sach_san_pham' %}" class="dropdown-item">Danh sách sản phẩm</a>
+                    </div>
+                </div>
+                <a href="{% url 'seller:quan_ly_don_hang' %}" class="nav-item">
+                    Quản lý đơn hàng
+                </a>
+                <a href="{% url 'seller:thong_ke' %}" class="nav-item">
+                    Thống kê
+                </a>
+            </nav>
+        </div>
+        <div class="seller-sidebar-overlay" id="sidebarOverlay"></div>
     </div>
 </header>

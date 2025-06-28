@@ -68,4 +68,26 @@ Array.from(document.querySelectorAll('a[href^="#"]')).forEach(anchor => {
 window.addEventListener('load', function() {
     document.body.style.opacity = '0';
     document.body.style.animation = 'fadeIn 0.5s ease forwards';
-}); 
+});
+
+// Sidebar mobile menu
+const sidebar = document.getElementById('sellerSidebar');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+const sidebarOpenBtn = document.querySelector('.header-menu');
+const sidebarCloseBtn = document.getElementById('sidebarCloseBtn');
+
+function openSidebar() {
+    sidebar.classList.add('open');
+    sidebarOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+function closeSidebar() {
+    sidebar.classList.remove('open');
+    sidebarOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+}
+if (sidebarOpenBtn && sidebar && sidebarOverlay && sidebarCloseBtn) {
+    sidebarOpenBtn.addEventListener('click', openSidebar);
+    sidebarCloseBtn.addEventListener('click', closeSidebar);
+    sidebarOverlay.addEventListener('click', closeSidebar);
+}
