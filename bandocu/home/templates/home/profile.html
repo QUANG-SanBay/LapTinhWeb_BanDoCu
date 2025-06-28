@@ -4,7 +4,7 @@
 {% block title %}Thông tin cá nhân -{% endblock %}
 
 {% block profile__css %}
-    <link rel="stylesheet" href="{% static 'home/css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/profile.css' %}?v={{ timestamp }}">
 {% endblock profile__css %}
 {% block profile %}
     <main class="main-content">

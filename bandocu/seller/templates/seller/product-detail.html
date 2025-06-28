@@ -4,7 +4,7 @@
 {% block title %}Chi tiết sản phẩm - {% endblock title %}
 
 {% block product_detail_css %}
-    <link rel="stylesheet" href="{% static 'seller/product-detail.css' %}">
+    <link rel="stylesheet" href="{% static 'seller/product-detail.css' %}?v={{ timestamp }}">
 {% endblock product_detail_css %}
     
 {% block product_detail %}

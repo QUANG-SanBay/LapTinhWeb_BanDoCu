@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Account{% endblock %}</title>
-    <link rel="icon" type="image/png" href="{% static 'account/imgs/favicon.png' %}">
+    <link rel="icon" type="image/png" href="{% static 'account/imgs/favicon.png' %}?v={{ timestamp }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'account/css/base.css' %}">
-    <link rel="stylesheet" href="{% static 'account/css/styles.css' %}">
-    <link rel="stylesheet" href="{% static 'account/css/grib.css' %}">
+    <link rel="stylesheet" href="{% static 'account/css/base.css' %}?v={{ timestamp }}">
+    <link rel="stylesheet" href="{% static 'account/css/styles.css' %}?v={{ timestamp }}">
+    <link rel="stylesheet" href="{% static 'account/css/grib.css' %}?v={{ timestamp }}">
     {% block extra_head %}{% endblock %}
 </head>
 <body>

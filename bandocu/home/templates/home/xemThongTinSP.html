@@ -3,7 +3,7 @@
 {% block title %}Thông tin sản phẩm - {{product.TenSanPham}}{%endblock%} 
 
 {% block product__css %}
-    <link rel="stylesheet" href="{% static 'home/css/product-infor.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/product-infor.css' %}?v={{ timestamp }}">
 {% endblock product__css %}
     
 {% block search %}

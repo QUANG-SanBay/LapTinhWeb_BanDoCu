@@ -3,7 +3,7 @@
 {% block title %}Đặt hàng -{%endblock%} 
 
 {% block order__css %}
-    <link rel="stylesheet" href="{% static 'home/css/order.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/order.css' %}?v={{ timestamp }}">
 {% endblock order__css %}
     
 {% block datHang %}
