@@ -37,7 +37,7 @@
                 <span class="form-mess"></span>
             </div>
             <div class="form-group">
-                <label for="user-type" class="form-label">Loại tài khoản</label>
+                <label for="user-type" class="form-label">Bạn muốn là: </label>
                 <select id="user-type" name="user_type" required>
                     <option value="buyer" {% if user_type == 'buyer' %}selected{% endif %}>Người mua</option>
                     <option value="seller" {% if user_type == 'seller' %}selected{% endif %}>Người bán</option>
@@ -69,5 +69,5 @@
 {% endblock register %}
 
 {% block extra_js %}
-    <script src="{% static 'account/js/register.js' %}"></script>
+    {% comment %} <script src="{% static 'account/js/register.js' %}"></script> {% endcomment %}
 {% endblock %}
