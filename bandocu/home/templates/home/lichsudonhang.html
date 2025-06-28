@@ -27,7 +27,7 @@
                     <div class="order-item">
                         <div class="order-header">
                             <h3>Đơn hàng #{{ order.id }}</h3>
-                            <span class="order-date">{{ order.NgayDatHang|date:"d/m/Y H:i" }}</span>
+                            {% comment %} <span class="order-date">{{ order.NgayDatHang|date:"d/m/Y H:i" }}</span> {% endcomment %}
                             <span class="order-status {{ order.TrangThaiDonHang|lower }}">{{ order.TrangThaiDonHang }}</span>
                         </div>
                         

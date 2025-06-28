@@ -16,4 +16,5 @@ urlpatterns = [
     path('xoa-nhieu-san-pham/', views.xoa_nhieu_san_pham, name='xoa_nhieu_san_pham'),
     path('xem-san-pham/<int:id>/', views.xem_san_pham, name='xem_san_pham'),
     path('cho-xac-nhan/', views.cho_xac_nhan, name='cho_xac_nhan'),
+    path('product-detail/', views.get_product_detail, name='get_product_detail'),
 ]

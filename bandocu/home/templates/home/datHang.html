@@ -23,13 +23,22 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><img src="asset/imgs/phone-green.webp" alt="Product Image" style="width: 50px;"></td>
-                                <td>Sản phẩm 1</td>
-                                <td>2</td>
-                                <td>1.000.000 VNĐ</td>
-                                <td><button class="btn">Xóa</button></td>
+                                <td>
+                                    {% if product.HinhAnh %}
+                                        <img src="{{ product.HinhAnh.url }}" alt="Product Image" style="width: 50px;">
+                                    {% else %}
+                                        <img src="{% static 'home/imgs/default.png' %}" alt="No Image" style="width: 50px;">
+                                    {% endif %}
+                                </td>
+                                <td>{{ product.TenSanPham }}</td>
+                                <td>
+                                    <input type="number" name="so_luong" value="1" min="1" max="{{ product.SoLuong }}" form="orderForm" style="width: 60px;">
+                                </td>
+                                <td>{{ product.Gia|floatformat:0 }} VNĐ</td>
+                                <td>
+                                    <!-- Nếu chỉ đặt 1 sản phẩm/lần thì không cần nút Xóa -->
+                                </td>
                             </tr>
-                            <!-- Thêm các sản phẩm khác nếu cần -->
                         </tbody>
                     </table>
                 </div>

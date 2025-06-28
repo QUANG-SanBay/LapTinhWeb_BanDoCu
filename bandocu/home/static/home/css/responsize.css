@@ -24,6 +24,10 @@
     .left-content, .right-content{
         padding: 0;
     }
+    /* rpz cho filter bộ lọc sản phẩm */
+    .products__filter-item{
+        margin-bottom: 10px;
+    }
 }
 /* tablet */
 @media (min-width:48em) and (max-width:63.9375em){

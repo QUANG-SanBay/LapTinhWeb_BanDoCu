@@ -5,18 +5,20 @@
     <main class="main-content">
         <div class="grib wide">
             <div class="section__title">
-                {% if selected_category %}
-                    Sản phẩm thuộc danh mục: {{ selected_category.TenDanhMuc }}
-                {% else %}
-                    Tất cả sản phẩm
-                {% endif %}
+                <h2 class="section__title-text">
+                    {% if selected_category %}
+                        Sản phẩm thuộc danh mục: {{ selected_category.TenDanhMuc }}
+                    {% else %}
+                        Tất cả sản phẩm
+                    {% endif %}
+                </h2>
             </div>
             <section class="products">
                 <!-- bộ lọc : liên quan, mới nhất, bán chạy, giá(select)-->
                 <div class="products__filter">
                     <span class="products__filter-title">Sắp xếp theo:</span>
                     <div class="products__filter-item">
-                        <button class="products__filter-btn">Liên quan</button>
+                        <button class="products__filter-btn acticed">Liên quan</button>
                     </div>
                     <div class="products__filter-item">
                         <button class="products__filter-btn">Mới nhất</button>

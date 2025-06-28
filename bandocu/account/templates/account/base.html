@@ -1,11 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Account{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{% static 'account/imgs/favicon.png' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load static %}
+    <link rel="stylesheet" href="{% static 'account/css/base.css' %}">
     <link rel="stylesheet" href="{% static 'account/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'account/css/grib.css' %}">
     {% block extra_head %}{% endblock %}
 </head>
 <body>
@@ -21,11 +24,13 @@
             {% endif %}
         </nav>
     </header> {% endcomment %}
-    <main>
+    {% include 'partials/account/header.html' %}
+    <main class="content">
         {% block register %}{% endblock %}
         {% block login %}{% endblock %}
     </main>
-    <script src="{% static 'account/js/common.js' %}"></script>
+    {% include 'partials/account/footer.html' %}
+    {% comment %} <script src="{% static 'account/js/common.js' %}"></script> {% endcomment %}
     {% block extra_js %}{% endblock %}
 </body>
 </html>

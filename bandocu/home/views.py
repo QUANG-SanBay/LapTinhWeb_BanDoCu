@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from seller.models import Product
+from seller.models import Product,  ProductCategory
+from .models import Order
 # Create your views here.
-from seller.models import Product, ProductCategory
 import random
 
 def get_home(request):
@@ -24,7 +24,10 @@ def get_home(request):
 
 def get_thongTinDonHang(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-    return render(request, 'home/xemThongTinSP.html', {'product': product})
+    is_buyer = False
+    if request.user.is_authenticated:
+        is_buyer = hasattr(request.user, 'buyer')  # hoặc 'buyer_profile' nếu bạn đặt related_name
+    return render(request, 'home/xemThongTinSP.html', {'product': product, 'is_buyer': is_buyer})
 
 @login_required
 def get_DatHang(request, product_id):
@@ -68,8 +71,15 @@ def get_search(request):
         products = products.filter(TenSanPham__icontains=query)
     return render(request, 'home/search.html', {'products': products, 'query': query})
 
+@login_required
 def get_lichSuDonHang(request):
-    return render(request, 'home/lichsudonhang.html')
+    try:
+        buyer = request.user.buyer  # hoặc buyer = request.user.buyer_profile nếu bạn đặt related_name khác
+    except Exception:
+        return render(request, 'home/lichsudonhang.html', {'orders': []})
+
+    orders = Order.objects.filter(NguoiMua=buyer).order_by('-NgayDatHang')
+    return render(request, 'home/lichsudonhang.html', {'orders': orders})
 def get_profile(request):
     user = request.user
     return render(request, 'home/profile.html', {'user': user})

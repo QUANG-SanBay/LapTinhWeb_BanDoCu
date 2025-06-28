@@ -3,6 +3,8 @@
   background-color: var(--primery-c);
   padding: 15px 0;
   border-bottom: 1px solid var(--border-c);
+backdrop-filter: blur(10px);
+  opacity: 0.9;
   position: fixed;
   top: 0;
   left: 0;
@@ -291,7 +293,7 @@
     padding: 10px 20px;
     align-items: center;
 }
-.products__filter-title{
+.products__filter-title {
     font-size: 1.2rem;
     color: var(--text-c);
     opacity: 0.5;
@@ -307,9 +309,13 @@
     line-height: 2;
     height: 40px;
     background-color: var(--color-soft-peach-50);
-    border: 1px url(http://127.0.0.1:5500/search.html)solid var(--border-c);
+    border: 1px solid var(--border-c);
     border-radius: 4px;
     transition: all 0.3s ease-in-out;
+}
+.products__filter-btn.acticed, .products__filter-select.acticed{
+    background-color: var(--color-soft-peach-300);
+    color: var(--color-soft-peach-800);
 }
 .products__filter-btn:hover, .products__filter-select:hover{
     background-color: var(--color-soft-peach-200);
