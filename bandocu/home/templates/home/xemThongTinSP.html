@@ -20,15 +20,22 @@
                                 <li class="product__img-item">
                                     <img src="{{ product.HinhAnh.url }}" alt="{{ product.TenSanPham }}">
                                 </li>
-                                <li class="product__img-item">
-                                    <img src="{{ product.HinhAnh2.url }}" alt="">
-                                </li>
-                                <li class="product__img-item">
-                                    <img src="{{ product.HinhAnh3.url }}" alt="">
-                                </li>
-                                <li class="product__img-item active">
-                                    <img src="{{ product.HinhAnh4.url }}" alt="">
-                                </li>
+                                
+                                {% if product.HinhAnh2 %}
+                                    <li class="product__img-item">
+                                        <img src="{{ product.HinhAnh2.url }}" alt="">
+                                    </li>
+                                {% endif %}
+                                {% if product.HinhAnh3 %}
+                                    <li class="product__img-item">
+                                        <img src="{{ product.HinhAnh3.url }}" alt="">
+                                    </li>
+                                {% endif %}
+                                {% if product.HinhAnh4 %}
+                                    <li class="product__img-item active">
+                                        <img src="{{ product.HinhAnh4.url }}" alt="">
+                                    </li>
+                                {% endif %}
                             </ul>
                     </section>
                     <section class="product__deitals">
