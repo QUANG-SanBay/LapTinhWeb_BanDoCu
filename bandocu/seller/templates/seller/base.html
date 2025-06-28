@@ -18,6 +18,8 @@
     {% block sua-san-pham %}{% endblock %}
     {% block xem-san-pham %}{% endblock %}
     {% block xem-san-pham-js %}{% endblock %}
+    {% block product_detail_css %}{% endblock product_detail_css %}
+    
 </head>
 <body>
     {% include 'partials/seller/header.html' %}
@@ -26,6 +28,9 @@
         {% endblock header %} {% endcomment %}
        {% block content %}
         {% endblock content %}
+        
+        {% block product_detail %}
+        {% endblock product_detail %}
         {% comment %} {% block footer %}
         {% endblock footer %} {% endcomment %}
     </main>

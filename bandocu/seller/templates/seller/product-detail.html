@@ -1,0 +1,36 @@
+{% extends 'seller/base.html' %}
+{% load static %}
+
+{% block title %}Chi tiết sản phẩm - {% endblock title %}
+
+{% block product_detail_css %}
+    <link rel="stylesheet" href="{% static 'seller/product-detail.css' %}">
+{% endblock product_detail_css %}
+    
+{% block product_detail %}
+    <div class="order-details">
+        <div class="order-header">
+        <h2>Chi tiết đơn hàng</h2>
+        <p class="status-cancel">Đã hủy vào đơn hàng</p>
+        <p class="order-date">vào 26-06-2025</p>
+        </div>
+
+        <div class="order-box">
+        <div class="buyer-info">
+            <p><strong>Thông tin người nhận</strong></p>
+            <p>Trần Văn (84)+325540816</p>
+            <p>Tân Chánh Hiệp 18, Phường Tân Chánh Hiệp, Quận 12, Thành Phố Hồ Chí Minh</p>
+        </div>
+
+        <div class="product-box">
+            <div class="product-header">iPhone 11</div>
+            <div class="product-content">
+            <div class="img-box">img</div>
+            <div class="product-name">iPhone 11- 64GB<br><span>x1</span></div>
+            <div class="product-price">12.000.000</div>
+            </div>
+        </div>
+        </div>
+    </div>
+{% endblock product_detail %}
+    
