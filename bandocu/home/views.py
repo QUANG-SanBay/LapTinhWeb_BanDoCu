@@ -24,7 +24,10 @@ def get_home(request):
 
 def get_thongTinDonHang(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-    return render(request, 'home/xemThongTinSP.html', {'product': product})
+    is_buyer = False
+    if request.user.is_authenticated:
+        is_buyer = hasattr(request.user, 'buyer')  # hoặc 'buyer_profile' nếu bạn đặt related_name
+    return render(request, 'home/xemThongTinSP.html', {'product': product, 'is_buyer': is_buyer})
 
 @login_required
 def get_DatHang(request, product_id):
