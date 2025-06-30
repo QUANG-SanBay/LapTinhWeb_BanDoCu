@@ -190,7 +190,17 @@
     align-items: center;
     gap: 8px;
 }
-
+.product-images-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+}
+@media (max-width: 768px) {
+    .product-images-grid {
+        grid-template-columns: 1fr;
+    }
+}
 .btn-primary {
     background: #e32020;
     color: white;

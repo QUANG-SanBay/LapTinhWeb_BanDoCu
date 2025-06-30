@@ -1,4 +1,3 @@
-
 {% extends 'seller/base.html' %}
 
 {% load static %}
@@ -17,7 +16,8 @@
     </div>
 
     <div class="form-container">
-        <form class="form-content">
+        <form class="form-content" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
             <!-- Left Side - Product Info -->
             <div class="form-left">
                 <h3 class="section-title">Thông tin sản phẩm</h3>
@@ -34,29 +34,47 @@
                             <label for="ratio2">Tỷ lệ hình ảnh 3:4</label>
                         </div>
                     </div>
-                    <div class="upload-area" onclick="document.getElementById('image-upload').click()">
-                        <div class="upload-icon">
-                            <i class="fas fa-camera"></i>
+                    <div class="product-images-grid">
+                        <!-- Ảnh chính -->
+                        <div class="upload-area" onclick="document.getElementById('id_HinhAnh').click()">
+                            <div class="upload-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <p class="upload-text">Ảnh chính</p>
+                            <img id="main-image-preview" style="display:none;max-width:100%;margin-top:8px;" />
                         </div>
-                        <p class="upload-text">Thêm hình ảnh</p>
-                    </div>
-                    <input type="file" id="image-upload" multiple accept="image/*" style="display: none;">
-                </div>
+                        {{ form.HinhAnh }}
 
-                <div class="form-group">
-                    <label class="form-label">Video sản phẩm:</label>
-                    <div class="video-upload-area" onclick="document.getElementById('video-upload').click()">
-                        <div class="upload-icon">
-                            <i class="fas fa-video"></i>
+                        <!-- Ảnh phụ 1 -->
+                        <div class="upload-area" onclick="document.getElementById('id_HinhAnh2').click()">
+                            <div class="upload-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <p class="upload-text">Ảnh phụ 1</p>
+                            <img id="sub-image-preview-1" style="display:none;max-width:100%;margin-top:8px;" />
                         </div>
-                        <p class="upload-text">Thêm video</p>
-                        <div class="video-specs">
-                            Kích thước tối đa 30Mb, độ phân giải không vượt quá 1280x1280px<br>
-                            Độ dài: 10s-60s<br>
-                            Định dạng: MP4
+                        {{ form.HinhAnh2 }}
+
+                        <!-- Ảnh phụ 2 -->
+                        <div class="upload-area" onclick="document.getElementById('id_HinhAnh3').click()">
+                            <div class="upload-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <p class="upload-text">Ảnh phụ 2</p>
+                            <img id="sub-image-preview-2" style="display:none;max-width:100%;margin-top:8px;" />
                         </div>
+                        {{ form.HinhAnh3 }}
+
+                        <!-- Ảnh phụ 3 -->
+                        <div class="upload-area" onclick="document.getElementById('id_HinhAnh4').click()">
+                            <div class="upload-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <p class="upload-text">Ảnh phụ 3</p>
+                            <img id="sub-image-preview-3" style="display:none;max-width:100%;margin-top:8px;" />
+                        </div>
+                        {{ form.HinhAnh4 }}
                     </div>
-                    <input type="file" id="video-upload" accept="video/mp4" style="display: none;">
                 </div>
             </div>
 
@@ -65,49 +83,48 @@
                 <h3 class="section-title">Thông tin khác</h3>
                 
                 <div class="form-group">
-                    <label for="product-name" class="form-label">Tên sản phẩm</label>
-                    <input type="text" id="product-name" class="form-input" placeholder="Nhập tên sản phẩm...">
+                    <label for="{{ form.TenSanPham.id_for_label }}" class="form-label">Tên sản phẩm</label>
+                    {{ form.TenSanPham }}
+                    {{ form.TenSanPham.errors }}
                 </div>
 
                 <div class="form-group">
-                    <label for="product-description" class="form-label">Mô tả sản phẩm</label>
-                    <textarea id="product-description" class="form-input form-textarea" placeholder="Nhập mô tả chi tiết về sản phẩm..."></textarea>
+                    <label for="{{ form.MoTa.id_for_label }}" class="form-label">Mô tả sản phẩm</label>
+                    {{ form.MoTa }}
+                    {{ form.MoTa.errors }}
                 </div>
 
                 <div class="form-group">
-                    <label for="product-price" class="form-label">Giá bán (VNĐ)</label>
-                    <input type="number" id="product-price" class="form-input" placeholder="0">
+                    <label for="{{ form.Gia.id_for_label }}" class="form-label">Giá bán (VNĐ)</label>
+                    {{ form.Gia }}
+                    {{ form.Gia.errors }}
                 </div>
 
                 <div class="form-group">
-                    <label for="product-category" class="form-label">Danh mục</label>
-                    <select id="product-category" class="form-input">
-                        <option value="">Chọn danh mục</option>
-                        <option value="dien-thoai">Điện thoại</option>
-                        <option value="may-tinh">Máy tính</option>
-                        <option value="thoi-trang">Thời trang</option>
-                    </select>
+                    <label for="{{ form.SoLuong.id_for_label }}" class="form-label">Số lượng</label>
+                    {{ form.SoLuong }}
+                    {{ form.SoLuong.errors }}
                 </div>
 
                 <div class="form-group">
-                    <label for="product-condition" class="form-label">Tình trạng</label>
-                    <select id="product-condition" class="form-input">
-                        <option value="">Chọn tình trạng</option>
-                        <option value="moi">Mới</option>
-                        <option value="nhu-moi">Như mới</option>
-                        <option value="tot">Tốt</option>
-                        <option value="kha-tot">Khá tốt</option>
-                        <option value="binh-thuong">Bình thường</option>
-                    </select>
+                    <label for="{{ form.DanhMuc.id_for_label }}" class="form-label">Danh mục</label>
+                    {{ form.DanhMuc }}
+                    {{ form.DanhMuc.errors }}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.TrangThai.id_for_label }}" class="form-label">Tình trạng</label>
+                    {{ form.TrangThai }}
+                    {{ form.TrangThai.errors }}
                 </div>
             </div>
 
             <!-- Action Buttons -->
             <div class="form-actions">
-                <button type="button" class="btn btn-secondary">
+                <a href="{% url 'seller:home_seller' %}" class="btn btn-secondary">
                     <i class="fas fa-times"></i>
                     Hủy
-                </button>
+                </a>
                 <button type="submit" class="btn btn-primary">
                     <i class="fas fa-save"></i>
                     Lưu và Hiển thị
@@ -116,30 +133,25 @@
         </form>
     </div>
 </div>
-<script>
-function openTab(evt, tabName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tab-content");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-        tabcontent[i].classList.remove("active");
-    }
-    tablinks = document.getElementsByClassName("tab-link");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(tabName).style.display = "block";
-    document.getElementById(tabName).classList.add("active");
-    evt.currentTarget.className += " active";
-}
 
-// Mở tab đầu tiên mặc định
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementsByClassName("tab-link")[0].click();
-});
+<script>
+function previewImage(input, previewId) {
+    const preview = document.getElementById(previewId);
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+        }
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        preview.src = '';
+        preview.style.display = 'none';
+    }
+}
 </script>
 {% endblock %}
 
 {% block custom_css %}
 <link rel="stylesheet" href="{% static 'seller/dang-ban.css' %}">
-{% endblock %} 
+{% endblock %}
