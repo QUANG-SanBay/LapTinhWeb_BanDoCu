@@ -17,6 +17,7 @@
     {% block profile__css %}{% endblock profile__css %}
     {% block order__css %}{% endblock order__css %}
     {% block product__css %}{% endblock product__css %}
+    {% block confirm_css %}{% endblock confirm_css %}
     <link rel="stylesheet" href="{% static 'home/css/responsize.css' %}?v={{ timestamp }}">
     
     
@@ -34,6 +35,8 @@
         {%block lichsuDonHang%} {%endblock lichsuDonHang%}
         {%block sanPhamMoi%} {%endblock sanPhamMoi%}
         {%block GoiYSanPham%} {%endblock GoiYSanPham%}
+        {%block confirm_seller%} {%endblock confirm_seller%}
+        {%block terms%}{% endblock terms %}
     </main>
     {% include 'partials/home/footer.html' %}
     <script src="{% static 'home/js/header.js' %}?v={{ timestamp }}"></script>

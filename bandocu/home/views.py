@@ -104,3 +104,15 @@ def new_products(request):
     products = Product.objects.order_by('-id')
     categories = ProductCategory.objects.all()
     return render(request, 'home/new_products.html', {'products': products, 'categories': categories})
+def get_confirm_seller_info(request):
+    if request.method == 'POST':
+        # Xử lý thông tin xác nhận người bán
+        full_name = request.POST.get('full_name')
+        phone = request.POST.get('phone')
+        address = request.POST.get('address')
+        # Lưu thông tin vào cơ sở dữ liệu hoặc xử lý theo yêu cầu
+        return render(request, 'home/confirm_seller_info.html', {'success': True})
+
+    return render(request, 'home/confirm_seller_info.html', {'success': False})
+def terms(request):
+    return render(request, 'home/terms.html')

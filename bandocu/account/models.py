@@ -17,6 +17,7 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     gioi_tinh = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, null=True)
     dia_chi = models.TextField(blank=True, null=True)
+    cccd = models.CharField(max_length=20, blank=True, null=True)
     so_dien_thoai = models.CharField(max_length=20, blank=True, null=True)
     ngay_dang_ky = models.DateField(auto_now_add=True)
     

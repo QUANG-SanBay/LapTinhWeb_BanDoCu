@@ -1,0 +1,65 @@
+.confirm-seller-form {
+    max-width: 420px;
+    margin: 120px auto 32px auto;
+    padding: 32px 24px;
+    background: var(--color-soft-peach-50);
+    border: 1px solid var(--border-c);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(186,121,121,0.08);
+}
+
+.confirm-seller-form div {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+}
+.confirm-seller-form .checkbox-container{
+    flex-direction: row;
+}
+.confirm-seller-form label {
+    font-size: 1.5rem;
+    color: var(--text-c);
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.confirm-seller-form input[type="text"],
+.confirm-seller-form input[type="email"] {
+    font-size: 1.5rem;
+    padding: 8px 10px;
+    border: 1px solid var(--border-c);
+    border-radius: 4px;
+    background: #fff;
+    color: var(--text-c);
+    outline: none;
+    transition: border 0.2s;
+}
+
+.confirm-seller-form input[type="text"]:focus,
+.confirm-seller-form input[type="email"]:focus {
+    border: 1.5px solid var(--color-soft-peach-600);
+}
+
+.confirm-seller-form input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    accent-color: var(--color-soft-peach-600);
+}
+
+.confirm-seller-form button[type="submit"] {
+    width: 100%;
+    padding: 10px 0;
+    background: var(--color-soft-peach-600);
+    color: #fff;
+    font-size: 1.6rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.confirm-seller-form button[type="submit"]:hover {
+    background: var(--color-soft-peach-700);
+}
