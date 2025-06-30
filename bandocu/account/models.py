@@ -39,7 +39,7 @@ class User(AbstractUser):
         return self.username
 
 class Buyer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='buyer_profile')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='buyer')
     
     def TimKiemSanPham(self):
         return []  # return list of Product

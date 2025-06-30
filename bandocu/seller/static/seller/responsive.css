@@ -1,0 +1,183 @@
+/* mobile */
+@media (max-width:47.9375em){
+    .seller-header__logo{
+        font-size: 1rem;
+    }
+    .seller-header__top {
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    .seller-header__search {
+        flex: 0 0 100%;
+        width: 100%;
+        margin: 0 auto;
+        max-width: none;
+        /* display: none; */
+    }
+    .seller-header__nav {
+        display: none;
+    }
+    .header-menu {
+        display: block;
+        margin-left: 0;
+        background: none;
+        color: #a35f5f;
+        padding: 0 8px;
+        cursor: pointer;
+        z-index: 1101;
+    }
+    .header-menu-icon {
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+    }
+    .seller-header__avatar {
+        display: none;
+    }
+    /* Sidebar styles */
+    /* .seller-sidebar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 80vw;
+        max-width: 320px;
+        height: 100vh;
+        background: #fff;
+        box-shadow: -2px 0 16px rgba(0,0,0,0.15);
+        z-index: 1102;
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+        display: flex;
+        flex-direction: column;
+        padding: 32px 24px 24px 24px;
+    } */
+    /* .seller-sidebar.open {
+        transform: translateX(0);
+    } */
+    /* .seller-sidebar__close {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        font-size: 2rem;
+        color: #c13e3e;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 1200;
+    }
+    .seller-sidebar__nav {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        margin-top: 48px;
+    }
+    .seller-sidebar__nav .nav-item,
+    .seller-sidebar__nav .nav-dropdown > .nav-item {
+        padding: 16px 0;
+        font-size: 1.2rem;
+        border-radius: 0;
+        background: none;
+        color: #222;
+        border-bottom: 1px solid #f3eaea;
+    }
+    .seller-sidebar__nav .nav-item.active {
+        background: #dc3545;
+        color: #fff;
+    }
+    .seller-sidebar__nav .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        border: none;
+        background: none;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        min-width: 0;
+        padding-left: 16px;
+    }
+    .seller-sidebar__nav .dropdown-item {
+        padding: 10px 0 10px 24px;
+        border-bottom: none;
+        color: #c13e3e;
+        background: none;
+    }
+    .seller-sidebar__nav .dropdown-item:hover {
+        background: #ffeaea;
+        color: #dc3545;
+    }
+    .seller-sidebar__avatar {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 24px;
+        width: 48px;
+        height: 48px;
+        background: #ffc107;
+        border-radius: 50%;
+        color: #212529;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+    /* Overlay for sidebar */
+    /* .seller-sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0,0,0,0.25);
+        z-index: 1100;
+        display: none;
+    }
+    .seller-sidebar-overlay.open {
+        display: block;
+    } */
+}
+
+/* tablet */
+@media (min-width:48em) and (max-width:63.9375em){
+    .seller-header__logo{
+        font-size: 1rem;
+    }
+    .seller-header__top {
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    .seller-header__search {
+        flex: 0 0 100%;
+        width: 100%;
+        margin: 0 auto;
+        max-width: none;
+        /* display: none; */
+    }
+    .seller-header__nav {
+        display: none;
+    }
+    .header-menu {
+        display: block;
+        margin-left: 0;
+        background: none;
+        color: #a35f5f;
+        padding: 0 8px;
+        cursor: pointer;
+        z-index: 1101;
+    }
+    .header-menu-icon {
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+    }
+    .seller-header__avatar {
+        display: none;
+    }
+}
+
+/* laptop */
+@media (min-width:64em) and (max-width:77.4375em){
+    /* ...add any laptop-specific header responsive if needed... */
+}
+
+/* desktop */
+@media (min-width:77.5em){
+    /* ...add any desktop-specific header responsive if needed... */
+}

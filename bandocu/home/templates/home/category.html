@@ -5,14 +5,20 @@
     <main class="main-content">
         <div class="grib wide">
             <div class="section__title">
-                    <h2 class="section__title-text">Danh mục -</h2>
-                </div>
+                <h2 class="section__title-text">
+                    {% if selected_category %}
+                        Sản phẩm thuộc danh mục: {{ selected_category.TenDanhMuc }}
+                    {% else %}
+                        Tất cả sản phẩm
+                    {% endif %}
+                </h2>
+            </div>
             <section class="products">
                 <!-- bộ lọc : liên quan, mới nhất, bán chạy, giá(select)-->
                 <div class="products__filter">
                     <span class="products__filter-title">Sắp xếp theo:</span>
                     <div class="products__filter-item">
-                        <button class="products__filter-btn">Liên quan</button>
+                        <button class="products__filter-btn acticed">Liên quan</button>
                     </div>
                     <div class="products__filter-item">
                         <button class="products__filter-btn">Mới nhất</button>
@@ -29,17 +35,24 @@
                     </div>
                 </div>
                 <ul class="row prodcuts__lists">
-                    <li class="products__item col c-6 m-3 l-2 ll-2">
-                        <a href="{% url 'chiTietSP' %}" class="products__item-link">
+                    {% for product in products %}
+                    <li class="products__item col c-4 m-3 l-2 ll-2">
+                        <a href="{% url 'chiTietSP' product.id %}" class="products__item-link">
                             <div class="products__item-image">
-                                <img src="{% static 'home/imgs/phone-green.webp' %}" alt="Product Image">
+                                {% if product.HinhAnh %}
+                                    <img src="{{ product.HinhAnh.url }}" alt="Product Image">
+                                {% else %}
+                                    <img src="{% static 'home/imgs/default.png' %}" alt="No Image">
+                                {% endif %}
                             </div>
-                            <h3 class="products__item-name">Sản phẩm 1</h3>
-                            <p class="products__item-price">1.000.000 VNĐ</p>
-                            <span class="products__item-sold">Đã bán: 99</span>
+                            <h3 class="products__item-name">{{ product.TenSanPham }}</h3>
+                            <p class="products__item-price">{{ product.Gia|floatformat:0 }} VNĐ</p>
+                            <span class="products__item-sold">Đã bán: {{ product.SoLuong }}</span>
                         </a>
                     </li>
-                    
+                    {% empty %}
+                    <li>Không có sản phẩm nào.</li>
+                    {% endfor %}
                 </ul>
             </section>
         </div>

@@ -3,7 +3,7 @@
 {% block title %}Đặt hàng -{%endblock%} 
 
 {% block order__css %}
-    <link rel="stylesheet" href="{% static 'home/css/order.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/order.css' %}?v={{ timestamp }}">
 {% endblock order__css %}
     
 {% block datHang %}
@@ -23,31 +23,48 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><img src="asset/imgs/phone-green.webp" alt="Product Image" style="width: 50px;"></td>
-                                <td>Sản phẩm 1</td>
-                                <td>2</td>
-                                <td>1.000.000 VNĐ</td>
-                                <td><button class="btn">Xóa</button></td>
+                                <td>
+                                    {% if product.HinhAnh %}
+                                        <img src="{{ product.HinhAnh.url }}" alt="Product Image" style="width: 50px;">
+                                    {% else %}
+                                        <img src="{% static 'home/imgs/default.png' %}" alt="No Image" style="width: 50px;">
+                                    {% endif %}
+                                </td>
+                                <td>{{ product.TenSanPham }}</td>
+                                <td>
+                                    <input type="number" name="so_luong" value="1" min="1" max="{{ product.SoLuong }}" form="orderForm" style="width: 60px;">
+                                </td>
+                                <td>{{ product.Gia|floatformat:0 }} VNĐ</td>
+                                <td>
+                                    <!-- Nếu chỉ đặt 1 sản phẩm/lần thì không cần nút Xóa -->
+                                </td>
                             </tr>
-                            <!-- Thêm các sản phẩm khác nếu cần -->
                         </tbody>
                     </table>
                 </div>
                 <form action="" method="POST" class="form">
+                    {% csrf_token %}
                     <div class="form__group">
                         <label for="name" class="form__label">Họ và tên:</label>
-                        <input type="text" id="name" name="name" class="form__input" required>
+                        <input type="text" id="name" name="name" class="form__input" value="{{ user.get_full_name }}" required>
                     </div>
                     <div class="form__group">
                         <label for="phone" class="form__label">Số điện thoại:</label>
-                        <input type="tel" id="phone" name="phone" class="form__input" required>
+                        <input type="tel" id="phone" name="phone" class="form__input" value="{{ user.phone }}" required>
                     </div>
                     <div class="form__group">
                         <label for="address" class="form__label">Địa chỉ giao hàng:</label>
-                        <input type="text" id="address" name="address" class="form__input" required>
+                        <input type="text" id="address" name="address" class="form__input" value="{{ user.address }}" required>
+                    </div>
+                    <div class="form__group">
+                        <label for="so_luong" class="form__label">Số lượng:</label>
+                        <input type="number" id="so_luong" name="so_luong" class="form__input" value="1" min="1" max="{{ product.SoLuong }}" required>
                     </div>
                     <button type="submit" class="btn">Xác nhận đặt hàng</button>
                 </form>
+                {% if success %}
+                    <p style="color:green;">Đặt hàng thành công!</p>
+                {% endif %}
             </div>
         </div>
     </main>

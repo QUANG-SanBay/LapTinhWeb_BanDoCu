@@ -11,6 +11,9 @@ urlpatterns = [
      path('lichSuDonHang/',views.get_lichSuDonHang,name='lichSuDonHang'),
      path('search/',views.get_search,name='search'),
      path('profile/',views.get_profile,name='profile'),
-     path('category/',views.get_category,name='category'),
-     path('category/<int:category_id>/',views.get_category,name='category_detail'),
+     path('category/', views.get_category, name='category'),
+     path('category/<int:category_id>/', views.get_category, name='category_detail'),
+     path('all-products/', views.all_products, name='all_products'),
+     path('new-products/', views.new_products, name='new_products'),
+     path('dathang/<int:product_id>/', views.get_DatHang, name='datHang'),
 ]

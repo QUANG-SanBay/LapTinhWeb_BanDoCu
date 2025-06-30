@@ -1,9 +1,9 @@
 {% extends 'home/base.html' %}
 {% load static %}
-{% block title %}Thông tin sản phẩm -{%endblock%} 
+{% block title %}Thông tin sản phẩm - {{product.TenSanPham}}{%endblock%} 
 
 {% block product__css %}
-    <link rel="stylesheet" href="{% static 'home/css/product-infor.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/product-infor.css' %}?v={{ timestamp }}">
 {% endblock product__css %}
     
 {% block search %}
@@ -13,27 +13,34 @@
                 <div class="left-content col c-12 m-5 l-5 ll-5">
                     <section class="product__img">
                         <div class="product__img-main">
-                            <img src="{% static 'home/imgs/phone-yelow.webp' %}" alt="">
+                            <img src="{{ product.HinhAnh.url }}" alt="">
                         </div>
                         <div class="product__img-list">
                             <ul class="product__img-list-items">
-                                <li class="product__img-item">
+                                <li class="product__img-item active">
                                     <img src="{{ product.HinhAnh.url }}" alt="{{ product.TenSanPham }}">
                                 </li>
-                                <li class="product__img-item">
-                                    <img src="{% static 'home/imgs/phone-blue.webp' %}" alt="">
-                                </li>
-                                <li class="product__img-item">
-                                    <img src="{% static 'home/imgs/phone-green.webp' %}" alt="">
-                                </li>
-                                <li class="product__img-item active">
-                                    <img src="{% static 'home/imgs/phone-yelow.webp' %}" alt="">
-                                </li>
+                                
+                                {% if product.HinhAnh2 %}
+                                    <li class="product__img-item">
+                                        <img src="{{ product.HinhAnh2.url }}" alt="">
+                                    </li>
+                                {% endif %}
+                                {% if product.HinhAnh3 %}
+                                    <li class="product__img-item">
+                                        <img src="{{ product.HinhAnh3.url }}" alt="">
+                                    </li>
+                                {% endif %}
+                                {% if product.HinhAnh4 %}
+                                    <li class="product__img-item">
+                                        <img src="{{ product.HinhAnh4.url }}" alt="">
+                                    </li>
+                                {% endif %}
                             </ul>
                     </section>
                     <section class="product__deitals">
                         <div class="product__deitals-title">
-                            <h2>Chi tiết sản phẩm - {{ product.TenSanPham }}</h2>
+                            <h2>Chi tiết sản phẩm</h2>
                         </div>
                         <div class="product__deitals-content">
                             <p class="product__deitals-content-item">Tên sản phẩm: <span>{{ product.TenSanPham }}</span></p>
@@ -46,7 +53,7 @@
                 <div class="right-content col c-12 m-7 l-7 ll-7">
                     <section class="product__infor">
                         <div class="product__infor-title">
-                            <h2>iPhone 15 128GB - Cũ Đẹp</h2>
+                            <h2>{{product.TenSanPham}}</h2>
                         </div>
                         <div class="product__infor-rate">
                             <div class="product__infor-rate-star">
@@ -72,7 +79,13 @@
                             </button>
                         </div>
                         <div class="product__infor-buy">
-                            <button class="product__infor-buy-btn">Mua ngay</button>
+                        {% if user.is_authenticated and is_buyer %}
+                            <a href="{% url 'datHang' product.id %}" class="product__infor-buy-btn">Mua ngay</a>
+                        {% elif not user.is_authenticated %}
+                            <a href="{% url 'login' %}" class="product__infor-buy-btn">Đăng nhập để mua</a>
+                        {% else %}
+                            <button class="product__infor-buy-btn" disabled>Chỉ người mua mới được mua hàng</button>
+                        {% endif %}
                         </div>
                     </section>
                     <section class="product__infor-description">

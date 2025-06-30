@@ -10,7 +10,10 @@
             <!-- Search -->
             <form action="{% url 'search' %}" method="get" class="header__search">
                 <div class="header__search-wrapper">
-                    <i class="header__search-icon fas fa-search" id="searchBtn"></i>
+                    <button type="submit" class="header__search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    {% comment %} <i class="header__search-icon fas fa-search" id="searchBtn"></i> {% endcomment %}
                     <input 
                         type="text" 
                         class="header__search-input" 
@@ -43,6 +46,10 @@
                     <a href="{% url 'lichSuDonHang' %}" class="header__dropdown-item">
                         <i class="header__dropdown-icon fas fa-shopping-bag"></i>
                         Lịch sử đơn hàng
+                    </a>
+                    <a href="{% url 'logout' %}" class="header__dropdown-item">
+                        <i class="header__dropdown-icon fas fa-store"></i>
+                        Đăng ký với tư cách là người bán
                     </a>
                     <a href="{% url 'logout' %}" class="header__dropdown-item">
                         <i class="header__dropdown-icon fas fa-sign-out-alt"></i>

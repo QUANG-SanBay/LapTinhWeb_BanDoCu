@@ -72,3 +72,5 @@ def xem_san_pham(request, id):
     # return render(request, 'seller/xem-san-pham.html', {'san_pham': san_pham})
 def cho_xac_nhan(request):
     return render(request, 'seller/cho-xac-nhan.html')
+def get_product_detail(request):
+    return render(request, 'seller/product-detail.html')
