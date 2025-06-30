@@ -47,10 +47,17 @@
                         <i class="header__dropdown-icon fas fa-shopping-bag"></i>
                         Lịch sử đơn hàng
                     </a>
-                    <a href="{% url 'confirm_seller_info' %}" class="header__dropdown-item">
-                        <i class="header__dropdown-icon fas fa-store"></i>
-                        Tôi muốn trở thành người bán
-                    </a>
+                    {% if user.profile.user_type == 'buyer'  %}
+                        <a href="{% url 'confirm_seller_info' %}" class="header__dropdown-item">
+                            <i class="header__dropdown-icon fas fa-store"></i>
+                            Tôi muốn trở thành người bán
+                        </a>
+                    {% elif user.profile.user_type == 'seller' %}
+                        <a href="{% url 'seller_dashboard' %}" class="header__dropdown-item">
+                            <i class="header__dropdown-icon fas fa-store"></i>
+                            Trang người bán
+                        </a>
+                    {% endif %}
                     <a href="{% url 'logout' %}" class="header__dropdown-item">
                         <i class="header__dropdown-icon fas fa-sign-out-alt"></i>
                         Đăng xuất

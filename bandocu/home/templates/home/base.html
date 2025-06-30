@@ -18,6 +18,7 @@
     {% block order__css %}{% endblock order__css %}
     {% block product__css %}{% endblock product__css %}
     {% block confirm_css %}{% endblock confirm_css %}
+    {% block verify_otp_css %}{% endblock verify_otp_css %}
     <link rel="stylesheet" href="{% static 'home/css/responsize.css' %}?v={{ timestamp }}">
     
     
@@ -36,6 +37,7 @@
         {%block sanPhamMoi%} {%endblock sanPhamMoi%}
         {%block GoiYSanPham%} {%endblock GoiYSanPham%}
         {%block confirm_seller%} {%endblock confirm_seller%}
+        {%block verify_otp%} {%endblock verify_otp%}
         {%block terms%}{% endblock terms %}
     </main>
     {% include 'partials/home/footer.html' %}

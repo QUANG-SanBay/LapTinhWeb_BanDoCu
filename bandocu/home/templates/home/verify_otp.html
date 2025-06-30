@@ -1,0 +1,32 @@
+{% extends "home/base.html" %}
+{% load static %}
+{% block title %}Xác thực OTP{% endblock %}
+
+{% block verify_otp_css %}
+    <link rel="stylesheet" href="{% static 'home/css/verify_otp.css' %}">
+{% endblock verify_otp_css %}
+    
+{% block verify_otp %}
+<div class="otp-container" style="margin-top:120px;">
+    <h2>Xác thực số điện thoại</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="otp">Nhập mã OTP đã gửi đến số điện thoại:</label>
+        <input type="text" id="otp" name="otp" required maxlength="6">
+        <button type="submit">Xác nhận</button>
+    </form>
+    {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li style="color:red;">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+{% if otp %}
+<script>
+    // Chỉ dùng cho DEV: In OTP ra console trình duyệt
+    console.log("OTP của bạn là: {{ otp }}");
+</script>
+{% endif %}
+{% endblock %}

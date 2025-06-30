@@ -16,7 +16,8 @@ urlpatterns = [
      path('all-products/', views.all_products, name='all_products'),
      path('new-products/', views.new_products, name='new_products'),
      path('dathang/<int:product_id>/', views.get_DatHang, name='datHang'),
-     path('confirm_seller_info/', views.get_confirm_seller_info, name='confirm_seller_info'),
-     path('confirm_seller_info/<int:product_id>/', views.get_confirm_seller_info, name='confirm_seller_info_with_product'),
+     path('confirm_seller_info/', views.confirm_seller_info, name='confirm_seller_info'),
+     path('confirm_seller_info/<int:product_id>/', views.confirm_seller_info, name='confirm_seller_info_with_product'),
+    path('verify-otp/', views.verify_otp, name='verify_otp'),
      path('terms/', views.terms, name='terms'),
 ]

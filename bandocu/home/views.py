@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from seller.models import Product,  ProductCategory
 from .models import Order
@@ -104,15 +105,47 @@ def new_products(request):
     products = Product.objects.order_by('-id')
     categories = ProductCategory.objects.all()
     return render(request, 'home/new_products.html', {'products': products, 'categories': categories})
-def get_confirm_seller_info(request):
+@login_required
+def confirm_seller_info(request):
     if request.method == 'POST':
-        # Xử lý thông tin xác nhận người bán
-        full_name = request.POST.get('full_name')
-        phone = request.POST.get('phone')
-        address = request.POST.get('address')
-        # Lưu thông tin vào cơ sở dữ liệu hoặc xử lý theo yêu cầu
-        return render(request, 'home/confirm_seller_info.html', {'success': True})
-
-    return render(request, 'home/confirm_seller_info.html', {'success': False})
+        # Lưu thông tin tạm vào session
+        request.session['seller_info'] = {
+            'full_name': request.POST['full_name'],
+            'email': request.POST['email'],
+            'phone': request.POST['phone'],
+            'address': request.POST['address'],
+            'cccd': request.POST['cccd'],
+        }
+        # Sinh OTP và lưu vào session
+        otp = str(random.randint(100000, 999999))
+        request.session['otp'] = otp
+        # Gửi OTP (ở đây chỉ in ra console, thực tế dùng SMS API)
+        print(f"OTP gửi đến {request.POST['phone']}: {otp}")
+        return redirect('verify_otp')
+    return render(request, 'home/confirm_seller_info.html')
+@login_required
+def verify_otp(request):
+    otp = request.session.get('otp')
+    if request.method == 'POST':
+        user_otp = request.POST.get('otp')
+        if user_otp == otp:
+            # Cập nhật thông tin user
+            info = request.session.get('seller_info', {})
+            user = request.user
+            user.first_name = info.get('full_name', '')
+            user.email = info.get('email', '')
+            user.so_dien_thoai = info.get('phone', '')
+            user.dia_chi = info.get('address', '')
+            user.cccd = info.get('cccd', '')
+            user.user_type = 'seller'
+            user.save()
+            # Xóa session tạm
+            request.session.pop('otp', None)
+            request.session.pop('seller_info', None)
+            messages.success(request, "Xác thực thành công! Bạn đã trở thành người bán.")
+            return redirect('seller:home_seller')  # hoặc trang quản lý sản phẩm
+        else:
+            messages.error(request, "Mã OTP không đúng. Vui lòng thử lại.")
+    return render(request, 'home/verify_otp.html', {'otp': otp})
 def terms(request):
     return render(request, 'home/terms.html')
