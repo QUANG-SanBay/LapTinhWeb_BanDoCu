@@ -16,8 +16,32 @@
                     <i class="fas fa-search"></i>
                 </button>
             </div>
-            
-            <div class="seller-header__avatar">NN</div>
+            <div class="seller-header__avatar">
+                <!-- User Avatar & Dropdown -->
+            <div class="header__user">
+                <button class="header__avatar-btn" id="avatarBtn">
+                    <div class="header__avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span class="header__avatar-btn-down">
+                        <i class="fa-solid fa-v"></i>
+                    </span>
+                </button>
+                
+                <div class="header__dropdown" id="userDropdown">
+                    <a href="{% url 'profile' %}" class="header__dropdown-item">
+                        <i class="header__dropdown-icon fas fa-user-circle"></i>
+                        Hồ sơ của tôi
+                    </a>
+                    
+                    <a href="{% url 'logout' %}" class="header__dropdown-item">
+                        <i class="header__dropdown-icon fas fa-sign-out-alt"></i>
+                        Đăng xuất
+                    </a>
+                </div>
+            </div>
+            </div>
+
         </div>
         
         <nav class="seller-header__nav">
@@ -67,4 +91,6 @@
         </div>
         <div class="seller-sidebar-overlay" id="sidebarOverlay"></div>
     </div>
+    <div class="seller-header__bottom">
+        <span class="seller-header__welcome">Chào mừng bạn đến với trang quản lý người bán!</span>
 </header>

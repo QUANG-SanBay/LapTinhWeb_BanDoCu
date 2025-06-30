@@ -41,197 +41,37 @@
 
     <!-- Product Grid -->
     <div class="product-grid">
-        <!-- Product Item 1 -->
-        <div class="product-card">
-            <div class="product-image-container">
-                <img src="{% static 'imgs/ip11.jpg' %}" alt="iPhone 11" class="product-image">
-                <div class="product-overlay">
-                    <button class="quick-view-btn" onclick="viewProduct(1)">
-                        <i class="fas fa-eye"></i>
-                    </button>
-                </div>
-                <div class="product-status-badge status-active">Đang bán</div>
+    {% for product in products %}
+    <div class="product-card">
+        <div class="product-image-container">
+            <img src="{{ product.HinhAnh.url }}" alt="{{ product.TenSanPham }}" class="product-image" onclick="viewProduct({{ product.id }})" style="cursor:pointer;">
+            <div class="product-overlay">
+                <button class="quick-view-btn" onclick="viewProduct({{ product.id }})">
+                    <i class="fas fa-eye"></i>
+                </button>
             </div>
-            <div class="product-info">
-                <h3 class="product-title">iPhone 11 Pro Max</h3>
-                <p class="product-price">15.500.000 VNĐ</p>
-                <div class="product-stats">
-                    <span><i class="fas fa-eye"></i> 245 lượt xem</span>
-                    <span><i class="fas fa-heart"></i> 12 lượt thích</span>
-                </div>
-                <div class="product-actions">
-                    <button class="btn btn-primary btn-sm" onclick="viewProduct(1)">
-                        <i class="fas fa-eye"></i> Xem chi tiết
-                    </button>
-                    <button class="btn btn-secondary btn-sm" onclick="editProduct(1)">
-                        <i class="fas fa-edit"></i> Sửa
-                    </button>
-                    <button class="btn btn-danger btn-sm" onclick="confirmDelete(1, 'iPhone 11 Pro Max')">
-                        <i class="fas fa-trash"></i> Xóa
-                    </button>
-                </div>
+            <div class="product-status-badge status-active">{{ product.TrangThai }}</div>
+        </div>
+        <div class="product-info">
+            <h3 class="product-title">{{ product.TenSanPham }}</h3>
+            <p class="product-price">{{ product.Gia|floatformat:0 }} VNĐ</p>
+            <div class="product-actions">
+                <button class="btn btn-primary btn-sm" onclick="viewProduct({{ product.id }})">
+                    <i class="fas fa-eye"></i> Xem chi tiết
+                </button>
+                <button class="btn btn-secondary btn-sm" onclick="editProduct({{ product.id }})">
+                    <i class="fas fa-edit"></i> Sửa
+                </button>
+                <button class="btn btn-danger btn-sm" onclick="confirmDelete({{ product.id }}, '{{ product.TenSanPham }}')">
+                    <i class="fas fa-trash"></i> Xóa
+                </button>
             </div>
         </div>
-
-        <!-- Product Item 2 -->
-        <div class="product-card">
-            <div class="product-image-container">
-                <img src="{% static 'imgs/ip11.jpg' %}" alt="MacBook Pro" class="product-image">
-                <div class="product-overlay">
-                    <button class="quick-view-btn" onclick="viewProduct(2)">
-                        <i class="fas fa-eye"></i>
-                    </button>
-                </div>
-                <div class="product-status-badge status-active">Đang bán</div>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">MacBook Pro M1</h3>
-                <p class="product-price">25.000.000 VNĐ</p>
-                <div class="product-stats">
-                    <span><i class="fas fa-eye"></i> 189 lượt xem</span>
-                    <span><i class="fas fa-heart"></i> 8 lượt thích</span>
-                </div>
-                <div class="product-actions">
-                    <button class="btn btn-primary btn-sm" onclick="viewProduct(2)">
-                        <i class="fas fa-eye"></i> Xem chi tiết
-                    </button>
-                    <button class="btn btn-secondary btn-sm" onclick="editProduct(2)">
-                        <i class="fas fa-edit"></i> Sửa
-                    </button>
-                    <button class="btn btn-danger btn-sm" onclick="confirmDelete(2, 'MacBook Pro M1')">
-                        <i class="fas fa-trash"></i> Xóa
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product Item 3 -->
-        <div class="product-card">
-            <div class="product-image-container">
-                <img src="{% static 'imgs/ip11.jpg' %}" alt="Áo thun" class="product-image">
-                <div class="product-overlay">
-                    <button class="quick-view-btn" onclick="viewProduct(3)">
-                        <i class="fas fa-eye"></i>
-                    </button>
-                </div>
-                <div class="product-status-badge status-inactive">Tạm ngưng</div>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Áo thun nam cao cấp</h3>
-                <p class="product-price">150.000 VNĐ</p>
-                <div class="product-stats">
-                    <span><i class="fas fa-eye"></i> 67 lượt xem</span>
-                    <span><i class="fas fa-heart"></i> 3 lượt thích</span>
-                </div>
-                <div class="product-actions">
-                    <button class="btn btn-primary btn-sm" onclick="viewProduct(3)">
-                        <i class="fas fa-eye"></i> Xem chi tiết
-                    </button>
-                    <button class="btn btn-secondary btn-sm" onclick="editProduct(3)">
-                        <i class="fas fa-edit"></i> Sửa
-                    </button>
-                    <button class="btn btn-danger btn-sm" onclick="confirmDelete(3, 'Áo thun nam cao cấp')">
-                        <i class="fas fa-trash"></i> Xóa
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product Item 4 -->
-        <div class="product-card">
-            <div class="product-image-container">
-                <img src="{% static 'imgs/ip11.jpg' %}" alt="Samsung Galaxy" class="product-image">
-                <div class="product-overlay">
-                    <button class="quick-view-btn" onclick="viewProduct(4)">
-                        <i class="fas fa-eye"></i>
-                    </button>
-                </div>
-                <div class="product-status-badge status-sold">Đã bán</div>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Samsung Galaxy S21</h3>
-                <p class="product-price">12.000.000 VNĐ</p>
-                <div class="product-stats">
-                    <span><i class="fas fa-eye"></i> 312 lượt xem</span>
-                    <span><i class="fas fa-heart"></i> 15 lượt thích</span>
-                </div>
-                <div class="product-actions">
-                    <button class="btn btn-primary btn-sm" onclick="viewProduct(4)">
-                        <i class="fas fa-eye"></i> Xem chi tiết
-                    </button>
-                    <button class="btn btn-secondary btn-sm" onclick="editProduct(4)">
-                        <i class="fas fa-edit"></i> Sửa
-                    </button>
-                    <button class="btn btn-danger btn-sm" onclick="confirmDelete(4, 'Samsung Galaxy S21')">
-                        <i class="fas fa-trash"></i> Xóa
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product Item 5 -->
-        <div class="product-card">
-            <div class="product-image-container">
-                <img src="{% static 'imgs/ip11.jpg' %}" alt="Laptop Dell" class="product-image">
-                <div class="product-overlay">
-                    <button class="quick-view-btn" onclick="viewProduct(5)">
-                        <i class="fas fa-eye"></i>
-                    </button>
-                </div>
-                <div class="product-status-badge status-active">Đang bán</div>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Laptop Dell XPS 13</h3>
-                <p class="product-price">22.500.000 VNĐ</p>
-                <div class="product-stats">
-                    <span><i class="fas fa-eye"></i> 156 lượt xem</span>
-                    <span><i class="fas fa-heart"></i> 9 lượt thích</span>
-                </div>
-                <div class="product-actions">
-                    <button class="btn btn-primary btn-sm" onclick="viewProduct(5)">
-                        <i class="fas fa-eye"></i> Xem chi tiết
-                    </button>
-                    <button class="btn btn-secondary btn-sm" onclick="editProduct(5)">
-                        <i class="fas fa-edit"></i> Sửa
-                    </button>
-                    <button class="btn btn-danger btn-sm" onclick="confirmDelete(5, 'Laptop Dell XPS 13')">
-                        <i class="fas fa-trash"></i> Xóa
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product Item 6 -->
-        <div class="product-card">
-            <div class="product-image-container">
-                <img src="{% static 'imgs/ip11.jpg' %}" alt="Váy đẹp" class="product-image">
-                <div class="product-overlay">
-                    <button class="quick-view-btn" onclick="viewProduct(6)">
-                        <i class="fas fa-eye"></i>
-                    </button>
-                </div>
-                <div class="product-status-badge status-active">Đang bán</div>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Váy dạ hội nữ</h3>
-                <p class="product-price">850.000 VNĐ</p>
-                <div class="product-stats">
-                    <span><i class="fas fa-eye"></i> 98 lượt xem</span>
-                    <span><i class="fas fa-heart"></i> 6 lượt thích</span>
-                </div>
-                <div class="product-actions">
-                    <button class="btn btn-primary btn-sm" onclick="viewProduct(6)">
-                        <i class="fas fa-eye"></i> Xem chi tiết
-                    </button>
-                    <button class="btn btn-secondary btn-sm" onclick="editProduct(6)">
-                        <i class="fas fa-edit"></i> Sửa
-                    </button>
-                    <button class="btn btn-danger btn-sm" onclick="confirmDelete(6, 'Váy dạ hội nữ')">
-                        <i class="fas fa-trash"></i> Xóa
-                    </button>
-                </div>
-            </div>
-        </div>
+    </div>
+    {% empty %}
+    <p>Chưa có sản phẩm nào.</p>
+    {% endfor %}
+</div>
     </div>
 
     <!-- Pagination -->
@@ -278,8 +118,7 @@
 let currentProductId = null;
 
 function viewProduct(productId) {
-    // Chuyển đến trang xem chi tiết sản phẩm
-    window.location.href = `/seller/product-detail/`;
+    window.location.href = `/seller/xem-san-pham/${productId}/`;
 }
 
 function editProduct(productId) {
@@ -382,4 +221,4 @@ function getCookie(name) {
 }
 </script>
 
-{% endblock %} 
+{% endblock %}

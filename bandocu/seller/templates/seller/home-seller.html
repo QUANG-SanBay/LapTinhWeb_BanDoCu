@@ -19,22 +19,24 @@
             <h2 class="category-title">{{ category.TenDanhMuc }}</h2>
             <div class="category-group">
             {% for product in products %}
-                <div class="seller-product-card">
-                    <div class="seller-product-img">
-                        {% if product.HinhAnh %}
-                            <img src="{{ product.HinhAnh.url }}" alt="Product Image">
-                        {% else %}
-                            <img src="{% static 'home/imgs/default.png' %}" alt="No Image">
-                        {% endif %}
-                    </div>
-                    <div class="seller-product-info">
-                        <div class="seller-product-name">{{ product.TenSanPham }}</div>
-                        <div class="seller-product-price-sold">
-                            <span class="seller-product-price">{{ product.Gia|floatformat:0 }}đ</span>
-                            <span class="seller-product-sold">Đã bán: 0</span>
+                <a href="{% url 'seller:xem_san_pham' product.id %}" class="seller-product-card-link">
+                    <div class="seller-product-card">
+                        <div class="seller-product-img">
+                            {% if product.HinhAnh %}
+                                <img src="{{ product.HinhAnh.url }}" alt="Product Image">
+                            {% else %}
+                                <img src="{% static 'home/imgs/default.png' %}" alt="No Image">
+                            {% endif %}
+                        </div>
+                        <div class="seller-product-info">
+                            <div class="seller-product-name">{{ product.TenSanPham }}</div>
+                            <div class="seller-product-price-sold">
+                                <span class="seller-product-price">{{ product.Gia|floatformat:0 }}đ</span>
+                                <span class="seller-product-sold">Đã bán: 0</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             {% empty %}
                 <div>Không có sản phẩm nào trong danh mục này.</div>
             {% endfor %}

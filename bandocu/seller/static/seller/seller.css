@@ -98,24 +98,108 @@ body {
     justify-content: center;
 }
 
-.seller-header__avatar {
-    width: 48px;
-    height: 48px;
-    background: #ffc107;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #212529;
-    font-weight: 600;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.header__user {
+  position: relative;
+  flex-shrink: 0;
 }
 
-.seller-header__avatar:hover {
-    transform: scale(1.1);
+.header__avatar-btn {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
 }
+
+.header__avatar-btn:hover {
+  background-color: var(--color-soft-peach-200);
+}
+
+.header__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-soft-peach-300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-soft-peach-700);
+  font-size: 1.8rem;
+}
+.header__avatar-btn-down{
+   font-size: 1.2rem;
+}
+.header__dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid var(--border-c);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  margin-top: 8px;
+}
+
+.header__dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.header__dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: var(--color-soft-peach-800);
+  font-size: 1.4rem;
+  transition: background-color 0.3s ease;
+  border-bottom: 1px solid var(--color-soft-peach-100);
+}
+
+.header__dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.header__dropdown-item:hover {
+  background-color: var(--color-soft-peach-50);
+}
+
+.header__dropdown-icon {
+  margin-right: 10px;
+  width: 16px;
+  color: var(--color-soft-peach-600);
+}
+.header__anonymous{
+    display: flex;
+    align-items: center;
+
+}
+.header__login-btn,.header__register-btn{
+    flex-shrink: 0;
+    font-size: 1.4rem;
+    background-color: var(--color-soft-peach-300);
+    color: var(--text-c);
+    text-decoration: none;
+    width: 90px;
+    border-radius: 8px;
+    display: block;
+    line-height: 2;
+    padding: 0 10px;
+    margin: 0 5px;
+    text-align: center;
+    white-space: nowrap;
+}
+
 .seller-sidebar {
     position: fixed;
     top: 0;
