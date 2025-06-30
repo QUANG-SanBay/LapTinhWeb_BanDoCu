@@ -67,10 +67,21 @@ def get_DatHang(request, product_id):
 
 def get_search(request):
     query = request.GET.get('q', '')
+    sort = request.GET.get('sort', '')
     products = Product.objects.all()
     if query:
         products = products.filter(TenSanPham__icontains=query)
-    return render(request, 'home/search.html', {'products': products, 'query': query})
+    # Sắp xếp theo sort
+    if sort == 'newest':
+        products = products.order_by('-id')
+    elif sort == 'bestseller':
+        products = products.order_by('-SoLuong')  # hoặc trường bán chạy thực tế nếu có
+    elif sort == 'price_asc':
+        products = products.order_by('Gia')
+    elif sort == 'price_desc':
+        products = products.order_by('-Gia')
+    # 'relevant' hoặc mặc định thì không cần order lại
+    return render(request, 'home/search.html', {'products': products, 'query': query, 'sort': sort})
 
 @login_required
 def get_lichSuDonHang(request):
@@ -81,20 +92,52 @@ def get_lichSuDonHang(request):
 
     orders = Order.objects.filter(NguoiMua=buyer).order_by('-NgayDatHang')
     return render(request, 'home/lichsudonhang.html', {'orders': orders})
+@login_required
 def get_profile(request):
     user = request.user
+    if request.method == "POST":
+        full_name = request.POST.get('name', '').strip()
+        # Tách họ tên: last_name là phần đầu, first_name là phần cuối
+        if ' ' in full_name:
+            parts = full_name.split()
+            user.first_name = parts[-1]
+            user.last_name = ' '.join(parts[:-1])
+        else:
+            user.first_name = full_name
+            user.last_name = ''
+        user.gioi_tinh = request.POST.get('gioi_tinh', user.gioi_tinh)
+        user.email = request.POST.get('email', user.email)
+        user.so_dien_thoai = request.POST.get('phone', user.so_dien_thoai)
+        user.dia_chi = request.POST.get('address', user.dia_chi)
+        user.save()
+        messages.success(request, "Cập nhật thông tin thành công!")
     return render(request, 'home/profile.html', {'user': user})
 def get_category(request, category_id=None):
     categories = ProductCategory.objects.all()
-    products = Product.objects.all()
     selected_category = None
+    query = request.GET.get('q', '')
+    sort = request.GET.get('sort', '')
+    products = Product.objects.all()
     if category_id:
         selected_category = ProductCategory.objects.get(id=category_id)
         products = products.filter(DanhMuc_id=category_id)
+    if query:
+        products = products.filter(TenSanPham__icontains=query)
+    # Sắp xếp theo sort
+    if sort == 'newest':
+        products = products.order_by('-id')
+    elif sort == 'bestseller':
+        products = products.order_by('-SoLuong')  # hoặc trường bán chạy thực tế nếu có
+    elif sort == 'price_asc':
+        products = products.order_by('Gia')
+    elif sort == 'price_desc':
+        products = products.order_by('-Gia')
     return render(request, 'home/category.html', {
         'categories': categories,
         'products': products,
         'selected_category': selected_category,
+        'query': query,
+        'sort': sort,
     })
 def all_products(request):
     products = Product.objects.all()
@@ -132,7 +175,15 @@ def verify_otp(request):
             # Cập nhật thông tin user
             info = request.session.get('seller_info', {})
             user = request.user
-            user.first_name = info.get('full_name', '')
+            full_name = info.get('full_name', '').strip()
+            # Tách họ tên: last_name là từ đầu tiên, first_name là phần còn lại
+            if ' ' in full_name:
+                parts = full_name.split()
+                user.first_name = parts[-1]  # Tên
+                user.last_name = ' '.join(parts[:-1])  # Họ và tên đệm
+            else:
+                user.first_name = full_name
+                user.last_name = ''
             user.email = info.get('email', '')
             user.so_dien_thoai = info.get('phone', '')
             user.dia_chi = info.get('address', '')
@@ -143,7 +194,7 @@ def verify_otp(request):
             request.session.pop('otp', None)
             request.session.pop('seller_info', None)
             messages.success(request, "Xác thực thành công! Bạn đã trở thành người bán.")
-            return redirect('seller:home_seller')  # hoặc trang quản lý sản phẩm
+            return redirect('seller:home_seller')
         else:
             messages.error(request, "Mã OTP không đúng. Vui lòng thử lại.")
     return render(request, 'home/verify_otp.html', {'otp': otp})

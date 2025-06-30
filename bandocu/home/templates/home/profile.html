@@ -13,55 +13,50 @@
                 <div class="section__title">
                     <h2 class="section__title-text">Thông tin của bạn</h2>
                 </div>
-                <form action="" class="myProfile">
-                    <div class="row">
-                        <div class="form-group col c-12 m-6 l-6 ll-6">
-                            <label for="name" class="form-label">Họ và tên:</label>
-                            <input type="text" id="name" class="form-input"
-                                   {% if user.get_full_name %}
-                                       value="{{ user.get_full_name }}"
-                                   {% else %}
-                                       placeholder="Chưa cập nhật"
-                                   {% endif %}
-                                   required>
-                        </div>
-                        <div class="form-group col c-12 m-6 l-6 ll-6">
-                            <label for="name" class="form-label">Giới tính:</label>
-                            <select name="gioi_tinh" id="gender" class="form-select">
-                                <option value="M" {% if user.gioi_tinh == "M" %}selected{% endif %}>Nam</option>
-                                <option value="F" {% if user.gioi_tinh == "F" %}selected{% endif %}>Nữ</option>
-                                <option value="O" {% if user.gioi_tinh == "O" %}selected{% endif %}>Khác</option>
-                            </select>
-                        </div>
-                        <div class="form-group col c-12 m-6 l-6 ll-6">
-                            <label for="email" class="form-label">Email:</label>
-                            <input type="email" id="email" class="form-input"
-                                   {% if user.email %}
-                                       value="{{ user.email }}"
-                                   {% else %}
-                                       placeholder="Chưa cập nhật"
-                                   {% endif %}>
-                        </div>
-                        <div class="form-group col c-12 m-6 l-6 ll-6">
-                            <label for="phone" class="form-label">Số điện thoại:</label>
-                            <input type="text" id="phone" class="form-input"
-                                   {% if user.so_dien_thoai %}
-                                       value="{{ user.so_dien_thoai }}"
-                                   {% else %}
-                                       placeholder="Chưa cập nhật"
-                                   {% endif %}>
-                        </div>
-                        <div class="form-group col c-12 m-6 l-6 ll-6">
-                            <label for="address" class="form-label">Địa chỉ:</label>
-                            <input type="text" id="address" class="form-input"
-                                   {% if user.dia_chi %}
-                                       value="{{ user.dia_chi }}"
-                                   {% else %}
-                                       placeholder="Chưa cập nhật"
-                                   {% endif %}>
-                        </div>
+                <form action="" class="myProfile" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="form-group col c-12 m-6 l-6 ll-6">
+                        <label for="name" class="form-label">Họ và tên:</label>
+                        <input type="text" id="name" name="name" class="form-input"
+                            value="{{ user.last_name }} {{ user.first_name }}"
+                            required>
                     </div>
-                </form>
+                    <div class="form-group col c-12 m-6 l-6 ll-6">
+                        <label for="name" class="form-label">Giới tính:</label>
+                        <select name="gioi_tinh" id="gender" class="form-select">
+                            <option value="M" {% if user.gioi_tinh == "M" %}selected{% endif %}>Nam</option>
+                            <option value="F" {% if user.gioi_tinh == "F" %}selected{% endif %}>Nữ</option>
+                            <option value="O" {% if user.gioi_tinh == "O" %}selected{% endif %}>Khác</option>
+                        </select>
+                    </div>
+                    <div class="form-group col c-12 m-6 l-6 ll-6">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email" id="email" name="email" class="form-input"
+                            value="{{ user.email }}">
+                    </div>
+                    <div class="form-group col c-12 m-6 l-6 ll-6">
+                        <label for="phone" class="form-label">Số điện thoại:</label>
+                        <input type="text" id="phone" name="phone" class="form-input"
+                            value="{{ user.so_dien_thoai }}">
+                    </div>
+                    <div class="form-group col c-12 m-6 l-6 ll-6">
+                        <label for="address" class="form-label">Địa chỉ:</label>
+                        <input type="text" id="address" name="address" class="form-input"
+                            value="{{ user.dia_chi }}">
+                    </div>
+                </div>
+                <div class="form-group cennter">
+                    <button type="submit" class="form-submit">Cập nhật thông tin</button>
+                </div>
+                    {% if messages %}
+                        <div class="alert-messages">
+                            {% for message in messages %}
+                                <div class="alert alert-success">{{ message }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+            </form>
             </section>
         </div>
     </main>

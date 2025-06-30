@@ -37,3 +37,25 @@
 .form-select{
     max-width: 120px;
 }
+.form-submit{
+    background-color: var(--color-soft-peach-300);
+    color: var(--text-c);
+    line-height: 1.5;
+    padding: 4px 8px;
+    border:2px solid var(--border-c);
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s;
+    margin: 12px 0;
+}
+.form-group.cennter{
+    justify-content: center;
+}
+.form-submit:hover {
+    background-color: var(--color-soft-peach-400);
+    cursor: pointer;
+}
+.alert{
+    font-size: 1.8rem;
+    color: green;
+    text-align: center;
+}

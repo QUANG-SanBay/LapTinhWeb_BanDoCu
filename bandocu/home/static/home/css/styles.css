@@ -9,11 +9,10 @@
 } */
 /* Header Styles */
 .header {
-  background-color: var(--primery-c);
+  background-color: rgba(244, 232, 232, 0.94);
   padding: 15px 0;
   border-bottom: 1px solid var(--border-c);
 backdrop-filter: blur(10px);
-  opacity: 0.9;
   position: fixed;
   top: 0;
   left: 0;

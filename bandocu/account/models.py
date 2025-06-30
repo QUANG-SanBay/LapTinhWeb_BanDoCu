@@ -15,7 +15,7 @@ class User(AbstractUser):
     # Override username field to use email
     username = models.CharField(max_length=150, unique=True)
     email = models.EmailField(unique=True)
-    gioi_tinh = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, null=True)
+    gioi_tinh = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, null=True, default='M')
     dia_chi = models.TextField(blank=True, null=True)
     cccd = models.CharField(max_length=20, blank=True, null=True)
     so_dien_thoai = models.CharField(max_length=20, blank=True, null=True)
