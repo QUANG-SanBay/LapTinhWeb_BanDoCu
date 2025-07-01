@@ -1,9 +1,9 @@
+{% load static %}
 <header class="seller-header">
     <div class="seller-header__content">
         <div class="seller-header__top">
-            <a href="/seller/" class="seller-header__logo">
-                <i class="fas fa-recycle"></i>
-                SECOND HAND
+            <a href="{% url 'seller:home_seller' %}" class="seller-header__logo">
+                <img src="{% static 'seller/imgs/logo.png' %}" alt="Logo" class="header__logo-img"> 
             </a>
             <div class="header-menu">
                 <div class="header-menu-icon">
