@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
 from django.forms import modelformset_factory
 from .models import Product, ProductCategory
 from .forms import ProductForm
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 
 from django.contrib import messages
 from home.models import Review
 from django.db import models
+from home.models import Order, OrderItem
 
 
 # Create your views here.
@@ -43,8 +44,12 @@ def dang_ban(request):
         form = ProductForm()
     return render(request, 'seller/dang-ban.html', {'form': form})
 
+@login_required
 def quan_ly_don_hang(request):
-    return render(request, 'seller/quan-ly-don-hang.html')
+    seller = request.user.seller_profile
+    # Lấy tất cả đơn hàng có ít nhất một OrderItem mà product.NguoiBan là seller này
+    orders = Order.objects.filter(order_items__product__NguoiBan=seller).distinct().prefetch_related('order_items__product', 'NguoiMua__user')
+    return render(request, 'seller/quan-ly-don-hang.html', {'orders': orders})
 
 def thong_ke(request):
     return render(request, 'seller/thong-ke.html')
@@ -93,3 +98,24 @@ def cho_xac_nhan(request):
     return render(request, 'seller/cho-xac-nhan.html')
 def get_product_detail(request):
     return render(request, 'seller/product-detail.html')
+@login_required
+@require_POST
+def update_order_status(request, order_id):
+    seller = request.user.seller_profile
+    order = get_object_or_404(Order, id=order_id, order_items__product__NguoiBan=seller)
+    next_status = request.POST.get('next_status')
+    # Chỉ cho phép cập nhật các trạng thái hợp lệ
+    valid_status = [
+        "Đang chờ xác nhận",
+        "Đang chuẩn bị hàng",
+        "Đang vận chuyển",
+        "Đã giao hàng",
+        "Đơn hủy"
+    ]
+    if next_status in valid_status:
+        order.TrangThaiDonHang = next_status
+        order.save()
+        messages.success(request, f"Cập nhật trạng thái đơn hàng thành công: {next_status}")
+    else:
+        messages.error(request, "Trạng thái không hợp lệ.")
+    return redirect('seller:quan_ly_don_hang')
