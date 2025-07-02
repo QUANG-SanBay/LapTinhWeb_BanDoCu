@@ -20,11 +20,20 @@ class ProductCategory(models.Model):
         return self.TenDanhMuc
 
 class Product(models.Model):
+    TRANG_THAI_CHOICES = [
+        ('con_hang', 'Còn hàng'),
+        ('het_hang', 'Hết hàng'),
+    ]
+
     TenSanPham = models.CharField(max_length=255)
     MoTa = models.TextField(blank=True, null=True)
     Gia = models.DecimalField(max_digits=10, decimal_places=2)
     SoLuong = models.IntegerField()
-    TrangThai = models.CharField(max_length=50)
+    TrangThai = models.CharField(
+        max_length=20,
+        choices=TRANG_THAI_CHOICES,
+        default='con_hang'
+    )
     NgayDang = models.DateField(auto_now_add=True)
     NguoiBan = models.ForeignKey(AccountSeller, on_delete=models.CASCADE, related_name='products')
     DanhMuc = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, related_name='products')

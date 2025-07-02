@@ -1,0 +1,32 @@
+{% extends "home/base.html" %}
+{% load static %}
+{% block title %}Đánh giá người bán{% endblock %}
+
+{% block review_seller_css %}
+    <link rel="stylesheet" href="{% static 'home/css/review_seller.css' %}">
+{% endblock review_seller_css %}
+    
+{% block review_seller %}
+<div class="review-form-container">
+    <h2>Đánh giá người bán cho đơn hàng #{{ order.id }}</h2>
+    {% if messages %}
+        <div class="alert-messages">
+            {% for message in messages %}
+                <div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <label for="so_sao">Số sao:</label>
+        <select name="so_sao" id="so_sao" required>
+            {% for i in "12345" %}
+                <option value="{{ i }}">{{ i }} sao</option>
+            {% endfor %}
+        </select>
+        <label for="noi_dung">Nội dung đánh giá:</label>
+        <textarea name="noi_dung" id="noi_dung" rows="4" required></textarea>
+        <button type="submit">Gửi đánh giá</button>
+    </form>
+</div>
+{% endblock %}

@@ -5,10 +5,18 @@ from seller.models import Product
 # Create your models here.
 
 class Order(models.Model):
+    TRANG_THAI_CHOICES = [
+        ('Đang chờ xác nhận', 'Đang chờ xác nhận'),
+        ('Đang chuẩn bị hàng', 'Đang chuẩn bị hàng'),
+        ('Đang vận chuyển', 'Đang vận chuyển'),
+        ('Đã giao hàng', 'Giao hàng thành công'),
+        # Có thể thêm các trạng thái khác nếu cần
+    ]
+    reviewed = models.BooleanField(default=False)
     NguoiMua = models.ForeignKey(Buyer, on_delete=models.CASCADE, related_name='orders')
     NgayDatHang = models.DateField(auto_now_add=True)
     TongTien = models.DecimalField(max_digits=10, decimal_places=2)
-    TrangThaiDonHang = models.CharField(max_length=50)
+    TrangThaiDonHang = models.CharField(max_length=50, choices=TRANG_THAI_CHOICES, default='Đang chờ xác nhận')
     DiaChiGiaoHang = models.TextField()
 
     def TaoDonHang(self):

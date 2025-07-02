@@ -2,7 +2,32 @@
     margin-bottom: 20px;
     background-color: var(--bgr-section);
 }
+.order-filter {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
 
+.order-filter-btn {
+    padding: 8px 18px;
+    font-size: 1.4rem;
+    color: var(--text-c);
+    background: var(--color-soft-peach-50);
+    border: 1px solid var(--border-c);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    outline: none;
+}
+
+.order-filter-btn.active,
+.order-filter-btn:hover {
+    background: var(--color-soft-peach-600);
+    color: #fff;
+    border-color: var(--color-soft-peach-600);
+}
 
 .order__infor table {
     width: 100%;
@@ -123,7 +148,23 @@ form .btn:hover{
     padding: 15px;
     /* background-color: var(--primery-c); */
 }
-
+/* Màu nền cho từng trạng thái đơn hàng */
+.order-item.status-cho-xac-nhan {
+    border-left: 6px solid #ffb74d;
+    background: #fff8e1;
+}
+.order-item.status-chuan-bi-hang {
+    border-left: 6px solid #64b5f6;
+    background: #e3f2fd;
+}
+.order-item.status-van-chuyen {
+    border-left: 6px solid #64b5f6;
+    background: #e3f2fd;
+}
+.order-item.status-giao-thanh-cong {
+    border-left: 6px solid #81c784;
+    background: #e5f5e8;
+}
 .order-header {
     display: flex;
     justify-content: space-between;
@@ -230,4 +271,40 @@ form .btn:hover{
 .no-orders .btn:hover {
     background-color: var(--color-soft-peach-200);
     color: var(--color-soft-peach-800);
+}
+
+.btn.btn-review {
+    background: var(--color-soft-peach-600);
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 8px;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn.btn-review:hover {
+    background: var(--color-soft-peach-700);
+    color: #fff;
+}
+
+.btn.btn-reviewed {
+    background: var(--color-soft-peach-200);
+    color: var(--color-soft-peach-700);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    cursor: not-allowed;
+    margin-top: 8px;
+    display: inline-block;
+    text-align: center;
+    opacity: 0.8;
 }

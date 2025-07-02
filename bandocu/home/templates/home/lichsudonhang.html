@@ -11,7 +11,14 @@
         <div class="grib wide">
             <div class="order-history">
                 <h2>Lịch sử đơn hàng</h2>
-                
+                <!-- Thanh filter trạng thái -->
+                <form method="get" class="order-filter">
+                    <button type="submit" name="status" value="" class="order-filter-btn {% if not request.GET.status %}active{% endif %}">Tất cả</button>
+                    <button type="submit" name="status" value="Đang chờ xác nhận" class="order-filter-btn {% if request.GET.status == 'Đang chờ xác nhận' %}active{% endif %}">Đang chờ xác nhận</button>
+                    <button type="submit" name="status" value="Đang chuẩn bị hàng" class="order-filter-btn {% if request.GET.status == 'Đang chuẩn bị hàng' %}active{% endif %}">Đang chuẩn bị hàng</button>
+                    <button type="submit" name="status" value="Đang vận chuyển" class="order-filter-btn {% if request.GET.status == 'Đang vận chuyển' %}active{% endif %}">Đang vận chuyển</button>
+                    <button type="submit" name="status" value="Đã giao hàng" class="order-filter-btn {% if request.GET.status == 'Đã giao hàng' %}active{% endif %}">Giao hàng thành công</button>
+                </form>
                 {% if messages %}
                 <div class="messages">
                     {% for message in messages %}
@@ -24,7 +31,12 @@
                 
                 {% if orders %}
                     {% for order in orders %}
-                    <div class="order-item">
+                    <div class="order-item
+                    {% if order.TrangThaiDonHang == 'Đang chờ xác nhận' %}status-cho-xac-nhan{% endif %}
+                    {% if order.TrangThaiDonHang == 'Đang chuẩn bị hàng' %}status-chuan-bi-hang{% endif %}
+                    {% if order.TrangThaiDonHang == 'Đang vận chuyển' %}status-van-chuyen{% endif %}
+                    {% if order.TrangThaiDonHang == 'Đã giao hàng' %}status-giao-thanh-cong{% endif %}
+                    ">
                         <div class="order-header">
                             <h3>Đơn hàng #{{ order.id }}</h3>
                             {% comment %} <span class="order-date">{{ order.NgayDatHang|date:"d/m/Y H:i" }}</span> {% endcomment %}
@@ -58,6 +70,13 @@
                                     {% endfor %}
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="order-btn">
+                            {% if order.TrangThaiDonHang == "Đã giao hàng" and not order.reviewed %}
+                                <a href="{% url 'review_seller' order.id %}" class="btn btn-review">Đánh giá người bán</a>
+                            {% elif order.reviewed %}
+                                <span class="btn btn-reviewed" disabled>Đã đánh giá</span>
+                            {% endif %}
                         </div>
                     </div>
                     {% endfor %}

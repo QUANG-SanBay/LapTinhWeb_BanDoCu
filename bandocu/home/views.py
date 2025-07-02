@@ -2,7 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from seller.models import Product,  ProductCategory
-from .models import Order
+from account.models import Seller
+from .models import Order, Review
 # Create your views here.
 import random
 
@@ -49,7 +50,7 @@ def get_DatHang(request, product_id):
             NguoiMua=buyer,
             DiaChiGiaoHang=address,
             TongTien=product.Gia * so_luong,
-            TrangThaiDonHang="Chờ xác nhận"
+            TrangThaiDonHang="Đang chờ xác nhận"
         )
         # Thêm sản phẩm vào OrderItem
         OrderItem.objects.create(
@@ -88,9 +89,11 @@ def get_lichSuDonHang(request):
     try:
         buyer = request.user.buyer  # hoặc buyer = request.user.buyer_profile nếu bạn đặt related_name khác
     except Exception:
-        return render(request, 'home/lichsudonhang.html', {'orders': []})
-
-    orders = Order.objects.filter(NguoiMua=buyer).order_by('-NgayDatHang')
+            buyer = None
+    orders = Order.objects.filter(NguoiMua=buyer)
+    status = request.GET.get('status', '')
+    if status:
+        orders = orders.filter(TrangThaiDonHang=status)
     return render(request, 'home/lichsudonhang.html', {'orders': orders})
 @login_required
 def get_profile(request):
@@ -144,10 +147,13 @@ def all_products(request):
     categories = ProductCategory.objects.all()
     return render(request, 'home/all_products.html', {'products': products, 'categories': categories})
 
+
 def new_products(request):
     products = Product.objects.order_by('-id')
     categories = ProductCategory.objects.all()
     return render(request, 'home/new_products.html', {'products': products, 'categories': categories})
+
+
 @login_required
 def confirm_seller_info(request):
     if request.method == 'POST':
@@ -166,6 +172,8 @@ def confirm_seller_info(request):
         print(f"OTP gửi đến {request.POST['phone']}: {otp}")
         return redirect('verify_otp')
     return render(request, 'home/confirm_seller_info.html')
+
+
 @login_required
 def verify_otp(request):
     otp = request.session.get('otp')
@@ -176,11 +184,10 @@ def verify_otp(request):
             info = request.session.get('seller_info', {})
             user = request.user
             full_name = info.get('full_name', '').strip()
-            # Tách họ tên: last_name là từ đầu tiên, first_name là phần còn lại
             if ' ' in full_name:
                 parts = full_name.split()
-                user.first_name = parts[-1]  # Tên
-                user.last_name = ' '.join(parts[:-1])  # Họ và tên đệm
+                user.first_name = parts[-1]
+                user.last_name = ' '.join(parts[:-1])
             else:
                 user.first_name = full_name
                 user.last_name = ''
@@ -190,6 +197,9 @@ def verify_otp(request):
             user.cccd = info.get('cccd', '')
             user.user_type = 'seller'
             user.save()
+            # Thêm vào bảng Seller nếu chưa có
+            if not hasattr(user, 'seller_profile'):
+                Seller.objects.create(user=user)
             # Xóa session tạm
             request.session.pop('otp', None)
             request.session.pop('seller_info', None)
@@ -198,5 +208,30 @@ def verify_otp(request):
         else:
             messages.error(request, "Mã OTP không đúng. Vui lòng thử lại.")
     return render(request, 'home/verify_otp.html', {'otp': otp})
+
 def terms(request):
     return render(request, 'home/terms.html')
+
+
+@login_required
+def review_seller(request, order_id):
+    order = get_object_or_404(Order, id=order_id, NguoiMua=request.user.buyer)
+    if order.reviewed:
+        messages.warning(request, "Bạn đã đánh giá đơn hàng này rồi.")
+        return redirect('lichSuDonHang')
+    if request.method == "POST":
+        so_sao = int(request.POST.get('so_sao', 5))
+        noi_dung = request.POST.get('noi_dung', '')
+        seller = order.order_items.first().product.NguoiBan
+        Review.objects.create(
+            NguoiMua=order.NguoiMua,
+            NguoiBan=seller,
+            product=order.order_items.first().product,
+            NoiDungDanhGia=noi_dung,
+            SoSao=so_sao
+        )
+        order.reviewed = True
+        order.save()
+        messages.success(request, "Đánh giá thành công!")
+        return redirect('lichSuDonHang')
+    return render(request, 'home/review_seller.html', {'order': order})
