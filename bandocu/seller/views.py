@@ -5,14 +5,21 @@ from .models import Product, ProductCategory
 from .forms import ProductForm
 from django.contrib.auth.decorators import login_required
 
+from django.contrib import messages
+from home.models import Review
+from django.db import models
+
 
 # Create your views here.
 def home_seller(request):
-    seller = request.user.seller_profile
+    user = request.user
+    # Kiểm tra user đã có seller_profile chưa
+    seller = getattr(user, 'seller_profile', None)
+    if not seller:
+        messages.error(request, "Tài khoản của bạn chưa đăng ký làm người bán.")
+        return redirect('home')  # hoặc trang phù hợp, ví dụ: trang đăng ký seller
     products = Product.objects.filter(NguoiBan=seller).select_related('DanhMuc')
-    # Lấy danh sách danh mục có sản phẩm của seller
     categories = ProductCategory.objects.filter(products__NguoiBan=seller).distinct()
-    # Gom sản phẩm theo danh mục
     products_by_category = {}
     for category in categories:
         products_by_category[category.TenDanhMuc] = products.filter(DanhMuc=category)
@@ -67,9 +74,21 @@ def danh_sach_san_pham(request):
 def xoa_nhieu_san_pham(request):
     return render(request, 'seller/xoa-nhieu-san-pham.html')
 
+@login_required
 def xem_san_pham(request, id):
     product = get_object_or_404(Product, pk=id)
-    return render(request, 'seller/xem-san-pham.html', {'product': product})
+    reviews = product.reviews.select_related('NguoiMua__user', 'NguoiBan__user').all()
+    seller = getattr(product, 'NguoiBan', None)
+    seller_full_name = f"{seller.user.last_name} {seller.user.first_name}" if seller else ""
+    avg_star = reviews.aggregate(models.Avg('SoSao'))['SoSao__avg'] or 0
+    avg_star = round(avg_star, 1)
+    return render(request, 'seller/xem-san-pham.html', {
+        'product': product,
+        'reviews': reviews,
+        'user': request.user,
+        'seller_full_name': seller_full_name,
+        'avg_star': avg_star,
+    })
 def cho_xac_nhan(request):
     return render(request, 'seller/cho-xac-nhan.html')
 def get_product_detail(request):

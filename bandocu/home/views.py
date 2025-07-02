@@ -264,6 +264,5 @@ def reply_review(request, review_id):
                 content=content
             )
             messages.success(request, "Phản hồi thành công!")
-        else:
-            messages.error(request, "Bạn đã phản hồi hoặc nội dung trống.")
-    return redirect('ten_trang_hien_thi_danh_gia')  # thay bằng url phù hợp
+           
+    return redirect('seller:xem_san_pham', id=review.product.id)

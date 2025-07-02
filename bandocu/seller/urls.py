@@ -17,4 +17,5 @@ urlpatterns = [
     path('xem-san-pham/<int:id>/', views.xem_san_pham, name='xem_san_pham'),
     path('cho-xac-nhan/', views.cho_xac_nhan, name='cho_xac_nhan'),
     path('product-detail/', views.get_product_detail, name='get_product_detail'),
+    
 ]

@@ -56,8 +56,16 @@
                             <h2>{{product.TenSanPham}}</h2>
                         </div>
                         <div class="product__infor-rate">
+                            <div class="product__infor-rate-user">
+                                <a href="" class="product__infor-rate-user-link">
+                                    <span class="product__infor-rate-user-link-avt">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                    <span class="product__infor-rate-user-link-name">{{ seller_full_name }}</span>
+                                </a>
+                            </div>
                             <div class="product__infor-rate-star">
-                                <span class="product__infor-rate-star-number">5</span>
+                                <span class="product__infor-rate-star-number">{{ avg_star }}</span>
                                 <i class="fa-solid fa-star"></i>
                             </div>
                             <div class="product__infor-reviews">

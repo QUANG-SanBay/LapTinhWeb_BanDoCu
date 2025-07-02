@@ -106,6 +106,28 @@
     align-items: center;
     margin-bottom: 20px;
 }
+.product__infor-rate-user{
+    line-height: 1.5;
+    padding: 0 8px;
+}
+.product__infor-rate-user-link{
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: var(--text-c);
+}
+.product__infor-rate-user-link-avt{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: var(--color-soft-peach-300);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-soft-peach-700);
+    font-size: 1.2rem;
+}
 .product__infor-rate-star{
     font-size: 1.8rem;
     color: rgb(255, 145, 0);
@@ -343,7 +365,9 @@
     margin-right: 20px;
 }
 .product-comment__item-sellerRep-text{
-
+    display: block;
+    font-weight: 600;
+    margin-bottom: 12px;
 }
 .product-comment__item-sellerRep p{
     font-size: 1.4rem;
