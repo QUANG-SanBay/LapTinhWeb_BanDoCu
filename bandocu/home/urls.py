@@ -23,4 +23,6 @@ urlpatterns = [
      path('terms/', views.terms, name='terms'),
      
      path('review-seller/<int:order_id>/', views.review_seller, name='review_seller'),
+     
+     path('reply-review/<int:review_id>/', views.reply_review, name='reply_review'),
 ]

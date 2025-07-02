@@ -3,7 +3,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from seller.models import Product,  ProductCategory
 from account.models import Seller
-from .models import Order, Review
+from .models import Order, Review, ReviewComment
+from django.db import models
 # Create your views here.
 import random
 
@@ -28,8 +29,22 @@ def get_thongTinDonHang(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     is_buyer = False
     if request.user.is_authenticated:
-        is_buyer = hasattr(request.user, 'buyer')  # hoặc 'buyer_profile' nếu bạn đặt related_name
-    return render(request, 'home/xemThongTinSP.html', {'product': product, 'is_buyer': is_buyer})
+        is_buyer = hasattr(request.user, 'buyer')
+    reviews = product.reviews.select_related('NguoiMua__user', 'NguoiBan__user').all()
+    # Lấy người bán của sản phẩm
+    seller = getattr(product, 'NguoiBan', None)
+    seller_full_name = f"{seller.user.last_name} {seller.user.first_name}" if seller else ""
+    # Tính trung bình số sao
+    avg_star = reviews.aggregate(models.Avg('SoSao'))['SoSao__avg'] or 0
+    avg_star = round(avg_star, 1)
+    return render(request, 'home/xemThongTinSP.html', {
+        'product': product,
+        'is_buyer': is_buyer,
+        'user': request.user,
+        'reviews': reviews,
+        'seller_full_name': seller_full_name,
+        'avg_star': avg_star,
+    })
 
 @login_required
 def get_DatHang(request, product_id):
@@ -235,3 +250,20 @@ def review_seller(request, order_id):
         messages.success(request, "Đánh giá thành công!")
         return redirect('lichSuDonHang')
     return render(request, 'home/review_seller.html', {'order': order})
+
+@login_required
+def reply_review(request, review_id):
+    review = get_object_or_404(Review, id=review_id)
+    seller = request.user.seller_profile  # hoặc request.user.seller nếu bạn đặt related_name
+    if request.method == "POST" and review.NguoiBan == seller:
+        content = request.POST.get('content', '').strip()
+        if content and not hasattr(review, 'seller_comment'):
+            ReviewComment.objects.create(
+                review=review,
+                seller=seller,
+                content=content
+            )
+            messages.success(request, "Phản hồi thành công!")
+        else:
+            messages.error(request, "Bạn đã phản hồi hoặc nội dung trống.")
+    return redirect('ten_trang_hien_thi_danh_gia')  # thay bằng url phù hợp

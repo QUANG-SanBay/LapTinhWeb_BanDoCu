@@ -288,8 +288,8 @@
     padding: 10px;
 }
 .product-comment__item-user-avt{
-    width: 50px;
-    height: 50px;
+    /* width: 50px;
+    height: 50px; */
     border-radius: 50%;
     margin-right: 16px;
     overflow: hidden;

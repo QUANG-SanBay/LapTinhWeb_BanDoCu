@@ -46,15 +46,15 @@
                     {% csrf_token %}
                     <div class="form__group">
                         <label for="name" class="form__label">Họ và tên:</label>
-                        <input type="text" id="name" name="name" class="form__input" value="{{ user.get_full_name }}" required>
+                        <input type="text" id="name" name="name" class="form__input" value="{{ user.last_name }} {{ user.first_name }}" required>
                     </div>
                     <div class="form__group">
                         <label for="phone" class="form__label">Số điện thoại:</label>
-                        <input type="tel" id="phone" name="phone" class="form__input" value="{{ user.phone }}" required>
+                        <input type="tel" id="phone" name="phone" class="form__input" value="{{ user.so_dien_thoai }}" required>
                     </div>
                     <div class="form__group">
                         <label for="address" class="form__label">Địa chỉ giao hàng:</label>
-                        <input type="text" id="address" name="address" class="form__input" value="{{ user.address }}" required>
+                        <input type="text" id="address" name="address" class="form__input" value="{{ user.dia_chi }}" required>
                     </div>
                     <div class="form__group">
                         <label for="so_luong" class="form__label">Số lượng:</label>

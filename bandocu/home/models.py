@@ -67,3 +67,12 @@ class Review(models.Model):
 
     def __str__(self):
         return f"Review {self.id} by {self.NguoiMua.user.username}"
+    
+class ReviewComment(models.Model):
+    review = models.OneToOneField(Review, on_delete=models.CASCADE, related_name='seller_comment')
+    seller = models.ForeignKey(Seller, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Bình luận của {self.seller.user.username} cho đánh giá {self.review.id}"

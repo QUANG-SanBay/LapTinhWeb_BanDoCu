@@ -99,37 +99,54 @@
                 </div>
                 <section class="product-comment col c-12 m-12 l-12 ll-12">
                     <div class="product-comment__title">
-                        <h2>Đá giá sản phẩm</h2>
+                        <h2>Đánh giá người bán: {{ seller_full_name }}</h2>
                     </div>
                     <div class="product-comment__rate">
                         <div class="product-comment__rate-star">
-                            <span class="product-comment__rate-star-number">5</span>
+                            <span class="product-comment__rate-star-number">{{ avg_star }}</span>
                             <i class="fa-solid fa-star"></i>
                         </div>
                     </div>
                     <ul class="product-comment__list">
+                        {% for review in reviews %}
                         <li class="product-comment__item">
                             <div class="product-comment__item-user">
                                 <div class="product-comment__item-user-avt">
-                                    <img src="asset/imgs/img.jpg" alt="User Avatar">
+                                    {% comment %} <img src="{% static 'asset/imgs/img.jpg' %}" alt="User Avatar"> {% endcomment %}
+                                    <div class="header__avatar">
+                                        <i class="fas fa-user"></i>
+                                    </div>
                                 </div>
                                 <div class="product-comment__item-user-detail">
-                                    <span class="product-comment__item-user-name">Nguyễn Văn A</span>
+                                    <span class="product-comment__item-user-name">
+                                        {{ review.NguoiMua.user.last_name }} {{ review.NguoiMua.user.first_name }}
+                                    </span>
                                     <div class="product-comment__item-user-rate">
-                                        <span class="product-comment__item-user-rate-number">5</span>
+                                        <span class="product-comment__item-user-rate-number">{{ review.SoSao }}</span>
                                         <i class="fa-solid fa-star"></i>
                                     </div>
                                 </div>
-
                             </div>
                             <div class="product-comment__item-content">
-                                <p>Sản phẩm rất tốt, tôi rất hài lòng.</p>
+                                <p>{{ review.NoiDungDanhGia }}</p>
                             </div>
-                            <div class="product-comment__item-sellerRep">
-                                <span class="product-comment__item-sellerRep-text">Phản hồi từ người bán:</span>
-                                <p>Cảm ơn bạn đã đánh giá sản phẩm của chúng tôi. Chúng tôi rất vui khi biết bạn hài lòng với sản phẩm.</p>
-                            </div>
+                            {% if review.seller_comment %}
+                                <div class="product-comment__item-sellerRep">
+                                    <span class="product-comment__item-sellerRep-text">Phản hồi từ người bán:</span>
+                                    <p>{{ review.seller_comment.content }}</p>
+                                    <small>{{ review.seller_comment.created_at|date:"d/m/Y H:i" }}</small>
+                                </div>
+                            {% elif user.is_authenticated and user.user_type == "seller" and review.NguoiBan.user == user %}
+                                <form method="post" action="{% url 'reply_review' review.id %}">
+                                    {% csrf_token %}
+                                    <textarea name="content" required placeholder="Phản hồi đánh giá này..."></textarea>
+                                    <button type="submit">Gửi phản hồi</button>
+                                </form>
+                            {% endif %}
                         </li>
+                        {% empty %}
+                        <li>Chưa có đánh giá nào cho sản phẩm này.</li>
+                        {% endfor %}
                     </ul>
                 </section>
             </div>
