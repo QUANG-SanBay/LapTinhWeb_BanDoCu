@@ -35,3 +35,6 @@ html::-webkit-scrollbar-thumb {
 html::-webkit-scrollbar-track {
     background: var(--color-soft-peach-50);
 }
+html {
+    scroll-behavior: smooth;
+}

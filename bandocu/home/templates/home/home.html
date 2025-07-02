@@ -51,14 +51,21 @@
                     </div>
                     
                     <div class="banner__cta">
-                        <a href="#" class="cta-btn cta-primary">
+                        <a href="#category" class="cta-btn cta-primary">
                             <i class="fas fa-shopping-cart"></i>
                             Khám phá sản phẩm
                         </a>
-                        <a href="#" class="cta-btn cta-secondary">
-                            <i class="fas fa-plus-circle"></i>
-                            Đăng bán ngay
-                        </a>
+                        {% if user.user_type == 'buyer'  %}
+                            <a href="{% url 'confirm_seller_info' %}" class="cta-btn cta-secondary">
+                                <i class="fas fa-plus-circle"></i>
+                                Đăng bán ngay
+                            </a>
+                        {% elif user.user_type == 'seller' %}
+                            <a href="{% url 'seller:home_seller' %}" class="cta-btn cta-secondary">
+                                <i class="fas fa-plus-circle"></i>
+                                Đăng bán ngay
+                            </a>
+                        {% endif %}
                     </div>
                 </div>
                 
@@ -84,7 +91,7 @@
                 </div>
             </div>
         </section>
-        <section class="category">
+        <section class="category" id= "category">
             <div class="category__title">
                 <h2 class="category__title-text">Danh mục</h2>
             </div>
