@@ -62,7 +62,7 @@
                 <button class="btn btn-secondary btn-sm" onclick="editProduct({{ product.id }})">
                     <i class="fas fa-edit"></i> Sửa
                 </button>
-                <button class="btn btn-danger btn-sm" onclick="confirmDelete({{ product.id }}, '{{ product.TenSanPham }}')">
+                <button class="btn btn-danger btn-sm" onclick="window.location.href='{% url 'seller:xoa_san_pham' product.id %}'">
                     <i class="fas fa-trash"></i> Xóa
                 </button>
             </div>
