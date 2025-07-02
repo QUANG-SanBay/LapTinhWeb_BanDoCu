@@ -5,10 +5,83 @@
 <main class="main-content"> 
     <div class="grib wide">
         <section class="banner">
-            <div class="banner__title">
-                <h1 class="banner__title-text">Chào mừng bạn đến với SECOND HAND</h1>
-                <p class="banner__subtitle-text">Nơi bạn có thể mua bất cứ thứu gì với giá hợp túi tiền.</p>
-                <p class="banner__subtitle-text">Hãy cùng nhau khám phá các tính ăng và dich vụ của cúng tôi.</p>
+            <div class="floating-elements">
+                <i class="fas fa-leaf floating-leaf"></i>
+                <i class="fas fa-seedling floating-leaf"></i>
+                <i class="fas fa-recycle floating-leaf"></i>
+            </div>
+            
+            <div class="banner-content">
+                <div class="banner-left">
+                    <h1 class="banner__title-text">
+                        Chào mừng bạn đến với <span class="banner__highlight">SECOND HAND</span>
+                    </h1>
+                    <p class="banner__subtitle-text">
+                        Nơi bạn có thể mua bất cứ thứ gì với <strong>giá hợp túi tiền</strong>
+                    </p>
+                    <p class="banner__subtitle-text">
+                        Hãy cùng nhau khám phá các tính năng và dịch vụ của chúng tôi
+                    </p>
+                    
+                    <div class="banner__features">
+                        <div class="feature-item">
+                            <i class="fas fa-mobile-screen-button feature-icon"></i>
+                            <span class="feature-text">Điện thoại</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-tshirt feature-icon"></i>
+                            <span class="feature-text">Quần áo</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-laptop feature-icon"></i>
+                            <span class="feature-text">Laptop</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-chair feature-icon"></i>
+                            <span class="feature-text">Nội thất</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-book feature-icon"></i>
+                            <span class="feature-text">Sách vở</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-gamepad feature-icon"></i>
+                            <span class="feature-text">Điện tử</span>
+                        </div>
+                    </div>
+                    
+                    <div class="banner__cta">
+                        <a href="#" class="cta-btn cta-primary">
+                            <i class="fas fa-shopping-cart"></i>
+                            Khám phá sản phẩm
+                        </a>
+                        <a href="#" class="cta-btn cta-secondary">
+                            <i class="fas fa-plus-circle"></i>
+                            Đăng bán ngay
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="banner-right">
+                    <div class="eco-visual">
+                        <div class="eco-circle"></div>
+                        <div class="eco-circle"></div>
+                        <div class="eco-icons">
+                            <div class="eco-icon">
+                                <i class="fas fa-mobile-screen-button"></i>
+                            </div>
+                            <div class="eco-icon">
+                                <i class="fas fa-tshirt"></i>
+                            </div>
+                            <div class="eco-icon">
+                                <i class="fas fa-laptop"></i>
+                            </div>
+                            <div class="eco-icon">
+                                <i class="fas fa-chair"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         <section class="category">
@@ -126,3 +199,7 @@
 </main>
 
 {% endblock %}
+
+{% block home_js %}
+    <script src="{% static 'home/js/home.js' %}"></script>
+{% endblock home_js %}

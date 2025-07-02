@@ -44,4 +44,6 @@
     </main>
     {% include 'partials/home/footer.html' %}
     <script src="{% static 'home/js/header.js' %}?v={{ timestamp }}"></script>
+    
+    {% block home_js %}{% endblock home_js %}
 </body>

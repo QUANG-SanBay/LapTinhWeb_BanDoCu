@@ -211,17 +211,255 @@ backdrop-filter: blur(10px);
 .main-content{
     margin-top: 120px;
 }
-.banner{
-    background-color: var(--bgr-section);
+.banner {
     position: relative;
-    height: 280px;
+    height: 350px;
     width: 100%;
-    padding-left: 40px;
-    align-content: center;
-    border: 1px solid #331c1c;
-    margin-bottom: 20px;
+    background: linear-gradient(135deg, #e8c5c5 0%, #ba7979 50%, #9c5c5c 100%); /* Sử dụng biến màu */
+    border-radius: 8px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(186, 121, 121, 0.3);
 }
-.banner__title{
+
+.banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="none"><path d="M0,20 Q250,60 500,40 T1000,30 L1000,0 L0,0 Z" fill="rgba(255,255,255,0.1)"/></svg>') repeat-x;
+    animation: wave 3s ease-in-out infinite;
+}
+@keyframes wave {
+    0%, 100% { transform: translateX(0px); }
+    50% { transform: translateX(-20px); }
+}
+.banner-content {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    z-index: 2;
+}
+
+.banner-left {
+    flex: 1;
+    color: white;
+}
+
+.banner-right {
+    flex: 0 0 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner__title-text {
+    font-size: 3.2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: fadeInUp 1s ease-out;
+}
+
+.banner__subtitle-text {
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+    opacity: 0.95;
+    animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.banner__highlight {
+    color: #FFE082;
+    font-weight: 600;
+}
+
+.banner__features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin: 25px 0;
+    animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.1);
+    padding: 8px 15px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.feature-icon {
+    font-size: 1.2rem;
+    color: #FFE082;
+}
+
+.feature-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.banner__cta {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-top: 25px;
+    animation: fadeInUp 1s ease-out 0.9s both;
+}
+
+.cta-btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cta-primary {
+    background: white;
+    color: #9c5c5c; /* Đã đổi từ --primary-green sang --dark-color */
+    box-shadow: 0 4px 15px rgba(255,255,255,0.3);
+}
+
+.cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255,255,255,0.4);
+}
+
+.cta-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.cta-secondary:hover {
+    background: white;
+    color: #9c5c5c; /* Đã đổi từ --primary-green sang --dark-color */
+    transform: translateY(-2px);
+}
+
+.eco-visual {
+    position: relative;
+    width: 250px;
+    height: 250px;
+}
+
+.eco-circle {
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.3);
+    animation: rotate 20s linear infinite;
+}
+
+.eco-circle:nth-child(1) {
+    width: 200px;
+    height: 200px;
+    top: 25px;
+    left: 25px;
+}
+
+.eco-circle:nth-child(2) {
+    width: 150px;
+    height: 150px;
+    top: 50px;
+    left: 50px;
+    animation-direction: reverse;
+    animation-duration: 15s;
+}
+
+.eco-icons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    z-index: 3;
+}
+
+.eco-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    animation: float 3s ease-in-out infinite;
+}
+
+.eco-icon:nth-child(2) { animation-delay: 0.5s; }
+.eco-icon:nth-child(3) { animation-delay: 1s; }
+.eco-icon:nth-child(4) { animation-delay: 1.5s; }
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.floating-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.floating-leaf {
+    position: absolute;
+    color: rgba(255,255,255,0.3);
+    font-size: 1.5rem;
+    animation: floatingLeaf 8s ease-in-out infinite;
+}
+
+.floating-leaf:nth-child(1) { left: 10%; animation-delay: 0s; }
+.floating-leaf:nth-child(2) { left: 80%; animation-delay: 2s; }
+.floating-leaf:nth-child(3) { left: 60%; animation-delay: 4s; }
+
+@keyframes floatingLeaf {
+    0%, 100% { 
+        transform: translateY(400px) rotate(0deg);
+        opacity: 0;
+    }
+    10%, 90% { opacity: 1; }
+    50% { 
+        transform: translateY(-50px) rotate(180deg);
+        opacity: 1;
+    }
+}
+
+/* .banner__title{
     line-height: 1.5;
 }
 .banner__title-text{
@@ -232,7 +470,7 @@ backdrop-filter: blur(10px);
 }
 .banner__subtitle-text{
     font-size: 1.4rem;
-}
+} */
 /* css cho danh mục sản phẩm */
 .category{
     background-color: var(--bgr-section);
