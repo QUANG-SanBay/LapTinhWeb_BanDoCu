@@ -1,12 +1,10 @@
 from django import forms
-# from .models import SanPham, AnhSanPham
+from .models import Product, ProductCategory
 
-# class SanPhamForm(forms.ModelForm):
-#     class Meta:
-#         model = SanPham
-#         fields = ['tenSanPham', 'moTa', 'gia', 'soLuong', 'theLoai', 'video']
-
-# class AnhSanPhamForm(forms.ModelForm):
-#     class Meta:
-#         model = AnhSanPham
-#         fields = ['hinhAnh'] 
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['TenSanPham', 'MoTa', 'Gia', 'SoLuong', 'DanhMuc', 'TrangThai', 'HinhAnh', 'HinhAnh2', 'HinhAnh3', 'HinhAnh4']
+        widgets = {
+            'MoTa': forms.Textarea(attrs={'rows': 4}),
+        }

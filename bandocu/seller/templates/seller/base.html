@@ -21,6 +21,7 @@
     {% block xem-san-pham %}{% endblock %}
     {% block xem-san-pham-js %}{% endblock %}
     {% block product_detail_css %}{% endblock product_detail_css %}
+
     
 </head>
 <body>
@@ -28,7 +29,7 @@
     <main>
         {% comment %} {% block header %}
         {% endblock header %} {% endcomment %}
-       {% block content %}
+        {% block content %}
         {% endblock content %}
         
         {% block product_detail %}
@@ -38,5 +39,5 @@
     </main>
     {% include 'partials/seller/footer.html' %}
     <script src="{% static 'seller/js/seller.js' %}?v={{ timestamp }}"></script>
-    <script src="{% static 'seller/js/them.js' %}?v={{ timestamp }}"></script>
+    <script src="{% static 'seller/js/header.js' %}?v={{ timestamp }}"></script>
 </body>
