@@ -56,8 +56,14 @@ def sua_san_pham(request, id):
     else:
         form = ProductForm(instance=product)
     return render(request, 'seller/sua-san-pham.html', {'form': form, 'san_pham': product})
+
+@login_required
 def xoa_san_pham(request, id):
-    return render(request, 'seller/xoa-san-pham.html')
+    product = get_object_or_404(Product, pk=id, NguoiBan=request.user.seller_profile)
+    if request.method == 'POST':
+        product.delete()
+        return redirect('seller:danh_sach_san_pham')
+    return render(request, 'seller/xoa-san-pham.html', {'san_pham': product})
 
 def danh_sach_san_pham(request):
     seller = request.user.seller_profile
