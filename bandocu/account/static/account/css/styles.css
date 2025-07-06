@@ -274,3 +274,16 @@ select option {
     object-fit: contain;
     background: none;
 }
+.footer__copyright {
+    text-align: center;
+    border-top: 1px solid #ddd;
+    padding: 15px 0;
+    margin-top: 20px;
+    background-color: #f8f9fa;
+}
+
+.footer__copyright p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}

@@ -1364,6 +1364,20 @@ body {
 .seller-product-list h2:not(:first-child) {
     margin-top: 40px;
 }
+/* Cho footer của seller */
+.seller-footer__copyright {
+    text-align: center;
+    border-top: 1px solid #ddd;
+    padding: 15px 0;
+    margin-top: 20px;
+    background-color: #f8f9fa;
+}
+
+.seller-footer__copyright p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
 
 @media (max-width: 1200px) {
     .category-group {
