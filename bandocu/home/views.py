@@ -37,6 +37,9 @@ def get_thongTinDonHang(request, product_id):
     # Tính trung bình số sao
     avg_star = reviews.aggregate(models.Avg('SoSao'))['SoSao__avg'] or 0
     avg_star = round(avg_star, 1)
+    # Tính số lượt đánh giá
+    review_count = reviews.count()
+    
     return render(request, 'home/xemThongTinSP.html', {
         'product': product,
         'is_buyer': is_buyer,
@@ -44,6 +47,7 @@ def get_thongTinDonHang(request, product_id):
         'reviews': reviews,
         'seller_full_name': seller_full_name,
         'avg_star': avg_star,
+        'review_count': review_count,
     })
 
 @login_required

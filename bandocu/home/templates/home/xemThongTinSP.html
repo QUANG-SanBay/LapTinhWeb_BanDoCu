@@ -70,7 +70,7 @@
                             </div>
                             <div class="product__infor-reviews">
                                 <span class="product__infor-reviews-text">Lượt đángh giá:</span>
-                                <span class="product__infor-reviews-number">100</span>
+                                <span class="product__infor-reviews-number">{{ review_count }}</span>
                             </div>
                         </div>
                         <div class="product__infor-price">
@@ -87,12 +87,10 @@
                             </button>
                         </div>
                         <div class="product__infor-buy">
-                        {% if user.is_authenticated and is_buyer %}
+                        {% if user.is_authenticated %}
                             <a href="{% url 'datHang' product.id %}" class="product__infor-buy-btn">Mua ngay</a>
                         {% elif not user.is_authenticated %}
                             <a href="{% url 'login' %}" class="product__infor-buy-btn">Đăng nhập để mua</a>
-                        {% else %}
-                            <button class="product__infor-buy-btn" disabled>Chỉ người mua mới được mua hàng</button>
                         {% endif %}
                         </div>
                     </section>
